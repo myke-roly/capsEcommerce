@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #333333;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.btn {
+  display: inline-block;
+  border: 2px solid white;
+  color: white; 
+  background-color: transparent;
+  padding: .5rem 1rem;
+}
