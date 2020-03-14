@@ -1,7 +1,13 @@
-# capsEcommerce
-This is my first freelancer job.
+# Caps E-commerce
+This is my first freelancer job
 
-##technologies:
-**next
-**react
-**styled-components
+-------------------
+
+#### Start project
+* npm install
+* npm run dev 
+
+#### Technologies:
+- Next.js
+- React.js
+- Styled-Components
