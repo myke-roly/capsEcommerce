@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Header from './Header';
+import React, { useState } from 'react';import Nav from './Nav';
 import Footer from './Footer';
 
 const Layout = (props) => {
   return (
     <>
-      <Header />
+      <Nav />
       {props.children}
       <Footer />
     </>

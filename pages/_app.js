@@ -4,8 +4,12 @@ import '../styles.css';
 
 const theme = {
   color: {
-    white: 'red',
-    dark: 'green'
+    dark: 'black',
+    primary: '#fafafa',
+    secondary: 'blue',
+    default: 'gray',
+    error: 'red',
+    success: '#909012'
   }
 };
 
