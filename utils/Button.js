@@ -25,28 +25,13 @@ const ButtonWrapper = styled.a`
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.8em;
-  transition: all .3s ease;
-  
+  transition: all 0.3s ease;
+
   &:hover {
     opacity: 0.7;
   }
 `;
 
-// const invertTheme = ({ color }) => ({
-//   color: {
-//     dark: color.dark,
-//     primary: color.primary,
-//     secondary: color.secondary,
-//     default: color.default,
-//     error: color.error,
-//     success: color.success
-//   }
-// });
-
 export default function Button({ color, text }) {
-  return (
-    // <ThemeProvider theme={invertTheme}>
-    <ButtonWrapper color={color}>{text}</ButtonWrapper>
-    // <ThemeProvider>
-  );
+  return <ButtonWrapper color={color}>{text}</ButtonWrapper>;
 }

@@ -2,16 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Container } from '../styled/index';
-import { FaSearch, FaUser } from 'react-icons/fa';
+import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
 
 import Button from '../utils/Button';
 
 const Nav = styled.nav`
+  position: sticky;
+  top: 0;
   width: 100%;
   background: ${props => props.theme.color.primary};
   color: ${props => props.theme.color.dark};
-  padding: 1rem 0;
-  @media (max-width: 720px) {
+  padding: 0.4rem 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+  z-index: 100;
+
+  @media (max-width: 900px) {
     font-size: 14px;
   }
 
@@ -22,8 +27,7 @@ const Nav = styled.nav`
 
     svg {
       color: ${({ theme }) => theme.color.dark};
-      margin: 0 1.5rem;
-      /* font-size: .8rem; */
+      margin: 0 .7rem;
     }
   }
 `;
@@ -37,20 +41,23 @@ const Links = styled.ul`
   a {
     background: transparent;
     color: #000;
-    font-size: 0.8rem;
+    font-size: 0.7em;
+    font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
+    transition: color 3s ease;
 
     &:hover {
       color: red;
+      border-top: 2px solid red;
     }
   }
 `;
 
 const Title = styled.h1`
   text-transform: uppercase;
-  font-size: 1.4rem;
-  letter-spacing: 5px;
+  font-size: 1.4em;
+  letter-spacing: 0.5em;
 `;
 
 const NavBar = () => {
@@ -73,13 +80,16 @@ const NavBar = () => {
   return (
     <Nav>
       <Container>
-        <Title>Caps <small>ooo</small></Title>
+        <Title>
+          Caps <small>ooo</small>
+        </Title>
         <Links>
           <Item />
-        <div>
-          <FaSearch />
-          <FaUser />
-        </div>
+          <div>
+            <FaSearch />
+            <FaShoppingCart />
+            <FaUser />
+          </div>
         </Links>
       </Container>
     </Nav>
