@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Container } from '../styled/index';
@@ -13,7 +13,7 @@ const Nav = styled.nav`
   background: ${props => props.theme.color.primary};
   color: ${props => props.theme.color.dark};
   padding: 0.4rem 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   z-index: 100;
 
   @media (max-width: 900px) {
@@ -27,7 +27,7 @@ const Nav = styled.nav`
 
     svg {
       color: ${({ theme }) => theme.color.dark};
-      margin: 0 .7rem;
+      margin: 0 0.7rem;
     }
   }
 `;
@@ -37,19 +37,25 @@ const Links = styled.ul`
 
   li {
     margin-left: 1rem;
-  }
-  a {
-    background: transparent;
-    color: #000;
-    font-size: 0.7em;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0.5rem 1rem;
-    transition: color 3s ease;
 
-    &:hover {
-      color: red;
-      border-top: 2px solid red;
+    a {
+      background: transparent;
+      color: #000;
+      font-size: 0.7em;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      transition: color 3s ease;
+
+      &:hover {
+        color: ${({theme}) => theme.color.dark};
+        border-top: 2px solid ${({theme}) => theme.color.dark};
+      }
+
+      &.active {
+        background: red;
+        color: white;
+      }
     }
   }
 `;
