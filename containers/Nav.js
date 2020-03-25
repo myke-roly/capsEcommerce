@@ -10,13 +10,14 @@ import Button from '../utils/Button';
 const Nav = styled.nav`
   position: sticky;
   top: 0;
+  left: 0;
   width: 100%;
   background: ${props => props.theme.color.primary};
   color: ${props => props.theme.color.dark};
-  padding: 0.4rem 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 0.6rem 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
   z-index: 100;
-  position: relative;
+  /* position: relative; */
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -68,8 +69,12 @@ const Links = styled.ul`
 
 const Title = styled.h1`
   text-transform: uppercase;
-  font-size: 1.4em;
-  letter-spacing: 0.5em;
+  font-size: 1.2em;
+  letter-spacing: 0.3rem;
+
+  small {
+    font-size: .7em;
+  }
 `;
 
 const NavBar = () => {

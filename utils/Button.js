@@ -22,7 +22,7 @@ const ButtonWrapper = styled.a`
     }};
   border: 1.5px solid;
   border-radius: 50px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
   font-size: 0.8em;
   transition: all 0.3s ease;
@@ -32,6 +32,6 @@ const ButtonWrapper = styled.a`
   }
 `;
 
-export default function Button({ color, text }) {
-  return <ButtonWrapper color={color}>{text}</ButtonWrapper>;
+export default function Button({ color, text, children }) {
+return <ButtonWrapper color={color}>{text}  {children}</ButtonWrapper>;
 }
