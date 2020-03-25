@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { Container } from '../styled/index';
 import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import BurguerMenu from '../utils/BurguerMenu';
 
 import Button from '../utils/Button';
 
@@ -15,6 +16,7 @@ const Nav = styled.nav`
   padding: 0.4rem 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   z-index: 100;
+  position: relative;
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -35,6 +37,10 @@ const Nav = styled.nav`
 const Links = styled.ul`
   display: flex;
 
+  @media (max-width: 900px) {
+    display: none;
+  }
+
   li {
     margin-left: 1rem;
 
@@ -48,8 +54,8 @@ const Links = styled.ul`
       transition: color 3s ease;
 
       &:hover {
-        color: ${({theme}) => theme.color.dark};
-        border-top: 2px solid ${({theme}) => theme.color.dark};
+        color: ${({ theme }) => theme.color.dark};
+        border-top: 2px solid ${({ theme }) => theme.color.dark};
       }
 
       &.active {
@@ -83,6 +89,8 @@ const NavBar = () => {
       </li>
     ));
 
+  const [modeMobile, setModeMobie] = useState(false);
+
   return (
     <Nav>
       <Container>
@@ -98,6 +106,7 @@ const NavBar = () => {
           </div>
         </Links>
       </Container>
+      <BurguerMenu modeMobile={modeMobile} handleModeMobile={() => setModeMobie(!modeMobile)} />
     </Nav>
   );
 };

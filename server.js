@@ -16,7 +16,7 @@ app.prepare().then(() => {
   /** Middlewares */
   server.use(cors());
   server.use(compression());
-  server.use(morgan('dev'));
+  // server.use(morgan('dev'));
   server.use(express.static(__dirname + '/static', { maxAge: 86400000 }));
   server.use(body_parser.json());
   server.use(body_parser.urlencoded({ extended: false }));
