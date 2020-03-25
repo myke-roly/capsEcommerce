@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon server.js",
     "build": "next build ",
     "start": "next start"
   },
@@ -13,7 +13,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "next": "^9.3.0",
+    "nodemon": "^2.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
