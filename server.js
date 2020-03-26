@@ -7,7 +7,7 @@ const cors = require('cors');
 const compression = require('compression');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 8080;
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {

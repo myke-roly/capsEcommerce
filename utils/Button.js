@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-const ButtonWrapper = styled.a`
+const ButtonWrapper = styled.button`
   ${props =>
     props.color === 'primary' && {
       background: 'transparent',
@@ -32,6 +32,10 @@ const ButtonWrapper = styled.a`
   }
 `;
 
-export default function Button({ color, text, children }) {
-return <ButtonWrapper color={color}>{text}  {children}</ButtonWrapper>;
+export default function Button({ color, text, children, type }) {
+  return (
+    <ButtonWrapper color={color} type={type}>
+      {text} {children}
+    </ButtonWrapper>
+  );
 }

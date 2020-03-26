@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Container } from '../styled/index';
@@ -73,7 +73,7 @@ const Title = styled.h1`
   letter-spacing: 0.3rem;
 
   small {
-    font-size: .7em;
+    font-size: 0.7em;
   }
 `;
 
@@ -94,7 +94,18 @@ const NavBar = () => {
       </li>
     ));
 
+  const [mobile, setMobile] = useState(false);
   const [modeMobile, setModeMobie] = useState(false);
+
+  useEffect(() => {
+    setMobile(window.innerWidth < 900 ? true : false);
+    function func(e) {
+      setMobile(e.target.innerWidth < 900 ? true : false);
+    }
+
+    window.addEventListener('resize', func);
+    return () => window.removeEventListener('resize', func);
+  }, []);
 
   return (
     <Nav>
@@ -107,11 +118,21 @@ const NavBar = () => {
           <div>
             <FaSearch />
             <FaShoppingCart />
-            <FaUser />
+            <Link href="/login">
+              <a>
+                <FaUser />{' '}
+              </a>
+            </Link>
           </div>
         </Links>
       </Container>
-      <BurguerMenu modeMobile={modeMobile} handleModeMobile={() => setModeMobie(!modeMobile)} />
+      {mobile && (
+        <BurguerMenu
+          modeMobile={modeMobile}
+          handleModeMobile={() => setModeMobie(!modeMobile)}
+        />
+      )}
+      {modeMobile && <Item />}
     </Nav>
   );
 };

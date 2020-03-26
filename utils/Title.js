@@ -8,10 +8,10 @@ const WrapperTitle = styled.h1`
     color: white;
 `;
 
-export default function Title(props) {
+export default function Title({title}) {
   return (
     <WrapperTitle>
-      {props.title}
+      {title}
     </WrapperTitle>
   )
 }

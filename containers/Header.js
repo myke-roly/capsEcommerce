@@ -16,7 +16,7 @@ const animate = keyframes`
 `;
 
 const WrapperHeader = styled.header`
-  height: 50vh;
+  height: 65vh;
   width: 100%;
   position: relative;
   background: linear-gradient(to left, #333, #000, #000);
