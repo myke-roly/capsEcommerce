@@ -1,14 +1,11 @@
 import React from 'react';
-import Layout from '../containers/Layout';
+import Layout from '../containers/layout';
 import Title from '../utils/Title';
-import { Container } from '../styled/index';
 
 export default () => {
   return (
     <Layout>
-      <Container>
-        <Title title="Productos" />
-      </Container>
+      <Title title="Productos" />
     </Layout>
   );
 };

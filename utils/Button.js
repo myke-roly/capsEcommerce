@@ -5,8 +5,8 @@ const ButtonWrapper = styled.button`
   ${props =>
     props.color === 'primary' && {
       background: 'transparent',
-      color: props.theme.color.primary,
-      borderColor: props.theme.color.primary
+      border: '2px solid' + props.theme.color.secondary,
+      color: props.theme.color.secondary
     }};
   ${props =>
     props.color === 'dark' && {
@@ -20,7 +20,6 @@ const ButtonWrapper = styled.button`
       color: props.theme.color.success,
       borderColor: props.theme.color.success
     }};
-  border: 1.5px solid;
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
   cursor: pointer;

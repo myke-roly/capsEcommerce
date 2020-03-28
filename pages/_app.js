@@ -4,10 +4,11 @@ import '../styles.css';
 
 const theme = {
   color: {
-    dark: 'black',
+    dark: '#121b22',
     primary: '#fafafa',
-    secondary: 'blue',
-    default: 'gray',
+    secondary: '#b94a3e',
+    default: '#204254',
+    tercero: "#957557",
     error: 'red',
     success: '#909012'
   }
