@@ -9,8 +9,7 @@ const Header = () => {
     <WrapperHeader>
       <Container>
         <Content>
-          <h1>CAP's <small>arg</small></h1>
-          <p>Calidad en nuestros productos</p>
+          <h1>CAPs <span>argentina</span><p>Calidad en nuestros productos</p></h1>
           <Button text="COMPRAR " color="primary">
             <FaArrowRight size=".6rem" />
           </Button>

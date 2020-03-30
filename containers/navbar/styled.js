@@ -1,5 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 
+const toBottom = keyframes`
+  from {
+    transform: translateX(100%);
+  };
+  to {
+    transform: translateX(0);
+  };
+`;
+
 export const Nav = styled.nav`
   position: sticky;
   top: 0;
@@ -10,7 +19,8 @@ export const Nav = styled.nav`
   padding: 0.6rem 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
   z-index: 100;
-  /* position: relative; */
+  position: relative;
+  height: auto;
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -88,5 +98,42 @@ export const CartItem = styled.span`
     position: absolute;
     top: -30%;
     right: 0;
+  }
+`;
+
+export const MenuMobile = styled.div`
+  background: ${({ theme }) => theme.color.primary};
+  margin-bottom: -1rem;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  animation: ${toBottom} .5s ease-in-out;
+  z-index: 1;
+
+  ul {
+    width: 100%;
+    padding-top: 1rem;
+
+    li {
+      margin-bottom: 1rem;
+      padding: 0.55rem 0;
+      width: 100%;
+      background: ${({ theme }) => theme.color.default};
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+      a {
+        color: ${({ theme }) => theme.color.primary};
+        text-transform: uppercase;
+        font-size: 0.85em;
+        width: inherit;
+      }
+    }
+
+    svg {
+      color: ${({ theme }) => theme.color.dark};
+      font-size: 1.35rem;
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
   }
 `;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const WrapperMain = styled.main`
-  background: ${({ theme }) => theme.color.secondary};
-  color: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.default};
+  background: ${({ theme }) => theme.color.primary};
 `;
 
 export const WrapperGrid = styled.section`

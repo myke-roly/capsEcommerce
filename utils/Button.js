@@ -1,30 +1,31 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.a`
   ${props =>
     props.color === 'primary' && {
-      background: 'transparent',
-      border: '2px solid' + props.theme.color.secondary,
-      color: props.theme.color.secondary
+      border: '2px solid' + props.theme.color.primary,
+      background: props.theme.color.primary
     }};
   ${props =>
     props.color === 'dark' && {
-      background: 'transparent',
-      color: props.theme.color.dark,
-      borderColor: props.theme.color.dark
+      background: props.theme.color.dark,
+      border: '2px solid' + props.theme.color.dark,
+      color: props.theme.color.primary
     }};
   ${props =>
-    props.color === 'success' && {
-      background: 'transparent',
-      color: props.theme.color.success,
-      borderColor: props.theme.color.success
+    props.color === 'secondary' && {
+      background: props.theme.color.secondary,
+      border: '2px solid' + props.theme.color.secondary,
+      color: props.theme.color.primary
     }};
-  border-radius: 50px;
-  padding: 0.5rem 1.2rem;
+  border-radius: 7px;
+  padding: .7rem 1.5rem;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 1em;
   transition: all 0.3s ease;
+  box-shadow: 0 0 7px 5px rgba(0, 0, 0, .1);
+  letter-spacing: 1.5px;
 
   &:hover {
     opacity: 0.7;

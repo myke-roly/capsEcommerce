@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Container } from '../../styled/index';
-import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaUser,
+  FaShoppingCart,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube
+} from 'react-icons/fa';
 import BurguerMenu from '../../utils/BurguerMenu';
-import { Nav, Title, Links, CartItem } from './styled';
+import { Nav, Title, Links, CartItem, MenuMobile } from './styled';
 
 const NavBar = () => {
   const links = [
@@ -38,35 +46,47 @@ const NavBar = () => {
   }, []);
 
   return (
-    <Nav>
-      <Container>
-        <Title>
-          <Link href="/">
-            <a>
-              Caps <small>ooo</small>
-            </a>
-          </Link>
-        </Title>
-        <Links>
-          <Item />
-          <div>
-            <FaSearch />
-            <CartItem onClick={() => setItem(item + 1)}>
-              <FaShoppingCart />
-              <span>{item}</span>
-            </CartItem>
-            <FaUser />
-          </div>
-        </Links>
-      </Container>
-      {mobile && (
-        <BurguerMenu
-          modeMobile={modeMobile}
-          handleModeMobile={() => setModeMobie(!modeMobile)}
-        />
+    <>
+      <Nav>
+        <Container>
+          <Title>
+            <Link href="/">
+              <a>
+                Caps <small>ooo</small>
+              </a>
+            </Link>
+          </Title>
+          <Links>
+            <Item />
+            <div>
+              <FaSearch />
+              <CartItem onClick={() => setItem(item + 1)}>
+                <FaShoppingCart />
+                <span>{item}</span>
+              </CartItem>
+              <FaUser />
+            </div>
+          </Links>
+        </Container>
+        {mobile && (
+          <BurguerMenu
+            modeMobile={modeMobile}
+            handleModeMobile={() => setModeMobie(!modeMobile)}
+          />
+        )}
+      </Nav>
+      {modeMobile && (
+        <MenuMobile>
+          <ul>
+            <Item />
+            <FaFacebook />
+            <FaTwitter />
+            <FaInstagram />
+            <FaYoutube />
+          </ul>
+        </MenuMobile>
       )}
-      {modeMobile && <Item />}
-    </Nav>
+    </>
   );
 };
 

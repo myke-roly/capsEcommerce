@@ -18,7 +18,8 @@ export const WrapperHeader = styled.header`
   background: linear-gradient(to left, #333, #000, #000);
 
   @media (max-width: 900px) {
-    font-size: 12px;
+    font-size: 14px;
+    height: 50vh;
   }
 
   &::after {
@@ -32,31 +33,44 @@ export const WrapperHeader = styled.header`
     background-repeat: no-repeat;
     background-position: 0;
     background-size: cover;
-    opacity: 0.4;
+    opacity: 0.2;
     z-index: 2;
   }
 `;
 
 export const Content = styled.section`
   position: absolute;
-  bottom: 5vh;
+  bottom: 10vh;
   z-index: 10;
-  text-align: center;
+
+  @media (max-width: 900px) {
+    bottom: 7vh;
+  }
 
   h1 {
     color: ${props => props.theme.color.primary};
     font-size: 4em;
     font-weight: 700;
-    letter-spacing: .5rem;
+    letter-spacing: .2rem;
     animation: ${animate} 0.8s ease-in;
+    /* background-color: ${props => props.theme.color.default}; */
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    margin-block-end: 2rem;
+    box-shadow: -5px 5px 10px 5px rgba(0, 0, 0, .3);
+    border-left: 5px solid ${props => props.theme.color.secondary};
+    
+    span {
+      font-size: .4em;
+      border-bottom: 2px solid ${props => props.theme.color.secondary};
+      color: ${({theme}) => theme.color.secondary};
+    }
   }
-
+  
   p {
-    font-size: 1em;
-    color: ${props => props.theme.color.primary};
-    opacity: .5;
-    margin-left: 1rem;
-    margin-bottom: 1.5rem;
+    color: ${props => props.theme.color.tercero};
+    font-size: .25em;
+    font-weight: 400;
     animation: ${animate} 0.8s ease-out;
   }
 `;
