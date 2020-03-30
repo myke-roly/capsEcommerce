@@ -4,7 +4,7 @@
 ---
 
 ### Demo
-<https://www.caps-arg.com>
+<https://caps-ecommerce.now.sh/>
 
 #### Start project
 * `npm install`
