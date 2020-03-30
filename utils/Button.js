@@ -19,10 +19,10 @@ const ButtonWrapper = styled.a`
       border: '2px solid' + props.theme.color.secondary,
       color: props.theme.color.primary
     }};
-  border-radius: 7px;
-  padding: .7rem 1.5rem;
+  border-radius: 50px;
+  padding: .5rem 1.2rem;
   cursor: pointer;
-  font-size: 1em;
+  font-size: .9em;
   transition: all 0.3s ease;
   box-shadow: 0 0 7px 5px rgba(0, 0, 0, .1);
   letter-spacing: 1.5px;

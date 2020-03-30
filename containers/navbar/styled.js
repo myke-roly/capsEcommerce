@@ -1,10 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 
 const toBottom = keyframes`
-  from {
+  0% {
     transform: translateX(100%);
   };
-  to {
+  100% {
     transform: translateX(0);
   };
 `;
@@ -17,10 +17,9 @@ export const Nav = styled.nav`
   background: ${props => props.theme.color.primary};
   color: ${props => props.theme.color.dark};
   padding: 0.6rem 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
+  box-shadow: 0px -7px 10px rgba(0, 0, 0, 0.55);
   z-index: 100;
-  position: relative;
-  height: auto;
+  overflow: hidden;
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -55,11 +54,11 @@ export const Links = styled.ul`
       font-weight: bold;
       text-transform: uppercase;
       padding: 0.5rem 1rem;
-      transition: color 3s ease;
+      transition: color .3s ease;
 
       &:hover {
-        color: ${({ theme }) => theme.color.dark};
-        border-top: 2px solid ${({ theme }) => theme.color.dark};
+        color: ${({ theme }) => theme.color.tercero};
+        border-top: 2px solid ${({ theme }) => theme.color.tercero};
       }
 
       &.active {
@@ -102,35 +101,38 @@ export const CartItem = styled.span`
 `;
 
 export const MenuMobile = styled.div`
-  background: ${({ theme }) => theme.color.primary};
-  margin-bottom: -1rem;
-  padding: 2rem;
+  background: ${({ theme }) => theme.color.dark};
   text-align: center;
   width: 100%;
-  animation: ${toBottom} .5s ease-in-out;
-  z-index: 1;
+  height: 100vh;
+  position: fixed;
+  top: 45px;
+  /* padding: 2rem; */
+  animation: ${toBottom} .5s ease-in;
 
   ul {
-    width: 100%;
-    padding-top: 1rem;
+    width: 80%;
+    margin: auto;
 
     li {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       padding: 0.55rem 0;
       width: 100%;
-      background: ${({ theme }) => theme.color.default};
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 7px rgba(0, 0, 0, 0.5) inset;
+      border-radius: 50px;
 
       a {
-        color: ${({ theme }) => theme.color.primary};
+        color: ${({ theme }) => theme.color.tercero};
         text-transform: uppercase;
         font-size: 0.85em;
+        display: inline-block;
         width: inherit;
+        animation: ${toBottom} 1s ease;
       }
     }
 
     svg {
-      color: ${({ theme }) => theme.color.dark};
+      color: ${({ theme }) => theme.color.primary};
       font-size: 1.35rem;
       margin-top: 1rem;
       margin-left: 1rem;

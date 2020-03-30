@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../utils/Button';
 import Title from '../utils/Title';
-import Layout from '../containers/Layout';
+import Layout from '../containers/layout';
 import { Container } from '../styled';
 
 export default () => {

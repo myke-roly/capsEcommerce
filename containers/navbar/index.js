@@ -74,18 +74,18 @@ const NavBar = () => {
             handleModeMobile={() => setModeMobie(!modeMobile)}
           />
         )}
+        {modeMobile && (
+          <MenuMobile>
+            <ul>
+              <Item />
+              <FaFacebook />
+              <FaTwitter />
+              <FaInstagram />
+              <FaYoutube />
+            </ul>
+          </MenuMobile>
+        )}
       </Nav>
-      {modeMobile && (
-        <MenuMobile>
-          <ul>
-            <Item />
-            <FaFacebook />
-            <FaTwitter />
-            <FaInstagram />
-            <FaYoutube />
-          </ul>
-        </MenuMobile>
-      )}
     </>
   );
 };

@@ -10,7 +10,7 @@ const Header = () => {
       <Container>
         <Content>
           <h1>CAPs <span>argentina</span><p>Calidad en nuestros productos</p></h1>
-          <Button text="COMPRAR " color="primary">
+          <Button text="Comprar " color="primary">
             <FaArrowRight size=".6rem" />
           </Button>
         </Content>

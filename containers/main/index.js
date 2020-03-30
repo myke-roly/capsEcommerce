@@ -1,6 +1,8 @@
 import React from 'react';
-import { WrapperMain, WrapperGrid } from './styled';
+import { FaShippingFast, FaExchangeAlt, FaPhoneVolume, FaCommentDots  } from 'react-icons/fa';
+import { WrapperMain, WrapperGrid, ItemsInfo } from './styled';
 import { Container } from '../../styled';
+import Button from '../../utils/Button'; 
 
 export default () => {
   return (
@@ -15,8 +17,21 @@ export default () => {
             quibusdam tenetur sit corrupti odit dolorem pariatur. Non tempore
             voluptas fugit modi eveniet?
           </p>
+          <Button text="Ver Productos" color="secondary" />
         </div>
+        <img src="./cap-girl-7.jpeg" alt="img-girl" />
       </WrapperGrid>
+
+      <ItemsInfo>
+        {/* <Container> */}
+          <ul>
+            <li><FaShippingFast /><span>Envio Gratis</span></li>
+            <li><FaExchangeAlt /><span>Devoluciones</span></li>
+            <li><FaPhoneVolume /><span>Contacto Telefonico</span></li>
+            <li><FaCommentDots /><span>Centro de ayuda</span></li>
+          </ul>
+        {/* </Container> */}
+      </ItemsInfo>
     </WrapperMain>
   );
 };

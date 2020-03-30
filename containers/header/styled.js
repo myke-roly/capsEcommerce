@@ -45,6 +45,7 @@ export const Content = styled.section`
 
   @media (max-width: 900px) {
     bottom: 7vh;
+    font-size: 12px;
   }
 
   h1 {
@@ -54,7 +55,7 @@ export const Content = styled.section`
     letter-spacing: .2rem;
     animation: ${animate} 0.8s ease-in;
     /* background-color: ${props => props.theme.color.default}; */
-    padding: 1rem 2.5rem;
+    padding: .5rem 1.5rem;
     border-radius: 5px;
     margin-block-end: 2rem;
     box-shadow: -5px 5px 10px 5px rgba(0, 0, 0, .3);
