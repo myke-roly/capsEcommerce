@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "mike": "next",
     "dev": "nodemon server.js",
     "build": "next build ",
     "start": "next start"
@@ -19,6 +18,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+<<<<<<< HEAD
+=======
+    "next": "^9.1.7",
+>>>>>>> a685ef6f99322704c4719e1c75b294b52d21cdac
     "nodemon": "^2.0.2",
     "next": "^9.3.2",
     "react": "^16.13.0",
