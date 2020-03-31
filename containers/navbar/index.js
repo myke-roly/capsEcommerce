@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { Container } from '../../styled/index';
 import {
@@ -12,8 +12,13 @@ import {
 } from 'react-icons/fa';
 import BurguerMenu from '../../utils/BurguerMenu';
 import { Nav, Title, Links, CartItem, MenuMobile } from './styled';
+import { ContextMobile } from '../../context/MobileContext';
 
 const NavBar = () => {
+
+  const contextMobile = useContext(ContextMobile)
+  const {mobile, modeMobile, getModeMobile} = contextMobile
+
   const links = [
     { id: 1, title: 'productos', path: '/productos' },
     { id: 2, title: 'sobre nosotros', path: '/sobre-nosotros' },
@@ -31,19 +36,6 @@ const NavBar = () => {
   };
 
   const [item, setItem] = useState(0);
-
-  const [mobile, setMobile] = useState(false);
-  const [modeMobile, setModeMobie] = useState(false);
-
-  useEffect(() => {
-    setMobile(window.innerWidth < 900 ? true : false);
-    function rezise(e) {
-      setMobile(e.target.innerWidth < 900 ? true : false);
-    }
-
-    window.addEventListener('resize', rezise);
-    return () => window.removeEventListener('resize', rezise);
-  }, []);
 
   return (
     <>
@@ -71,17 +63,21 @@ const NavBar = () => {
         {mobile && (
           <BurguerMenu
             modeMobile={modeMobile}
-            handleModeMobile={() => setModeMobie(!modeMobile)}
+            handleModeMobile={() => getModeMobile(!modeMobile)}
           />
         )}
         {modeMobile && (
           <MenuMobile>
             <ul>
               <Item />
-              <FaFacebook />
-              <FaTwitter />
-              <FaInstagram />
-              <FaYoutube />
+              <a href="https://www.twitter.com/myke_roly" target="_blank" rel="noreferrer noopener"><FaTwitter /></a>
+              <a href="https://www.instagram.com/myke_roly" target="_blank" rel="noreferrer noopener"><FaInstagram /></a>
+              <a href="https://www.facebbok.com/" target="_blank" rel="noreferrer noopener"><FaFacebook /></a>
+              <a href="https://www.youtube.com/myke-roly" target="_blank" rel="noreferrer noopener"><FaYoutube /></a>
+              
+              
+              
+              
             </ul>
           </MenuMobile>
         )}
