@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { FaShippingFast, FaExchangeAlt, FaPhoneVolume, FaCommentDots, FaChevronLeft, FaChevronRight  } from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import ItemsCarousel from 'react-items-carousel';
-import { WrapperMain, WrapperGrid, ItemsInfo, ImageSliders, Items, ItemsImages, ImgagesSlider } from './styled';
+import { WrapperMain, WrapperGrid, ItemsInfo, Items, ItemsProducts, ItemProduct } from './styled';
 import { Container } from '../../styled';
 import Button from '../../utils/Button';
 import {ContextMobile } from '../../context/MobileContext';
@@ -10,7 +10,7 @@ import {ContextMobile } from '../../context/MobileContext';
 export default () => {
 
   const contextMobile = useContext(ContextMobile)
-  const {mobile} = contextMobile
+  const {modeMobile} = contextMobile
 
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
@@ -29,14 +29,13 @@ export default () => {
           </p>
           <Button text="Ver Productos" color="secondary" />
         </div>
-        <img src="./cap-girl-7.jpeg" alt="img-girl" />
       </WrapperGrid>
 
       <ItemsInfo>
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
           activeItemIndex={activeItemIndex}
-          numberOfCards={mobile ? 1 : 4}
+          numberOfCards={modeMobile ? 1 : 4}
           infiniteLoop={true}
           gutter={12} 
           minimumPlaceholderTime={1000}
@@ -67,51 +66,37 @@ export default () => {
         </ItemsCarousel>
       </ItemsInfo>
 
-      <ItemsImages>
+      <ItemsProducts>
         <ItemsCarousel
           requestToChangeActive={setActiveImgIndex}
           activeItemIndex={activeImgIndex}
-          numberOfCards={mobile ? 1 : 4}
-          minimumPlaceholderTime={3000}
+          numberOfCards={modeMobile ? 1 : 4}
+          minimumPlaceholderTime={1000}
           leftChevron={<FaChevronLeft />}
           rightChevron={<FaChevronRight />}
         >
-          <Items>
+          <ItemProduct>
             <img src="./img-girl.jpeg" alt="img-girl" />
-          </Items>
-          <Items>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+            <p>$ 750.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
+          </ItemProduct>
+          <ItemProduct>
             <img src="./cap-girl-2.jpg" alt="img-girl"  />
-          </Items>
-          <Items>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+            <p>$ 1550.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
+          </ItemProduct>
+          <ItemProduct>
             <img src="./cap-girl-3.jpeg" alt="img-girl"  />
-          </Items>
-          <Items>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+            <p>$ 650.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
+          </ItemProduct>
+          <ItemProduct>
             <img src="./cap-girl-6.jpeg" alt="img-girl" />
-          </Items>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+            <p>$ 550.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
+          </ItemProduct>
         </ItemsCarousel>
-      </ItemsImages>
-
-      {/* Caroulsel */}
-
-      <ImgagesSlider>
-        <Carousel>
-          <ImageSliders>
-            <img src="./cap-girl-3.jpeg" alt="img-girl"  />
-            <img src="./cap-girl-10.jpg" alt="img-girl"  />
-            <img src="./cap-girl-6.jpeg" alt="img-girl" />
-          </ImageSliders>
-          <ImageSliders>
-            <img src="./cap-girl-2.jpg" alt="img-girl"  />
-            <img src="./cap-girl-3.jpeg" alt="img-girl"  />
-            <img src="./cap-girl-5.jpg" alt="img-girl" />
-          </ImageSliders>
-          <ImageSliders>
-            <img src="./cap-girl-7.jpeg" alt="img-girl"  />
-            <img src="./cap-img-4.jpg" alt="img-girl"  />
-            <img src="./img-girl.jpeg" alt="img-girl" />
-          </ImageSliders>
-        </Carousel>
-      </ImgagesSlider>
+      </ItemsProducts>
     </WrapperMain>
   );
 };

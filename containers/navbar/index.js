@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
+import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import { Nav, Title, Links, CartItem } from './styled';
 import { Container } from '../../styled/index';
-import {
-  FaSearch,
-  FaUser,
-  FaShoppingCart,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube
-} from 'react-icons/fa';
-import BurguerMenu from '../../utils/BurguerMenu';
-import { Nav, Title, Links, CartItem, MenuMobile } from './styled';
 import { ContextMobile } from '../../context/MobileContext';
+import MenuMobile from '../../utils/MenuMobile';
+import BurguerMenu from '../../utils/BurguerMenu';
 
 const NavBar = () => {
+  const contextMobile = useContext(ContextMobile);
+  const { modeMobile } = contextMobile;
 
-  const contextMobile = useContext(ContextMobile)
-  const {mobile, modeMobile, getModeMobile} = contextMobile
+  const [menuBurguer, setMenuBurguer] = useState(false);
+  const [item, setItem] = useState(0);
 
   const links = [
     { id: 1, title: 'productos', path: '/productos' },
@@ -25,7 +20,7 @@ const NavBar = () => {
     { id: 3, title: 'contacto', path: '/contacto' }
   ];
 
-  const Item = () => {
+  const Items = () => {
     return links.map(link => (
       <li key={link.id}>
         <Link href={link.path}>
@@ -35,52 +30,50 @@ const NavBar = () => {
     ));
   };
 
-  const [item, setItem] = useState(0);
-
   return (
     <>
       <Nav>
         <Container>
           <Title>
             <Link href="/">
-              <a>
-                Caps <small>ooo</small>
-              </a>
+              <a>Caps <small>ooo</small></a>
             </Link>
           </Title>
-          <Links>
-            <Item />
+          {!modeMobile && (
+            <Links>
+              <Items />
+              <div>
+                <FaSearch />
+                <CartItem onClick={() => setItem(item + 1)}>
+                  <FaShoppingCart /><span>{item}</span>
+                </CartItem>
+                <FaUser />
+              </div>
+            </Links>
+          )}
+
+          {/* Menu Mode Mobile */}
+          {modeMobile && (
             <div>
-              <FaSearch />
-              <CartItem onClick={() => setItem(item + 1)}>
-                <FaShoppingCart />
-                <span>{item}</span>
-              </CartItem>
-              <FaUser />
+              <div>
+                <FaSearch />
+                <CartItem onClick={() => setItem(item + 1)}>
+                  <FaShoppingCart /><span>{item}</span>
+                </CartItem>
+                <FaUser />
+              </div>
+              <BurguerMenu
+                menuBurguer={menuBurguer}
+                changeMenuBurguer={() => setMenuBurguer(!menuBurguer)}
+              />
             </div>
-          </Links>
+          )}
+          {menuBurguer && (
+            <MenuMobile>
+              <Items />
+            </MenuMobile>
+          )}
         </Container>
-        {mobile && (
-          <BurguerMenu
-            modeMobile={modeMobile}
-            handleModeMobile={() => getModeMobile(!modeMobile)}
-          />
-        )}
-        {modeMobile && (
-          <MenuMobile>
-            <ul>
-              <Item />
-              <a href="https://www.twitter.com/myke_roly" target="_blank" rel="noreferrer noopener"><FaTwitter /></a>
-              <a href="https://www.instagram.com/myke_roly" target="_blank" rel="noreferrer noopener"><FaInstagram /></a>
-              <a href="https://www.facebbok.com/" target="_blank" rel="noreferrer noopener"><FaFacebook /></a>
-              <a href="https://www.youtube.com/myke-roly" target="_blank" rel="noreferrer noopener"><FaYoutube /></a>
-              
-              
-              
-              
-            </ul>
-          </MenuMobile>
-        )}
       </Nav>
     </>
   );

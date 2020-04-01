@@ -24,7 +24,7 @@ const ButtonWrapper = styled.a`
   cursor: pointer;
   font-size: .9em;
   transition: all 0.3s ease;
-  box-shadow: 0 0 7px 5px rgba(0, 0, 0, .1);
+  box-shadow: -5px 0 7px rgba(0, 0, 0, .5);
   letter-spacing: 1.5px;
 
   &:hover {
@@ -34,7 +34,7 @@ const ButtonWrapper = styled.a`
 
 export default function Button({ color, text, children, type }) {
   return (
-    <ButtonWrapper color={color} type={type}>
+    <ButtonWrapper color={color} type={type} role="button">
       {text} {children}
     </ButtonWrapper>
   );

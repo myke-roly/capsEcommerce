@@ -8,6 +8,7 @@ const theme = {
   color: {
     dark: '#121b22',
     primary: '#fafafa',
+    gray: '#eeeeee',
     secondary: '#b94a3e',
     default: '#204254',
     tercero: '#957557',

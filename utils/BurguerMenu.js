@@ -5,14 +5,13 @@ const Menu = styled.div`
   width: 20px;
   height: 30px;
   cursor: pointer;
-  position: absolute;
-  top: 0.4rem;
-  right: 5%;
+  position: relative;
+  margin-left: 1rem;
 
   span {
     width: 15px;
     position: absolute;
-    height: ${props => (props.modeMobile ? '0px' : '.135rem')};
+    height: ${props => (props.menuBurguer ? '0px' : '.135rem')};
     background: ${({ theme }) => theme.color.dark};
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -20,11 +19,11 @@ const Menu = styled.div`
     &::before {
       content: '';
       position: absolute;
-      top: ${props => (props.modeMobile ? 0 : '-.40rem')};
+      top: ${props => (props.menuBurguer ? 0 : '-.40rem')};
       height: 0.135rem;
       background: inherit;
       width: 20px;
-      transform: ${props => (props.modeMobile ? 'rotate(-225deg)' : 0)};
+      transform: ${props => (props.menuBurguer ? 'rotate(-225deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
@@ -32,20 +31,24 @@ const Menu = styled.div`
     &::after {
       content: '';
       position: absolute;
-      top: ${props => (props.modeMobile ? 0 : '.35rem')};
+      top: ${props => (props.menuBurguer ? 0 : '.45rem')};
       width: 20px;
       height: 0.135rem;
       background: inherit;
-      transform: ${props => (props.modeMobile ? 'rotate(45deg)' : 0)};
+      transform: ${props => (props.menuBurguer ? 'rotate(45deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
   }
 `;
 
-export default function BurguerMenu({ modeMobile, handleModeMobile }) {
+export default function BurguerMenu({ menuBurguer, changeMenuBurguer }) {
   return (
-    <Menu modeMobile={modeMobile} onClick={() => handleModeMobile()} role="button">
+    <Menu
+      menuBurguer={menuBurguer}
+      onClick={() => changeMenuBurguer()}
+      role="button"
+    >
       <span></span>
     </Menu>
   );

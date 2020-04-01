@@ -6,25 +6,24 @@ export const WrapperMain = styled.main`
 `;
 
 export const WrapperGrid = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.8fr 1fr 0.8fr;
     font-size: 14px;
+    flex-direction: column-reverse;
   }
 
   img {
     display: inline-block;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 
   .section-content {
     padding: 3em 2em;
-    /* text-align: center; */
+    text-align: center;
 
     h2 {
       font-size: 1.2em;
@@ -44,11 +43,11 @@ export const WrapperGrid = styled.section`
 export const ItemsInfo = styled.section`
   background: ${props => props.theme.color.dark};
   padding: 4rem 1em;
-  
+
   @media (max-width: 900px) {
     font-size: 14px;
   }
-  
+
   & > div {
     text-align: center;
     padding: 0 1rem;
@@ -60,12 +59,11 @@ export const ItemsInfo = styled.section`
 `;
 
 export const Items = styled.div`
-  
   svg {
     color: ${props => props.theme.color.primary} !important;
     border: 1.2px solid ${props => props.theme.color.primary};
     border-radius: 50%;
-    padding: .7rem;
+    padding: 0.7rem;
     font-size: 3em;
   }
 
@@ -75,52 +73,47 @@ export const Items = styled.div`
     font-size: 0.9em;
     font-weight: 700;
     text-transform: uppercase;
-    margin: .8rem 0;
+    margin: 0.8rem 0;
   }
 
   p {
-    font-size: .75em;
+    font-size: 0.75em;
     color: ${props => props.theme.color.primary};
-    opacity: .7;
+    opacity: 0.7;
     letter-spacing: 1px;
   }
 `;
 
-export const ItemsImages = styled.div`
+export const ItemsProducts = styled.div`
+  background: ${props => props.theme.color.gray};
+  /* height: 400px; */
+`;
+
+export const ItemProduct = styled.div`
   background: ${props => props.theme.color.primary};
-  height: 300px;
-  
+  margin: 2rem;
+  text-align: center;
+  box-shadow: 0.5px 0 7px rgba(0, 0, 0, 0.5);
+  /* height: 400px; */
+
   img {
-    border-radius: 30px;
-    padding: 2em;
-    height: 300px;
+    width: 100%;
+    height: 250px;
   }
-`;
 
-export const ImgagesSlider = styled.div`
-  /* .thumbs {
-    display: none;
-  } */
-`;
+  h3 {
+    padding: 1rem .5rem 0;
+    font-size: .9em;
+    color: ${props => props.theme.color.dark};
+  }
 
-export const ImageSliders = styled.div`
-  /* display: flex; */
-  grid-template-columns: 1fr 1fr 1fr;
-  align-content: center;
-  justify-content: center;
-  width: 100%;
-  height: 300px;
-  background: ${props => props.theme.color.primary};
+  p {
+    margin: 1.5rem 0;
+    font-size: 1.2em;
 
-  img {
-    display: inline-block;
-    width: 33% !important;
-    height: 100%;
-    padding: .5rem;
-    border-radius: 20px;
-
-    @media (max-width: 720px) {
-      width: 100% !important;
+    small {
+      color: ${props => props.theme.color.success};
+      font-size: 0.6em;
     }
   }
 `;

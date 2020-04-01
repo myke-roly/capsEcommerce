@@ -1,13 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-const toBottom = keyframes`
-  0% {
-    transform: translateX(100%);
-  };
-  100% {
-    transform: translateX(0);
-  };
-`;
+import styled from 'styled-components';
 
 export const Nav = styled.nav`
   position: sticky;
@@ -40,9 +31,9 @@ export const Nav = styled.nav`
 export const Links = styled.ul`
   display: flex;
 
-  @media (max-width: 900px) {
+  /* @media (max-width: 900px) {
     display: none;
-  }
+  } */
 
   li {
     margin-left: 1rem;
@@ -97,45 +88,5 @@ export const CartItem = styled.span`
     position: absolute;
     top: -30%;
     right: 0;
-  }
-`;
-
-export const MenuMobile = styled.div`
-  background: ${({ theme }) => theme.color.dark};
-  text-align: center;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 45px;
-  /* padding: 2rem; */
-  animation: ${toBottom} .5s ease-in;
-
-  ul {
-    width: 80%;
-    margin: auto;
-
-    li {
-      margin-bottom: 1.5rem;
-      padding: 0.55rem 0;
-      width: 100%;
-      box-shadow: 0 0 7px rgba(0, 0, 0, 0.5) inset;
-      border-radius: 50px;
-
-      a {
-        color: ${({ theme }) => theme.color.tercero};
-        text-transform: uppercase;
-        font-size: 0.85em;
-        display: inline-block;
-        width: inherit;
-        animation: ${toBottom} 1s ease;
-      }
-    }
-
-    svg {
-      color: ${({ theme }) => theme.color.primary};
-      font-size: 1.35rem;
-      margin-top: 1rem;
-      margin-left: 1rem;
-    }
   }
 `;
