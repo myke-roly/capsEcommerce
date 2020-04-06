@@ -6,11 +6,13 @@ import { Container } from '../../styled/index';
 import { ContextMobile } from '../../context/MobileContext';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
+import Login from '../../components/Login';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
+  const [showForm, setShowForm] = useState(false);
   const [menuBurguer, setMenuBurguer] = useState(false);
   const [item, setItem] = useState(0);
 
@@ -31,51 +33,48 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <Nav>
-        <Container>
-          <Title>
-            <Link href="/">
-              <a>Caps <small>ooo</small></a>
-            </Link>
-          </Title>
-          {!modeMobile && (
-            <Links>
-              <Items />
-              <div>
-                <FaSearch />
-                <CartItem onClick={() => setItem(item + 1)}>
-                  <FaShoppingCart /><span>{item}</span>
-                </CartItem>
-                <FaUser />
-              </div>
-            </Links>
-          )}
-
-          {/* Menu Mode Mobile */}
-          {modeMobile && (
+    <Nav>
+      {showForm && <Login closeForm={() => setShowForm(!showForm)} modeMobile={modeMobile} />}
+      <Container>
+        <Title>
+          <Link href="/"><a>Caps <small>ooo</small></a></Link>
+        </Title>
+        {!modeMobile && (
+          <Links>
+            <Items />
             <div>
-              <div>
-                <FaSearch />
-                <CartItem onClick={() => setItem(item + 1)}>
-                  <FaShoppingCart /><span>{item}</span>
-                </CartItem>
-                <FaUser />
-              </div>
-              <BurguerMenu
-                menuBurguer={menuBurguer}
-                changeMenuBurguer={() => setMenuBurguer(!menuBurguer)}
-              />
+              <FaSearch />
+              <CartItem onClick={() => setItem(item + 1)}>
+                <FaShoppingCart /><span>{item}</span>
+              </CartItem>
+              <FaUser onClick={() => setShowForm(true)} />
             </div>
-          )}
-          {menuBurguer && (
-            <MenuMobile>
-              <Items />
-            </MenuMobile>
-          )}
-        </Container>
-      </Nav>
-    </>
+          </Links>
+        )}
+
+        {/* Menu Mode Mobile */}
+        {modeMobile && (
+          <div>
+            <div>
+              <FaSearch />
+              <CartItem onClick={() => setItem(item + 1)}>
+                <FaShoppingCart /><span>{item}</span>
+              </CartItem>
+              <FaUser onClick={() => setShowForm(true)} />
+            </div>
+            <BurguerMenu
+              menuBurguer={menuBurguer}
+              changeMenuBurguer={() => setMenuBurguer(!menuBurguer)}
+            />
+          </div>
+        )}
+        {menuBurguer && (
+          <MenuMobile>
+            <Items />
+          </MenuMobile>
+        )}
+      </Container>
+    </Nav>
   );
 };
 

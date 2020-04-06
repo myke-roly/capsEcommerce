@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import '../styles.css';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import MobileContext from '../context/MobileContext';
 
 const theme = {

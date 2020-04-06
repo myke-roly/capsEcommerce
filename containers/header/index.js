@@ -4,7 +4,7 @@ import { Content, WrapperHeader } from './styled';
 import Button from '../../utils/Button';
 import { Container } from '../../styled/index';
 
-const Header = () => {
+export default () => {
   return (
     <WrapperHeader>
       <Container>
@@ -18,5 +18,3 @@ const Header = () => {
     </WrapperHeader>
   );
 };
-
-export default Header;

@@ -25,7 +25,6 @@
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-items-carousel": "^2.8.0",
-    "react-responsive-carousel": "^3.1.51",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {

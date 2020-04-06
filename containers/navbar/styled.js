@@ -24,6 +24,7 @@ export const Nav = styled.nav`
     svg {
       color: ${({ theme }) => theme.color.dark};
       margin: 0 0.7rem;
+      cursor: pointer;
     }
   }
 `;

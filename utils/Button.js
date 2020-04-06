@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-const ButtonWrapper = styled.a`
+const ButtonWrapper = styled.button`
   ${props =>
     props.color === 'primary' && {
       border: '2px solid' + props.theme.color.primary,

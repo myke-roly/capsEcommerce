@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { FaShippingFast, FaExchangeAlt, FaPhoneVolume, FaCommentDots, FaChevronLeft, FaChevronRight  } from 'react-icons/fa';
-import { Carousel } from 'react-responsive-carousel';
 import ItemsCarousel from 'react-items-carousel';
 import { WrapperMain, WrapperGrid, ItemsInfo, Items, ItemsProducts, ItemProduct } from './styled';
-import { Container } from '../../styled';
 import Button from '../../utils/Button';
 import {ContextMobile } from '../../context/MobileContext';
 
