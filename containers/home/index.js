@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Head>
         <meta name="description" content="This is a page to buy caps online" />
-        <title>Caps.arg | Home</title>
+        <title>CAPSARG | Home</title>
       </Head>
       <Header />
       <Main />

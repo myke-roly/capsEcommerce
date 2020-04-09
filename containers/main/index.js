@@ -1,17 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { FaShippingFast, FaExchangeAlt, FaPhoneVolume, FaCommentDots, FaChevronLeft, FaChevronRight  } from 'react-icons/fa';
-import ItemsCarousel from 'react-items-carousel';
-import { WrapperMain, WrapperGrid, ItemsInfo, Items, ItemsProducts, ItemProduct } from './styled';
+import { WrapperMain, WrapperGrid } from './styled';
 import Button from '../../utils/Button';
-import {ContextMobile } from '../../context/MobileContext';
+import Services from '../../components/services/Services';
+import ProductsHome from '../../components/productsHome/ProductsHome';
 
-export default () => {
-
-  const contextMobile = useContext(ContextMobile)
-  const {modeMobile} = contextMobile
-
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const [activeImgIndex, setActiveImgIndex] = useState(0);
+const Main = () => {
 
   return (
     <WrapperMain>
@@ -29,72 +22,10 @@ export default () => {
         </div>
       </WrapperGrid>
 
-      <ItemsInfo>
-        <ItemsCarousel
-          requestToChangeActive={setActiveItemIndex}
-          activeItemIndex={activeItemIndex}
-          numberOfCards={modeMobile ? 1 : 4}
-          infiniteLoop={true}
-          gutter={12} 
-          minimumPlaceholderTime={1000}
-          leftChevron={<FaChevronLeft />}
-          rightChevron={<FaChevronRight />}
-          chevronWidth={15}
-        >
-          <Items>
-            <FaShippingFast />
-            <span>Envio Gratis</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, minus.</p>
-          </Items>
-          <Items>
-            <FaExchangeAlt />
-            <span>Devoluciones</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, minus.</p>
-          </Items>
-          <Items>
-            <FaPhoneVolume />
-            <span>Contacto Telefonico</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, minus.</p>
-          </Items>
-          <Items>
-            <FaCommentDots />
-            <span>Centro de ayuda</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, minus.</p>
-          </Items>
-        </ItemsCarousel>
-      </ItemsInfo>
-
-      <ItemsProducts>
-        <ItemsCarousel
-          requestToChangeActive={setActiveImgIndex}
-          activeItemIndex={activeImgIndex}
-          numberOfCards={modeMobile ? 1 : 4}
-          minimumPlaceholderTime={1000}
-          leftChevron={<FaChevronLeft />}
-          rightChevron={<FaChevronRight />}
-        >
-          <ItemProduct>
-            <img src="./img-girl.jpeg" alt="img-girl" />
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-            <p>$ 750.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
-          </ItemProduct>
-          <ItemProduct>
-            <img src="./cap-girl-2.jpg" alt="img-girl"  />
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-            <p>$ 1550.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
-          </ItemProduct>
-          <ItemProduct>
-            <img src="./cap-girl-3.jpeg" alt="img-girl"  />
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-            <p>$ 650.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
-          </ItemProduct>
-          <ItemProduct>
-            <img src="./cap-girl-6.jpeg" alt="img-girl" />
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-            <p>$ 550.00 <small> GRATIS</small></p><Button text="Comprar" color="secondary" />
-          </ItemProduct>
-        </ItemsCarousel>
-      </ItemsProducts>
+      <Services />
+      <ProductsHome />
     </WrapperMain>
   );
 };
+
+export default Main;

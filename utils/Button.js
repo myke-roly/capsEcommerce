@@ -19,6 +19,18 @@ const ButtonWrapper = styled.button`
       border: '2px solid' + props.theme.color.secondary,
       color: props.theme.color.primary
     }};
+  ${props =>
+    props.color === 'tercero' && {
+      background: props.theme.color.tercero,
+      border: '2px solid' + props.theme.color.tercero,
+      color: props.theme.color.primary
+    }};
+  ${props =>
+    props.color === 'default' && {
+      background: props.theme.color.default,
+      border: '2px solid' + props.theme.color.default,
+      color: props.theme.color.primary
+    }};
   border-radius: 50px;
   padding: .5rem 1.2rem;
   cursor: pointer;
