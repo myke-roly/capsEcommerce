@@ -17,18 +17,22 @@ export const ItemsProducts = styled.div`
   }
 `;
 
-export const ItemProduct = styled.a`  /** attrs({href:"!#"}) */
-  background: ${(props) => props.theme.color.primary};
+export const ItemProduct = styled.section`  /** attrs({href:"!#"}) */
   /* height: 400px; */
-  border-radius: 7px;
+  background: ${(props) => props.theme.color.primary};
+  /* border-radius: 7px; */
+  box-shadow: 0px 0 7px rgba(0, 0, 0, 0.2);
+  
+  &:hover  img{
+    transition: all .5s ease;
+    transform: scale(1.1);
 
-  &:hover {
-      box-shadow: 0px 0 7px rgba(0, 0, 0, 0.3);
   }
 
   img {
     width: 100%;
     min-height: 165px;
+    padding: .5rem;
   }
 `;
 
@@ -38,7 +42,8 @@ export const ItemInfo = styled.section`
  text-align: center;
 
   h3 {
-    font-size: 1em;
+    font-size: .8em;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: ${(props) => props.theme.color.default};
     font-weight: 400;

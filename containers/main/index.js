@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { WrapperMain, WrapperGrid } from './styled';
 import Button from '../../utils/Button';
 import Services from '../../components/services/Services';
-import ProductsHome from '../../components/productsHome/ProductsHome';
+import ProductsHome from '../../components/productsHome/';
 
 const Main = () => {
 

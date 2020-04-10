@@ -1,13 +1,15 @@
 import Document, { Html, NextScript, Main, Head } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import stylisRTLPlugin from 'stylis-plugin-rtl';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+
     try {
       originalRenderPage({
-        enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
       });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -19,7 +21,7 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        )
+        ),
       };
     } finally {
       sheet.seal();
@@ -30,7 +32,10 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <meta name="description" content="Las mejores Gorras al mejor precio - ENTREGA GRATIS" />
+          <meta
+            name="description"
+            content="Las mejores Gorras al mejor precio - ENTREGA GRATIS"
+          />
         </Head>
         <body>
           <Main />

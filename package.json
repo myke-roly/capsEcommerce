@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "mike": "next",
-    "build": "next build ",
-    "start": "next start"
+    "build": "next build && next export",
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
   "author": "myke-roly",
@@ -18,14 +18,18 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "isomorphic-fetch": "^2.2.1",
     "morgan": "^1.10.0",
     "next": "^9.2.2",
+    "next-routes": "^1.4.2",
     "nodemon": "^2.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-items-carousel": "^2.8.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "stylis-plugin-rtl": "^1.0.0",
+    "swr": "^0.2.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7"
