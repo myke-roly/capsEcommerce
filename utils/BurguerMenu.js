@@ -19,7 +19,7 @@ const Menu = styled.div`
     &::before {
       content: '';
       position: absolute;
-      top: ${props => (props.menuBurguer ? 0 : '-.40rem')};
+      top: ${props => (props.menuBurguer ? 0 : '-.43rem')};
       height: 0.135rem;
       background: inherit;
       width: 20px;

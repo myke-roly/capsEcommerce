@@ -14,11 +14,11 @@ const toBottom = keyframes`
 const WrapperMenu = styled.div`
   background: ${({ theme }) => theme.color.dark};
   text-align: center;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   position: fixed;
   top: 50px;
-  left: 0;
+  right: 0;
   /* padding: 2rem; */
   animation: ${toBottom} 0.5s ease-in;
 
@@ -30,13 +30,11 @@ const WrapperMenu = styled.div`
       margin-bottom: 1.5rem;
       padding: 0.55rem 0;
       width: 100%;
-      box-shadow: 0 0 7px rgba(0, 0, 0, 0.5) inset;
-      border-radius: 50px;
 
       a {
-        color: ${({ theme }) => theme.color.tercero};
+        color: ${({ theme }) => theme.color.primary};
         text-transform: uppercase;
-        font-size: 0.85em;
+        font-size: 0.9em;
         display: inline-block;
         width: inherit;
         animation: ${toBottom} 1s ease;

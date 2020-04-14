@@ -29,7 +29,7 @@ const ProductsHome = () => {
             <Link href={`/producto/${producto.id}`} key={producto.id}>
               <ItemProduct href="!#">
               <img src={producto.img_url} alt={producto.title} />
-              <ItemInfo>
+              <ItemInfo modeMobile={modeMobile}>
                 <h3>{producto.title}</h3>
                 <p>$ {producto.precio}</p>
                 <a href="!#">Agregar al carrito <FaShoppingCart /></a>
@@ -39,9 +39,8 @@ const ProductsHome = () => {
           ))
         }
     </Container>
-    <p><Button text="Mas Productos" color="tercero" /></p>
     <Link href="" scroll={true}>
-      <a style={{position: "fixed", right: "5%", bottom: "20%"}}><FaArrowUp /></a>
+      <a style={{position: "fixed", right: "5%", bottom: "10%"}}><FaArrowUp /></a>
     </Link>
   </ItemsProducts>
   )

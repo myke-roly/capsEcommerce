@@ -2,8 +2,8 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const ContextMobile = createContext();
 const MobileContext = props => {
-  const [modeMobile, setModeMobie] = useState(false);
-
+  const [modeMobile, setModeMobie] = useState(true);
+  
   useEffect(() => {
     setModeMobie(window.innerWidth < 900 ? true : false);
     function rezise(e) {

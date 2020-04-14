@@ -8,7 +8,7 @@ export const WrapperGrid = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-    background: ${({ theme }) => theme.color.primary};
+  background: ${({ theme }) => theme.color.gray};
 
   @media (max-width: 900px) {
     font-size: 14px;

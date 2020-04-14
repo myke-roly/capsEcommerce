@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const ItemsInfo = styled.section`
   background: ${props => props.theme.color.dark};
-  padding: 4rem 1em;
+  padding: 2.5em 1em;
+  border-bottom: 1px solid gray;
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -13,7 +14,7 @@ export const ItemsInfo = styled.section`
     padding: 0 1rem;
 
     svg {
-      color: ${props => props.theme.color.primary};
+      color: ${props => props.theme.color.gray};
     }
   }
 `;
@@ -37,7 +38,7 @@ export const Items = styled.div`
   }
 
   p {
-    font-size: 0.75em;
+    font-size: 0.7em;
     color: ${props => props.theme.color.primary};
     opacity: 0.7;
     letter-spacing: 1px;

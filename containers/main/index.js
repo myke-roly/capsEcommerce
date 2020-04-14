@@ -5,9 +5,9 @@ import Services from '../../components/services/Services';
 import ProductsHome from '../../components/productsHome/';
 
 const Main = () => {
-
   return (
     <WrapperMain>
+      <ProductsHome />
       <WrapperGrid>
         <img src="./cap-man.jpeg" alt="img-girl" />
         <div className="section-content">
@@ -18,12 +18,11 @@ const Main = () => {
             quibusdam tenetur sit corrupti odit dolorem pariatur. Non tempore
             voluptas fugit modi eveniet?
           </p>
-          <Button text="Ver Productos" color="secondary" />
+          <Button text="Mas Productos" color="secondary" />
         </div>
       </WrapperGrid>
 
       <Services />
-      <ProductsHome />
     </WrapperMain>
   );
 };
