@@ -1,6 +1,18 @@
 import React from 'react';
 import Layout from '../containers/layout';
+import Head from 'next/head';
+import About from '../containers/about';
 
 export default () => {
-  return <Layout>Sobre Nosotros</Layout>;
+  return (
+    <>
+      <Head>
+        <meta name="description" content="This is a page to buy caps online" />
+        <title>CAPSARG | Sobre Nosotros</title>
+      </Head>
+      <Layout>
+        <About />
+      </Layout>
+    </>
+  );
 };

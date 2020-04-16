@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const ContextMobile = createContext();
 const MobileContext = props => {
-  const [modeMobile, setModeMobie] = useState(true);
+  const [modeMobile, setModeMobie] = useState(false);
   
   useEffect(() => {
     setModeMobie(window.innerWidth < 900 ? true : false);

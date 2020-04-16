@@ -1,10 +1,18 @@
 import Layout from '../containers/layout';
 import Link from 'next/link';
+import Contact from '../containers/contact';
+import Head from 'next/head';
 
 export default () => {
   return (
-    <Layout>
-      <h1>Contact</h1>
-    </Layout>
+    <>
+      <Head>
+        <meta name="description" content="This is a page to buy caps online" />
+        <title>CAPSARG | Productos</title>
+      </Head>
+      <Layout>
+        <Contact />
+      </Layout>
+    </>
   );
 };

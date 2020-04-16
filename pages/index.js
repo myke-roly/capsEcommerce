@@ -1,12 +1,17 @@
 import Layout from '../containers/layout';
-// import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import Home from '../containers/home';
-
 
 export default () => {
   return (
-    <Layout>
-      <Home />
-    </Layout>
+    <>
+      <Head>
+        <meta name="description" content="This is a page to buy caps online" />
+        <title>CAPSARG | Home</title>
+      </Head>
+      <Layout>
+        <Home />
+      </Layout>
+    </>
   );
 };

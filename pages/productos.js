@@ -1,14 +1,20 @@
 import React from 'react';
+import Head from 'next/head';
 import Layout from '../containers/layout';
-import Title from '../utils/Title';
+import ProductsHome from '../components/productsHome';
 
 function Productos() {
-
   return (
-    <Layout>
-      <Title title="Productos" />
-    </Layout>
+    <>
+      <Head>
+        <meta name="description" content="This is a page to buy caps online" />
+        <title>CAPSARG | Productos</title>
+      </Head>
+      <Layout>
+        <ProductsHome />
+      </Layout>
+    </>
   );
-};
+}
 
 export default Productos;

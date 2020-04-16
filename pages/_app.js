@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import '../styles.css';
 import MobileContext from '../context/MobileContext';
@@ -17,6 +17,7 @@ const theme = {
 };
 
 export default ({ Component, pageProps }) => {
+
   return (
     <MobileContext>
       <ThemeProvider theme={theme}>
