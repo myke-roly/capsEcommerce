@@ -18,6 +18,12 @@ const About = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ipsam quaerat maxime officiis cumque, blanditiis fuga ipsum possimus quibusdam odio iusto beatae eos laborum. Nisi ullam illo tempora quos veniam?</p>
           </div>
         </FlexDescription>
+        <FlexDescription modeMobile={modeMobile}>
+          <div className="about-description">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ipsam quaerat maxime officiis cumque, blanditiis fuga ipsum possimus quibusdam odio iusto beatae eos laborum. Nisi ullam illo tempora quos veniam?</p>
+          </div>
+          <img src="./cap-girl-3.jpeg" alt="caps-girl" />
+        </FlexDescription>
       </Container>
     </WrapperAbout>
   );

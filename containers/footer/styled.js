@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
-  background: ${props => props.theme.color.dark};
+  background: #000;
   padding: 1.5rem 0;
   color: white;
 

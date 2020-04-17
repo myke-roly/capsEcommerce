@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const WrapperAbout = styled.main`
   background: ${props => props.theme.color.gray};
   width: 100%;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   @media (max-width: 900px) {
     font-size: 14px;
   }
@@ -16,6 +16,7 @@ export const FlexDescription = styled.section`
   padding: ${props => props.modeMobile ? '1rem' : '3rem' };
 
   .about-description {
+    width: 100%;
     padding: 1rem;
     padding-left: 2rem;
 
@@ -29,7 +30,7 @@ export const FlexDescription = styled.section`
   }
 
   img {
-    padding: 1rem;
+    /* padding: 1rem; */
     width: 100%;
     border-radius: 20px;
   }
