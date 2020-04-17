@@ -6,13 +6,11 @@ import { Container } from '../../styled/index';
 import { ContextMobile } from '../../context/MobileContext';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
-import Login from '../../components/Login';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
-  const [showForm, setShowForm] = useState(false);
   const [menuBurguer, setMenuBurguer] = useState(false);
   const [item, setItem] = useState(0);
 
@@ -34,10 +32,9 @@ const NavBar = () => {
 
   return (
     <Nav>
-      {showForm && <Login closeForm={() => setShowForm(!showForm)} modeMobile={modeMobile} />}
       <Container>
         <Title>
-          <Link href="/"><a>Caps <small>ooo</small></a></Link>
+          <Link href="/"><a>Caps <small>..o</small></a></Link>
         </Title>
         {!modeMobile && (
           <Links>
@@ -47,7 +44,11 @@ const NavBar = () => {
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart /><span>{item}</span>
               </CartItem>
-              <FaUser onClick={() => setShowForm(true)} />
+              <Link href="/login" passHref>
+                <a>
+                  <FaUser/>
+                </a>
+              </Link>
             </div>
           </Links>
         )}
@@ -60,7 +61,11 @@ const NavBar = () => {
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart /><span>{item}</span>
               </CartItem>
-              <FaUser onClick={() => setShowForm(true)} />
+              <Link href="/login" passHref>
+                <a>
+                  <FaUser/>
+                </a>
+              </Link>
             </div>
             <BurguerMenu
               menuBurguer={menuBurguer}

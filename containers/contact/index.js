@@ -14,7 +14,7 @@ const Contact = () => {
     <WrapperContact modeMobile={modeMobile}>
       <Container>
         <section className="wrapper">
-          <div><img src="./cap-girl-9.jpg" alt="cap-girl"/></div>
+          <div></div>
           <form className="form">
             <Title title="Formulario de Contacto" />
             <Input>
@@ -33,7 +33,7 @@ const Contact = () => {
               <label htmlFor="message">Mensaje: </label>
               <textarea placeholder="..." id="message"></textarea>
             </Input>
-            <Button text="enviar formulario" color="default" type="sutmit" />
+            <Button text="enviar formulario" color="primary" type="sutmit" />
           </form>
         </section>
       </Container>
