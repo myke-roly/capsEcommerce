@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Form } from './styled';
 import { Container } from '../../styled'
-import Login from '../../components/login';
-import Logout from '../../components/logout';
+import Login from '../../components/singIn';
+import Logout from '../../components/singUp';
 import { ContextMobile } from '../../context/MobileContext';
 
 const FormLogin = () => {

@@ -9,12 +9,12 @@ export default function Login() {
       <form>
         <Title title="Iniciar Sesion" />
         <p>
-          <label htmlFor="email">Email:</label>
-          <input type="text" placeholder="@" id="email" />
+          <label htmlFor="email-singIn">Email:</label>
+          <input type="text" placeholder="@" id="email-singIn" />
         </p>
         <p>
-          <label htmlFor="password">Contrasena:</label>
-          <input type="password" placeholder="********" id="password" />
+          <label htmlFor="password-singIn">Contrasena:</label>
+          <input type="password" placeholder="********" id="password-singIn" />
         </p>
         <p>Forgot my password</p>
         <Button text="Iniciar Sesion" color="dark" type="submit" />
