@@ -36,3 +36,17 @@ exports.authUser = async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor' });
   }
 };
+
+exports.getUser = async (req, res) => {
+  try {
+    const user = await Users.findById(req.user.id).select('-password');
+    if(!user) {
+      return res.status(404).json({ message: 'El usuario no esta registrado'});
+    }
+    
+    res.json({user: user});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Error en el servidor'});
+  }
+}

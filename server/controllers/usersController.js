@@ -24,8 +24,8 @@ exports.createUser = async ( req, res ) => {
     jwt.sign(payload, process.env.SECRET_TOKEN, {
       expiresIn: 15000
     }, (err, token) => {
-        if(err) throw Error(err)
-        res.json({token})
+        if(err) throw Error(err);
+        res.json({token});
     });
 
     await user.save();
@@ -37,7 +37,8 @@ exports.createUser = async ( req, res ) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await Users.findById(req.user.id, {password: 0});
+    const user = await Users.findById(req.user.id).select('-password');
+    console.log(req.user.id);
     if(!user) {
       return res.status(404).json({ message: 'El usuario no esta registrado'});
     }

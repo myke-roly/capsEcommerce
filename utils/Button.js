@@ -38,15 +38,16 @@ const ButtonWrapper = styled.button`
   transition: all 0.3s ease;
   box-shadow: -5px 0 7px rgba(0, 0, 0, .5);
   letter-spacing: 1.5px;
+  opacity: ${props => props.disabled ? '.5' : '1' };
 
   &:hover {
-    opacity: 0.7;
+    opacity: ${props => props.disabled ? '.5' : '.7' };
   }
 `;
 
-export default function Button({ color, text, children, type }) {
+export default function Button({ color, text, children, type, disabled }) {
   return (
-    <ButtonWrapper color={color} type={type} role="button">
+    <ButtonWrapper color={color} type={type} role="button" disabled={disabled}>
       {text} {children}
     </ButtonWrapper>
   );

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ItemsProducts, ItemProduct, ItemInfo } from './styled';
 import { FaShoppingCart, FaArrowUp } from 'react-icons/fa';
 import {ContextMobile } from '../../context/MobileContext';
-import Button from '../../utils/Button';
+import Title from '../../utils/Title';
 import { Container } from '../../styled';
 
 const ProductsHome = () => {
@@ -23,6 +23,7 @@ const ProductsHome = () => {
 
   return (
     <ItemsProducts modeMobile={modeMobile}>
+      <Title title='Productos destacados' />
       <Container>
         {productos.length > 0 && 
           productos.map(producto => (

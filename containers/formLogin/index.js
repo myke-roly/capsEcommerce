@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Form } from './styled';
+import { FormWrapper } from './styled';
 import { Container } from '../../styled'
-import Login from '../../components/singIn';
-import Logout from '../../components/singUp';
+import SingIn from './singIn';
+import SingUp from './singUp';
 import { ContextMobile } from '../../context/MobileContext';
 
 const FormLogin = () => {
@@ -10,12 +10,12 @@ const FormLogin = () => {
   const { modeMobile } = contextMobile;
 
   return (
-    <Form modeMobile={modeMobile}>
+    <FormWrapper modeMobile={modeMobile}>
       <Container>
-        <Login />
-        <Logout/>
+        <SingIn />
+        <SingUp/>
       </Container>
-    </Form>
+    </FormWrapper>
   )
 }
 

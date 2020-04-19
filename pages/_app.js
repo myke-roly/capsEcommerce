@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import '../styles.css';
 import MobileContext from '../context/MobileContext';
 import AuthContext from '../context/AuthContext';
+import MessageContext from '../context/MessageContext';
 
 const theme = {
   color: {
@@ -12,20 +13,21 @@ const theme = {
     secondary: '#b94a3e',
     default: '#204254',
     tercero: '#957557',
-    error: 'red',
-    success: '#909012'
-  }
+    error: '#CB2431',
+    success: '#909012',
+  },
 };
 
 export default ({ Component, pageProps }) => {
-
   return (
     <MobileContext>
-      <AuthContext>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </AuthContext>
+      <MessageContext>
+        <AuthContext>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </AuthContext>
+      </MessageContext>
     </MobileContext>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { WrapperMain, WrapperGrid } from './styled';
 import Button from '../../utils/Button';
 import ProductsHome from '../../components/productsHome/';
+import Title from '../../utils/Title';
 
 const Main = () => {
   return (

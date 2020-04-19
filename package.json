@@ -31,6 +31,7 @@
     "nodemon": "^2.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-hooks-form": "^2.0.1",
     "react-icons": "^3.9.0",
     "react-items-carousel": "^2.8.0",
     "styled-components": "^5.0.1",

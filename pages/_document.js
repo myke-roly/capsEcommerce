@@ -1,6 +1,5 @@
 import Document, { Html, NextScript, Main, Head } from 'next/document';
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import stylisRTLPlugin from 'stylis-plugin-rtl';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

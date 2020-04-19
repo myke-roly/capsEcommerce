@@ -3,16 +3,27 @@ import Link from 'next/link';
 import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
 import { Nav, Title, Links, CartItem } from './styled';
 import { Container } from '../../styled/index';
-import { ContextMobile } from '../../context/MobileContext';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
+import { ContextAuth } from '../../context/AuthContext';
+import { ContextMobile } from '../../context/MobileContext';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
+  const contextAuth = useContext(ContextAuth);
+  const { user, auth } = contextAuth;
+
   const [menuBurguer, setMenuBurguer] = useState(false);
   const [item, setItem] = useState(0);
+  const [porfile, setPorfile] = useState('');
+
+  useEffect(() => {
+    if(user !== null) {      
+      setPorfile(user.user.name);
+    }
+  }, [user])
 
   const links = [
     { id: 1, title: 'productos', path: '/productos' },
@@ -44,11 +55,12 @@ const NavBar = () => {
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart /><span>{item}</span>
               </CartItem>
-              <Link href="/login" passHref>
-                <a>
-                  <FaUser/>
-                </a>
-              </Link>
+              {!auth ? (
+                <Link href="/login" passHref>
+                  <a><FaUser/></a>
+                </Link>
+                ): <span><small>{porfile}</small><FaUser/></span>
+              }
             </div>
           </Links>
         )}
@@ -61,11 +73,12 @@ const NavBar = () => {
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart /><span>{item}</span>
               </CartItem>
-              <Link href="/login" passHref>
-                <a>
-                  <FaUser/>
-                </a>
-              </Link>
+              {!auth ? (
+                <Link href="/login" passHref>
+                  <a><FaUser/></a>
+                </Link>
+                ): <span><small>{porfile}</small><FaUser/></span>
+              }
             </div>
             <BurguerMenu
               menuBurguer={menuBurguer}
