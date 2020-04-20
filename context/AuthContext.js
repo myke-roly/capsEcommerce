@@ -18,7 +18,7 @@ const AuthContext = props => {
 
   const newRegister = async dataUser => {
     try {
-      const response = await axiosFetch('/sing-up', {
+      const response = await axiosFetch('api/login', {
         method: 'POST',
         data: dataUser
       });
@@ -39,7 +39,7 @@ const AuthContext = props => {
     const token = localStorage.getItem('token');
     if(token) authToken(token);
     try {
-      const response = await axiosFetch.get('/auth');
+      const response = await axiosFetch.get('/api/auth');
       dispatch({
         type: GET_USER,
         payload: response.data
@@ -54,7 +54,7 @@ const AuthContext = props => {
 
   const logIn = async (data) => {
     try {
-      const response = await axiosFetch('/auth', {
+      const response = await axiosFetch('/api/auth', {
         method: 'POST',
         data: data
       });

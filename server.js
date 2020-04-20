@@ -12,9 +12,11 @@ const routes = require('./server/routes/routes');
 // const handler = app.getRequestHandler();
 const handler = routes.getRequestHandler(app);
 const connectDB = require('./server/config/db');
+const mongoose = require('mongoose');
 
 app.prepare().then(() => {
   const server = express();
+  mongoose.set("useCreateIndex", true);
   connectDB();
   
   /** Middlewares */
@@ -25,8 +27,8 @@ app.prepare().then(() => {
   server.use(body_parser.urlencoded({ extended: false }));
   server.use(body_parser.json());
 
-  server.use('/auth', require('./server/routes/auth'));
-  server.use('/sing-up', require('./server/routes/users'));
+  server.use('/api/auth', require('./server/routes/auth'));
+  server.use('/api/login', require('./server/routes/users'));
 
   server.use(handler);
 

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { Forms, Inputs, MessageError } from './styled';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
@@ -12,15 +12,11 @@ const Logout = () => {
   const contextAuth = useContext(ContextAuth);
   const { message, auth, newRegister } = contextAuth;
 
+  const router = useRouter();
+
   useEffect(() => {
-    if(auth) {
-        setTimeout(() => {
-          Router.push('/');
-        }, 3000);
-    }
-    if(message) {
-      showMessage(message, '');
-    }
+    if(auth) router.push('/');
+    if(message) showMessage(message, '');
   }, [auth, message, Router]);
 
   const [data, setData] = useState({

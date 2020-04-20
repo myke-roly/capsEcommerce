@@ -1,16 +1,7 @@
-module.exports = {
-  webpack: (config, { build, dev, isServer, defaultLoaders, webpack}) => {
-    config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
-    if(!dev) config.devtool = 'source-map'
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env'});
 
-    return config
-  },
-  webpackDevMiddleware: config => {   
-    return config
-  },
+module.exports = {
   compress: true,
-  env: {
-    PORT: 4000,
-  },
   /** useFileSystemPublicRoutes: true  /** Nos sirve para desabilitar la carpeta page */
 };
