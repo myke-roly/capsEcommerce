@@ -6,6 +6,7 @@ export default function Login() {
   return (
     <Layout>
       <FormLogin />
+      {/* <h1>login</h1> */}
     </Layout>
   );
 };

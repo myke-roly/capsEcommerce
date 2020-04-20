@@ -21,13 +21,13 @@ const theme = {
 export default ({ Component, pageProps }) => {
   return (
     <MobileContext>
-      <MessageContext>
-        <AuthContext>
+      <AuthContext>
+        <MessageContext>
           <ThemeProvider theme={theme}>
             <Component {...pageProps} />
           </ThemeProvider>
-        </AuthContext>
-      </MessageContext>
+        </MessageContext>
+      </AuthContext>
     </MobileContext>
   );
 };

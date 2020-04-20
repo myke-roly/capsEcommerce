@@ -27,7 +27,7 @@ const MessageContext = (props) => {
   return (
     <ContextMessage.Provider value={{
       messageAlert: state.message,
-      showMessage: showMessage
+      showMessage
     }}>
       {props.children}
     </ContextMessage.Provider>

@@ -19,12 +19,6 @@ const NavBar = () => {
   const [item, setItem] = useState(0);
   const [porfile, setPorfile] = useState('');
 
-  useEffect(() => {
-    if(user !== null) {      
-      setPorfile(user.user.name);
-    }
-  }, [user])
-
   const links = [
     { id: 1, title: 'productos', path: '/productos' },
     { id: 2, title: 'sobre nosotros', path: '/sobre-nosotros' },
@@ -59,7 +53,7 @@ const NavBar = () => {
                 <Link href="/login" passHref>
                   <a><FaUser/></a>
                 </Link>
-                ): <span><small>{porfile}</small><FaUser/></span>
+                ): <span><small>user</small><FaUser/></span>
               }
             </div>
           </Links>
@@ -77,7 +71,7 @@ const NavBar = () => {
                 <Link href="/login" passHref>
                   <a><FaUser/></a>
                 </Link>
-                ): <span><small>{porfile}</small><FaUser/></span>
+                ): <span><small>user</small><FaUser/></span>
               }
             </div>
             <BurguerMenu

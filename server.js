@@ -13,7 +13,6 @@ const routes = require('./server/routes/routes');
 const handler = routes.getRequestHandler(app);
 const connectDB = require('./server/config/db');
 
-
 app.prepare().then(() => {
   const server = express();
   connectDB();
@@ -21,8 +20,8 @@ app.prepare().then(() => {
   /** Middlewares */
   server.use(cors());
   server.use(compression());
-  server.use(morgan('dev')); //common
-  server.use(express.static(__dirname + '/static', { maxAge: 86400000 }));
+  server.use(morgan('common')); //common
+  server.use(express.static(path.join(__dirname, '/static'), { maxAge: 86400000 }));
   server.use(body_parser.urlencoded({ extended: false }));
   server.use(body_parser.json());
 
@@ -37,6 +36,6 @@ app.prepare().then(() => {
   });
 })
 .catch((ex) => {
-  console.error(ex.stack);
+  console.error('error', ex.stack);
   process.exit(1);
 });

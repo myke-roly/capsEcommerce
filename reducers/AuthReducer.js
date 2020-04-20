@@ -1,20 +1,34 @@
-import { REGISTER_OK, REGISTER_BAD, GET_USER, LOGUIN_BAD } from '../types';
+import {
+  REGISTER_OK,
+  REGISTER_BAD,
+  GET_USER,
+  LOGUIN_BAD,
+  LOGUIN_OK,
+} from '../types';
 
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case REGISTER_OK:
       localStorage.setItem('token', action.payload);
+      localStorage.setItem('auth', true );
       return {
         ...state,
         auth: true,
-        message: null
+        message: null,
       };
     case GET_USER:
       return {
         ...state,
         auth: true,
-        user: action.payload
-      }
+        user: action.payload,
+      };
+    case LOGUIN_OK:
+    localStorage.setItem('token', action.payload);
+    localStorage.setItem('auth', true );
+      return {
+        ...state,
+        user: action.payload,
+      };
     case LOGUIN_BAD:
     case REGISTER_BAD:
       localStorage.removeItem('token');

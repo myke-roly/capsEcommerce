@@ -1,7 +1,6 @@
 const Users = require('../models/Users');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const bcryptjs = require('bcryptjs');
 
 exports.authUser = async (req, res) => {
   const errorAuth = validationResult(req); 
@@ -44,7 +43,7 @@ exports.getUser = async (req, res) => {
       return res.status(404).json({ message: 'El usuario no esta registrado'});
     }
     
-    res.json({user: user});
+    res.json({user});
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Error en el servidor'});

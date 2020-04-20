@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect, useState } from 'react';
 import { REGISTER_OK, REGISTER_BAD, LOGUIN_OK, LOGUIN_BAD, GET_USER } from '../types';
 import AuthReducer from '../reducers/AuthReducer'; 
 import { axiosFetch } from '../API/axios';
@@ -9,7 +9,7 @@ const AuthContext = props => {
 
   const initalState = {
     user: null,
-    auth: false,
+    auth:  false,
     message: null,
     token: null
   }
@@ -52,12 +52,33 @@ const AuthContext = props => {
     }
   }
 
+  const logIn = async (data) => {
+    try {
+      const response = await axiosFetch('/auth', {
+        method: 'POST',
+        data: data
+      });
+      dispatch({ 
+        type: LOGUIN_OK,
+        payload: response.data.token
+      })
+      await getUser();
+    } catch (error) {
+      console.log(error.response);
+      dispatch({
+        type: LOGUIN_BAD,
+        payload: error.response.data.message
+      })
+    }
+  }
+
   return (
     <ContextAuth.Provider value={{
       user: state.user,
       message: state.message,
       auth: state.auth,
-      newRegister: newRegister
+      newRegister,
+      logIn
     }}>
       {props.children}
     </ContextAuth.Provider>
