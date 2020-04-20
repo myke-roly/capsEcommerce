@@ -78,7 +78,8 @@ const AuthContext = props => {
       message: state.message,
       auth: state.auth,
       newRegister,
-      logIn
+      logIn,
+      getUser
     }}>
       {props.children}
     </ContextAuth.Provider>

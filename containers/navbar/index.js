@@ -13,11 +13,14 @@ const NavBar = () => {
   const { modeMobile } = contextMobile;
 
   const contextAuth = useContext(ContextAuth);
-  const { user, auth } = contextAuth;
+  const { getUser, user, auth } = contextAuth;
 
   const [menuBurguer, setMenuBurguer] = useState(false);
   const [item, setItem] = useState(0);
-  const [porfile, setPorfile] = useState('');
+
+  useEffect(() => {
+    getUser();
+  }, [])
 
   const links = [
     { id: 1, title: 'productos', path: '/productos' },
@@ -53,7 +56,7 @@ const NavBar = () => {
                 <Link href="/login" passHref>
                   <a><FaUser/></a>
                 </Link>
-                ): <span><small>user</small><FaUser/></span>
+                ): <span className="user">{user && user.user.name}</span>
               }
             </div>
           </Links>
@@ -71,7 +74,7 @@ const NavBar = () => {
                 <Link href="/login" passHref>
                   <a><FaUser/></a>
                 </Link>
-                ): <span><small>user</small><FaUser/></span>
+                ): <span className="user">{user && user.user.name}</span>
               }
             </div>
             <BurguerMenu

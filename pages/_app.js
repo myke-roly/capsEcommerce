@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import '../styles.css';
 import MobileContext from '../context/MobileContext';
 import AuthContext from '../context/AuthContext';
 import MessageContext from '../context/MessageContext';
+import { authToken } from '../API/token';
 
 const theme = {
   color: {
@@ -19,6 +20,12 @@ const theme = {
 };
 
 export default ({ Component, pageProps }) => {
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) authToken(token);
+  }, []);
+
   return (
     <MobileContext>
       <AuthContext>

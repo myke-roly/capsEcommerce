@@ -14,7 +14,9 @@ const Logout = () => {
 
   useEffect(() => {
     if(auth) {
-        Router.push('/');
+        setTimeout(() => {
+          Router.push('/');
+        }, 3000);
     }
     if(message) {
       showMessage(message, '');

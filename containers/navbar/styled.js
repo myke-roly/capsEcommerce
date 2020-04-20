@@ -27,6 +27,14 @@ export const Nav = styled.nav`
       cursor: pointer;
     }
   }
+
+  .user {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 700;
+    border: 2px solid ${props => props.theme.color.dark};
+    padding: .2rem .5rem;  
+  }
 `;
 
 export const Links = styled.ul`

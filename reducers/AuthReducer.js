@@ -10,7 +10,6 @@ const AuthReducer = (state, action) => {
   switch (action.type) {
     case REGISTER_OK:
       localStorage.setItem('token', action.payload);
-      localStorage.setItem('auth', true );
       return {
         ...state,
         auth: true,
@@ -24,9 +23,9 @@ const AuthReducer = (state, action) => {
       };
     case LOGUIN_OK:
     localStorage.setItem('token', action.payload);
-    localStorage.setItem('auth', true );
       return {
         ...state,
+        message: null,
         user: action.payload,
       };
     case LOGUIN_BAD:
