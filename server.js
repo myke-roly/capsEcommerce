@@ -10,7 +10,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const envFile = dev ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path: envFile });
 const app = next({ dev });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3030;
 const routes = require('./server/routes/routes');
 // const handler = app.getRequestHandler();
 const handler = routes.getRequestHandler(app);
