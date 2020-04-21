@@ -22,13 +22,17 @@ app.prepare().then(() => {
   /** Middlewares */
   server.use(cors());
   server.use(compression());
-  server.use(morgan('common')); //common
+  server.use(morgan('dev')); //common
   server.use(express.static(path.join(__dirname, '/static'), { maxAge: 86400000 }));
   server.use(body_parser.urlencoded({ extended: false }));
   server.use(body_parser.json());
 
   server.use('/api/auth', require('./server/routes/auth'));
   server.use('/api/login', require('./server/routes/users'));
+
+  server.get('/api/me', (req, res) => {
+    res.json({ message: 'hola'});
+  })
 
   server.use(handler);
 

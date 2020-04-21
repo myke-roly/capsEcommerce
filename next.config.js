@@ -1,7 +1,9 @@
-const dotenv = require('dotenv');
-dotenv.config({ path: '.env'});
+const dotenv = require('dotenv').config();
 
 module.exports = {
-  compress: true,
+  env: {
+    PORT: process.env.PORT
+  },
+  compress: true
   /** useFileSystemPublicRoutes: true  /** Nos sirve para desabilitar la carpeta page */
 };

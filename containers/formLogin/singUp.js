@@ -5,6 +5,7 @@ import Button from '../../utils/Button';
 import Title from '../../utils/Title';
 import { ContextAuth } from '../../context/AuthContext';
 import { ContextMessage } from '../../context/MessageContext';
+
 const Logout = () => {
   const contextMessage = useContext(ContextMessage);
   const { messageAlert, showMessage } = contextMessage;
