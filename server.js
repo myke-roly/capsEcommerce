@@ -5,8 +5,9 @@ const morgan = require('morgan');
 const body_parser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
+const dotenv = require('dotenv');
 const dev = process.env.NODE_ENV !== 'production';
-const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
+const envFile = dev ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path: envFile });
 const app = next({ dev });
 const PORT = process.env.PORT || 8080;
@@ -41,6 +42,7 @@ app.prepare().then(() => {
   server.listen(PORT, err => {
     if (err) throw err;
     console.log(`Server on port ${PORT}`);
+    // console.log(process.env.NODE_ENV);
   });
 })
 .catch((ex) => {
