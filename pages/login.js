@@ -21,7 +21,7 @@ function Login({ data }) {
 }
 
 Login.getInitialProps = async (ctx) => {
-  const response = await fetch(process.env.URL_BASE+'/api/me');
+  const response = await fetch('/api/me');
 
   const data = await response.json();
 
