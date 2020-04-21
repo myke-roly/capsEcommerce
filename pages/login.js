@@ -3,6 +3,7 @@ import Layout from '../containers/layout';
 import FormLogin from '../containers/formLogin';
 import { authToken } from '../API/token';
 import fetch from 'isomorphic-fetch';
+import axiosFetch from '../API/axios';
 
 function Login({ data }) {
 
@@ -21,7 +22,7 @@ function Login({ data }) {
 }
 
 Login.getInitialProps = async (ctx) => {
-  const response = await fetch('/api/me');
+  const response = await axiosFetch.get('/api/me');
 
   const data = await response.json();
 
