@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Forms, Inputs } from './styled';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
 import { ContextAuth } from '../../context/AuthContext';
@@ -13,6 +13,8 @@ export default function Login() {
   const contextMessage = useContext(ContextMessage);
   const { messageAlert, showMessage } = contextMessage;
 
+  const router = useRouter();
+
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -20,12 +22,12 @@ export default function Login() {
 
   useEffect(() => {
     if(auth) {
-        Router.push('/');
+        router.push('/');
     }
     if(message) {
       showMessage(message)
     }
-  }, [auth, message, Router]);
+  }, [auth, message, router]);
 
   const hanldleSubmit = (e) => {
     e.preventDefault();

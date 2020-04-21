@@ -17,7 +17,7 @@ const Logout = () => {
   useEffect(() => {
     if(auth) router.push('/');
     if(message) showMessage(message, '');
-  }, [auth, message, Router]);
+  }, [auth, message, router]);
 
   const [data, setData] = useState({
     name: '',
