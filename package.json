@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "build": "NODE_ENV=production node server.js",
-    "start": "node server.js"
+    "prod": "NODE_ENV=production node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
   "author": "myke-roly",

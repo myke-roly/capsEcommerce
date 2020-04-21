@@ -6,6 +6,8 @@ const body_parser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
 const dev = process.env.NODE_ENV !== 'production';
+const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
+dotenv.config({ path: envFile });
 const app = next({ dev });
 const PORT = process.env.PORT || 8080;
 const routes = require('./server/routes/routes');
