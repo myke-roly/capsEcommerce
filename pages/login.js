@@ -3,7 +3,7 @@ import Layout from '../containers/layout';
 import FormLogin from '../containers/formLogin';
 import { authToken } from '../API/token';
 import fetch from 'isomorphic-fetch';
-import axiosFetch from '../API/axios';
+import { axiosFetch } from '../API/axios';
 
 function Login({ data }) {
 
