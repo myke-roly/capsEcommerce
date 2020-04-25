@@ -65,7 +65,7 @@ const NavBar = (props) => {
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <span role="button" class="logout" onClick={() => logOut()}> x</span>
+                  <span role="button" className="logout" onClick={() => logOut()}> x</span>
                 </div>
               )}
             </div>
@@ -88,7 +88,7 @@ const NavBar = (props) => {
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <span role="button" class="logout" onClick={() => logOut()}> x</span>
+                  <span role="button" className="logout" onClick={() => logOut()}> x</span>
                 </div>
               )}
             </div>

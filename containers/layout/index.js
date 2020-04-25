@@ -1,6 +1,7 @@
-import React, { useState } from 'react';import Nav from '../navbar';
+import React, { useState } from 'react';
+import Nav from '../navbar';
 import Footer from '../footer';
-import Services from '../../components/services/Services';
+import Services from '../../utils/services/Services';
 
 export default (props) => {
   return (
