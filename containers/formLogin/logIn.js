@@ -3,31 +3,13 @@ import { Forms, Inputs } from './styled';
 import { useRouter } from 'next/router';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
-import { ContextAuth } from '../../context/AuthContext';
-import { ContextMessage } from '../../context/MessageContext';
 
-export default function Login() {
-  const contextAuth = useContext(ContextAuth);
-  const { auth, message, logIn } = contextAuth;
-
-  const contextMessage = useContext(ContextMessage);
-  const { messageAlert, showMessage } = contextMessage;
-
-  const router = useRouter();
+export default function Login({ logIn, messageAlert}) {
 
   const [state, setState] = useState({
     email: '',
     password: '',
   });
-
-  useEffect(() => {
-    if(auth) {
-        router.push('/');
-    }
-    if(message) {
-      showMessage(message)
-    }
-  }, [auth, message, router]);
 
   const hanldleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +29,7 @@ export default function Login() {
       <Inputs>
         <label htmlFor="email-singIn">Email:</label>
         <input
-          type="text"
+          type="email"
           placeholder="@"
           id="email-singIn"
           name="email"

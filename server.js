@@ -7,8 +7,7 @@ const cors = require('cors');
 const compression = require('compression');
 const dotenv = require('dotenv');
 const dev = process.env.NODE_ENV !== 'production';
-const envFile = dev ? `.env.${process.env.NODE_ENV}` : ".env";
-dotenv.config({ path: envFile });
+require('dotenv').config({ path: '.env' });
 const app = next({ dev });
 const PORT = process.env.PORT || 3030;
 const routes = require('./server/routes/routes');
@@ -41,8 +40,7 @@ app.prepare().then(() => {
 
   server.listen(PORT, err => {
     if (err) throw err;
-    console.log(`Server on port ${PORT}`);
-    // console.log(process.env.NODE_ENV);
+    console.log(`Server on port ${process.env.PORT}`);
   });
 })
 .catch((ex) => {

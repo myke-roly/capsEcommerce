@@ -14,7 +14,7 @@ const NavBar = (props) => {
   const { modeMobile } = contextMobile;
 
   const contextAuth = useContext(ContextAuth);
-  const { getUser, user, auth } = contextAuth;
+  const { getUser, user, auth, logOut } = contextAuth;
 
   const router = useRouter();
 
@@ -41,11 +41,6 @@ const NavBar = (props) => {
     ));
   };
 
-  const logOut = () => {
-    localStorage.removeItem('token');
-    router.push('/');
-  };
-
   return (
     <Nav>
       <Container>
@@ -70,7 +65,7 @@ const NavBar = (props) => {
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <small onClick={logOut}> Cerrar sesion</small>
+                  <span role="button" class="logout" onClick={() => logOut()}> x</span>
                 </div>
               )}
             </div>
@@ -93,7 +88,7 @@ const NavBar = (props) => {
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <small onClick={logOut}> Cerrar sesion</small>
+                  <span role="button" class="logout" onClick={() => logOut()}> x</span>
                 </div>
               )}
             </div>

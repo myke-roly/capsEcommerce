@@ -3,23 +3,8 @@ import { useRouter } from 'next/router';
 import { Forms, Inputs, MessageError } from './styled';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
-import { ContextAuth } from '../../context/AuthContext';
-import { ContextMessage } from '../../context/MessageContext';
 
-const Logout = () => {
-  const contextMessage = useContext(ContextMessage);
-  const { messageAlert, showMessage } = contextMessage;
-
-  const contextAuth = useContext(ContextAuth);
-  const { message, auth, newRegister } = contextAuth;
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if(auth) router.push('/');
-    if(message) showMessage(message, '');
-  }, [auth, message, router]);
-
+const Register = ({ messageAlert, message, newRegister, showMessage}) => {
   const [data, setData] = useState({
     name: '',
     lastName: '',
@@ -129,4 +114,4 @@ const Logout = () => {
   );
 };
 
-export default Logout;
+export default Register;

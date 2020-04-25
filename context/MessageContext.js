@@ -21,7 +21,7 @@ const MessageContext = (props) => {
       dispatch({
         type: HIDDEN_MESSAGE,
       });
-    }, 5000);
+    }, 3000);
   };
 
   return (

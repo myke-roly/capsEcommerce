@@ -29,11 +29,15 @@ export const Nav = styled.nav`
   }
 
   .user {
+    color: ${props => props.theme.color.default};
     text-transform: uppercase;
-    font-size: .8rem;
+    font-size: 1rem;
     font-weight: 700;
-    border: 2px solid ${props => props.theme.color.dark};
-    padding: .2rem .5rem;  
+    padding: .2rem .5rem;
+  }
+  .logout {
+    color: red;
+    cursor: pointer;
   }
 `;
 

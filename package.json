@@ -23,7 +23,7 @@
     "express-validator": "^6.4.0",
     "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.9",
+    "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
     "next": "^9.3.5",
     "next-crypt": "^1.1.0",
@@ -31,7 +31,7 @@
     "nodemon": "^2.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-icons": "^3.9.0",
+    "react-icons": "^3.10.0",
     "react-items-carousel": "^2.8.0",
     "styled-components": "^5.0.1"
   },
