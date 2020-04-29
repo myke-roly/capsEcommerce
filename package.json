@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "prod": "NODE_ENV=production node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },

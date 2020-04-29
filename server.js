@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 const dev = process.env.NODE_ENV !== 'production';
 require('dotenv').config({ path: '.env' });
 const app = next({ dev });
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 4000;
 const routes = require('./server/routes/routes');
 // const handler = app.getRequestHandler();
 const handler = routes.getRequestHandler(app);

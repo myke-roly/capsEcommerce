@@ -27,16 +27,18 @@ const ProductsHome = () => {
       <Container>
         {productos.length > 0 && 
           productos.map(producto => (
-            <Link href={`/producto/${producto.id}`} key={producto.id}>
-              <ItemProduct href="!#">
-              <img src={producto.img_url} alt={producto.title} />
-              <ItemInfo modeMobile={modeMobile}>
-                <h3>{producto.title}</h3>
-                <p>$ {producto.precio}</p>
-                <a href="!#">Agregar al carrito <FaShoppingCart /></a>
-              </ItemInfo>
-            </ItemProduct>
-            </Link>
+            <div key={producto.id}>
+              <Link href={`/productos/[id]/`} as={`/productos/${producto.id}`}>
+                <ItemProduct href="!#">
+                <img src={producto.img_url} alt={producto.title} />
+                <ItemInfo modeMobile={modeMobile}>
+                  <h3>{producto.title}</h3>
+                  <p>$ {producto.precio}</p>
+                  <a href="!#">Agregar al carrito <FaShoppingCart /></a>
+                </ItemInfo>
+              </ItemProduct>
+              </Link>
+            </div>
           ))
         }
     </Container>
