@@ -31,10 +31,7 @@ app.prepare().then(() => {
 
   server.use('/api/auth', require('./server/routes/auth'));
   server.use('/api/login', require('./server/routes/users'));
-
-  server.get('/api/me', (req, res) => {
-    res.json({ message: 'hola'});
-  })
+  server.use('/api/productos', require('./server/routes/products'));
 
   server.use(handler);
 

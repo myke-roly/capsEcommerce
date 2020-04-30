@@ -29,7 +29,7 @@ const ProductsHome = () => {
           productos.map(producto => (
             <div key={producto.id}>
               <Link href={`/productos/[id]/`} as={`/productos/${producto.id}`}>
-                <ItemProduct href="!#">
+                <ItemProduct>
                 <img src={producto.img_url} alt={producto.title} />
                 <ItemInfo modeMobile={modeMobile}>
                   <h3>{producto.title}</h3>
