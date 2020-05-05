@@ -1,17 +1,25 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Layout from '../../containers/layout';
 import { Container } from '../../styled/';
+import { axiosFetch } from '../../API/axios';
+import Product from '../../components/product';
 
-export default () => {
-  const router = useRouter();
-  const { id } = router.query;
-
+const Producto = ({ data }) => {
   return (
     <Layout>
       <Container>
-        <h1>producto {id}</h1>
+        <Product data={data} />
       </Container>
     </Layout>
-  )
+  );
+};
+
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.params;
+  const response = await axiosFetch(`/api/producto/${id}`);
+  const data = response.data.product;
+
+  return { props: { data } };
 }
+
+export default Producto;

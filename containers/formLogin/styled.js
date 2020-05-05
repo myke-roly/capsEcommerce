@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const FormWrapper = styled.main`
-  background: url('./cap-girl-7.jpeg') no-repeat center center/cover;
   min-height: 90vh;
   padding: 2rem 0;
 
@@ -27,10 +26,10 @@ export const Forms = styled.form`
   }
 
   &:first-child {
-    background: ${(props) => props.theme.color.dark};
+    /* background: ${(props) => props.theme.color.dark}; */
 
     label {
-      color: ${(props) => props.theme.color.gray};
+      color: ${(props) => props.theme.color.default};
     }
     input {
       width: 100%;

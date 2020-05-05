@@ -32,6 +32,19 @@ app.prepare().then(() => {
   server.use('/api/auth', require('./server/routes/auth'));
   server.use('/api/login', require('./server/routes/users'));
   server.use('/api/productos', require('./server/routes/products'));
+  server.use('/api/producto', require('./server/routes/products'));
+
+  /** Config Cors */
+  server.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "rigin, Accept, Content-Type, Authorization");
+
+    if(req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+    next();
+  })
 
   server.use(handler);
 

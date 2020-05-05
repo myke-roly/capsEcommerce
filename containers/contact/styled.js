@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperContact = styled.main`
   width: 100%;
-  background: url('./cap-girl-9.jpg') no-repeat center center/cover;
-  min-height: 90vh;
+  /* min-height: 90vh; */
   padding: 2em 0;
   @media (max-width: 900px) {
     font-size: 14px;

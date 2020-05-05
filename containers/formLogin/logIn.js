@@ -51,7 +51,7 @@ export default function Login({ logIn, messageAlert}) {
       <Inputs>
         <small>Forgot my password</small>
       </Inputs>
-      <Button text="Iniciar Sesion" color="primary" type="submit" />
+      <Button text="Iniciar Sesion" color="tercero" type="submit" />
       {messageAlert && <p>{messageAlert}</p>}
     </Forms>
   );

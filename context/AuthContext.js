@@ -1,4 +1,4 @@
-import React, { createContext, useReducer} from 'react';
+import React, { createContext, useReducer } from 'react';
 import {
   REGISTER_OK,
   REGISTER_BAD,
@@ -50,7 +50,7 @@ const AuthContext = (props) => {
 
   const authUser = async () => {
     const token = localStorage.getItem('token');
-    if (token) authToken(token)
+    if (token) authToken(token);
     else return;
     try {
       const response = await axiosFetch.get('/api/auth');

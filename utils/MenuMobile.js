@@ -23,18 +23,18 @@ const WrapperMenu = styled.div`
   animation: ${toBottom} 0.5s ease-in;
 
   ul {
-    width: 80%;
-    margin: auto;
+    width: 100%;
 
     li {
       margin-bottom: 1.5rem;
       padding: 0.55rem 0;
+      border-bottom: 2px solid gray;
       width: 100%;
 
       a {
         color: ${({ theme }) => theme.color.primary};
         text-transform: uppercase;
-        font-size: 0.9em;
+        font-size: em;
         display: inline-block;
         width: inherit;
         animation: ${toBottom} 1s ease;
