@@ -33,6 +33,7 @@ app.prepare().then(() => {
   server.use('/api/login', require('./server/routes/users'));
   server.use('/api/productos', require('./server/routes/products'));
   server.use('/api/producto', require('./server/routes/products'));
+  server.use('/api/search', require('./server/routes/search'));
 
   /** Config Cors */
   server.use((req, res, next) => {

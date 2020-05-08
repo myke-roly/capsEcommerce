@@ -8,10 +8,6 @@ RUN npm install
 
 COPY . .
 
-# development
-#CMD [ "npm", "run", "dev"]
-
-
 # production
 RUN npm run build
 

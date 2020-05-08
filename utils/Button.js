@@ -32,16 +32,16 @@ const ButtonWrapper = styled.button`
       color: props.theme.color.primary
     }};
   border-radius: 50px;
-  padding: .5rem 1.2rem;
+  padding: .5rem 1.5rem;
   cursor: pointer;
-  font-size: .9em;
+  font-size: .8em;
   transition: all 0.3s ease;
   box-shadow: -5px 0 7px rgba(0, 0, 0, .5);
   letter-spacing: 1.5px;
   opacity: ${props => props.disabled ? '.5' : '1' };
 
   &:hover {
-    opacity: ${props => props.disabled ? '.5' : '.7' };
+    opacity: ${props => props.disabled ? '.5' : '.8' };
   }
 `;
 

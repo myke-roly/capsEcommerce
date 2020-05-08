@@ -15,7 +15,7 @@ const Producto = ({ productos }) => {
         {productos && 
         productos.map((product) => (
           <div key={product._id}>
-            <Link href={`/productos/[id]/`} as={`/productos/${product._id}`}>
+            <Link href={`/producto/[id]/`} as={`/producto/${product._id}`}>
               <ItemProduct>
                 <figure>
                   <img src={product.images[0]} alt="img" />

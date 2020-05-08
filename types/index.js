@@ -8,3 +8,5 @@ export const LOGUIN_OK = 'LOGUIN_OK';
 export const LOGUIN_BAD = 'LOGUIN_BAD';
 export const GET_USER = 'GET_USER';
 export const LOGOUT = 'LOGOUT';
+
+export const SEARCH = 'SEARCH';

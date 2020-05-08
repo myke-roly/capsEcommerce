@@ -1,10 +1,24 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Layout from '../containers/layout';
 import ListProducts from '../components/listProducts';
 import { axiosFetch } from '../API/axios';
 
-const Productos = ({ productos }) => {
+const Productos = () => {
+
+  const [ productos, setProductos ] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await axiosFetch.get('/api/productos');
+      const productos = response.data;
+
+      setProductos(productos);
+    }
+
+    fetchApi();
+  }, []);
+
   return (
     <>
       <Head>
@@ -18,10 +32,7 @@ const Productos = ({ productos }) => {
   );
 };
 
-export async function getServerSideProps() {
-  const response = await axiosFetch.get('/api/productos');
-  const productos = response.data;
-  return { props: { productos } };
-}
+// export async function getServerSideProps() {
+//}
 
 export default Productos;

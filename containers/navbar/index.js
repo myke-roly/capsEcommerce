@@ -1,22 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import { FaUser, FaShoppingCart } from 'react-icons/fa';
 import { Nav, Title, Links, CartItem } from './styled';
 import { Container } from '../../styled/index';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
 import { ContextAuth } from '../../context/AuthContext';
 import { ContextMobile } from '../../context/MobileContext';
+import Search from '../../components/search';
 
-const NavBar = (props) => {
+const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
   const contextAuth = useContext(ContextAuth);
   const { getUser, user, auth, logOut } = contextAuth;
-
-  const router = useRouter();
 
   const [menuBurguer, setMenuBurguer] = useState(false);
   const [item, setItem] = useState(0);
@@ -51,9 +50,9 @@ const NavBar = (props) => {
         </Title>
         {!modeMobile && (
           <Links>
+            <Search />
             <Items />
             <div>
-              <FaSearch />
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart />
                 <span>{item}</span>
@@ -76,7 +75,7 @@ const NavBar = (props) => {
         {modeMobile && (
           <div>
             <div>
-              <FaSearch />
+              <Search />
               <CartItem onClick={() => setItem(item + 1)}>
                 <FaShoppingCart />
                 <span>{item}</span>

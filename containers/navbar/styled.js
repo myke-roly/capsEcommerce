@@ -25,13 +25,14 @@ export const Nav = styled.nav`
       color: ${({ theme }) => theme.color.dark};
       margin: 0 0.7rem;
       cursor: pointer;
+      font-size: .7em;
     }
   }
 
   .user {
     color: ${props => props.theme.color.default};
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: .7em;
     font-weight: 700;
     padding: .2rem .5rem;
   }
@@ -49,20 +50,20 @@ export const Links = styled.ul`
   } */
 
   li {
-    margin-left: 1rem;
+    margin-left: .8rem;
 
     a {
       background: transparent;
       color: #000;
-      font-size: 0.7em;
-      font-weight: bold;
+      font-size: 0.6em;
+      font-weight: 500;
       text-transform: uppercase;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem .7rem;
       transition: color .3s ease;
 
       &:hover {
         color: ${({ theme }) => theme.color.tercero};
-        border-top: 2px solid ${({ theme }) => theme.color.tercero};
+        border-bottom: 1px solid ${({ theme }) => theme.color.tercero};
       }
 
       &.active {
@@ -99,7 +100,7 @@ export const CartItem = styled.span`
     width: 15px;
     font-weight: bold;
     position: absolute;
-    top: -30%;
+    top: -20%;
     right: 0;
   }
 `;
