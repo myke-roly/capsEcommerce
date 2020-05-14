@@ -37,7 +37,11 @@ export const Nav = styled.nav`
     padding: .2rem .5rem;
   }
   .logout {
-    color: red;
+    color: ${props => props.theme.color.default};
+    background: ${props => props.theme.color.default};
+    font-size: .55em;
+    color: ${props => props.theme.color.primary};
+    padding: .5em .8em;
     cursor: pointer;
   }
 `;
@@ -55,7 +59,7 @@ export const Links = styled.ul`
     a {
       background: transparent;
       color: #000;
-      font-size: 0.6em;
+      font-size: 0.7em;
       font-weight: 500;
       text-transform: uppercase;
       padding: 0.5rem .7rem;

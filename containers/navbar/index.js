@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FaUser, FaShoppingCart } from 'react-icons/fa';
+import { User, ShoppingCart } from 'react-feather';
 import { Nav, Title, Links, CartItem } from './styled';
 import { Container } from '../../styled/index';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
 import { ContextAuth } from '../../context/AuthContext';
 import { ContextMobile } from '../../context/MobileContext';
-import Search from '../../components/search';
+import Search from '../../components/searchInput';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
@@ -54,17 +53,17 @@ const NavBar = () => {
             <Items />
             <div>
               <CartItem onClick={() => setItem(item + 1)}>
-                <FaShoppingCart />
+                <ShoppingCart size={18} />
                 <span>{item}</span>
               </CartItem>
               {!auth ? (
                 <Link href="/login" passHref>
-                  <a><FaUser /></a>
+                  <a><User size={18} /></a>
                 </Link>
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <span role="button" className="logout" onClick={() => logOut()}> x</span>
+                  <span role="button" className="logout" onClick={() => logOut()}> Cerrar Sesion</span>
                 </div>
               )}
             </div>
@@ -77,17 +76,17 @@ const NavBar = () => {
             <div>
               <Search />
               <CartItem onClick={() => setItem(item + 1)}>
-                <FaShoppingCart />
+                <ShoppingCart size={18} />
                 <span>{item}</span>
               </CartItem>
               {!auth ? (
                 <Link href="/login" passHref>
-                  <a><FaUser /></a>
+                  <a><User size={18} /></a>
                 </Link>
               ) : (
                 <div>
                   <span className="user">{user && user.user.name}</span>
-                  <span role="button" className="logout" onClick={() => logOut()}> x</span>
+                  <span role="button" className="logout" onClick={() => logOut()}> Cerrar Sesion</span>
                 </div>
               )}
             </div>
