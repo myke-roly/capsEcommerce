@@ -16,6 +16,9 @@ export const FooterSocial = styled.address`
   a {
     color: ${props => props.theme.color.primary};
     margin-left: 1rem;
+    span {
+      font-size: .5em;
+    }
 
     svg {
       font-size: 1.2em;

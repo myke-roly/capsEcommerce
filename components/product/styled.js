@@ -18,7 +18,7 @@ export const Images = styled.section`
   height: 100%;
 
   img {
-    border: 2px solid ${({theme}) => theme.color.default};
+    border: 1px solid ${({theme}) => theme.color.default};
     width: 100%;
     height: 100%;
   }

@@ -3,15 +3,15 @@ import styled from 'styled-components';
 
 const Menu = styled.div`
   width: 20px;
-  height: 30px;
+  height: 20px;
   cursor: pointer;
   position: relative;
-  margin-left: 1rem;
 
   span {
     width: 15px;
     position: absolute;
-    height: ${props => (props.menuBurguer ? '0px' : '.135rem')};
+    top: .35rem;
+    height: ${(props) => (props.menuBurguer ? '0px' : '.135rem')};
     background: ${({ theme }) => theme.color.dark};
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -19,11 +19,11 @@ const Menu = styled.div`
     &::before {
       content: '';
       position: absolute;
-      top: ${props => (props.menuBurguer ? 0 : '-.40rem')};
+      top: ${(props) => (props.menuBurguer ? 0 : '-.45rem')};
       height: 0.135rem;
       background: inherit;
       width: 20px;
-      transform: ${props => (props.menuBurguer ? 'rotate(-225deg)' : 0)};
+      transform: ${(props) => (props.menuBurguer ? 'rotate(-225deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
@@ -31,11 +31,11 @@ const Menu = styled.div`
     &::after {
       content: '';
       position: absolute;
-      top: ${props => (props.menuBurguer ? 0 : '.45rem')};
-      width: 20px;
+      top: ${(props) => (props.menuBurguer ? 0 : '.45rem')};
+      width: ${(props) => (props.menuBurguer ? '20px' : '10px')};;
       height: 0.135rem;
       background: inherit;
-      transform: ${props => (props.menuBurguer ? 'rotate(45deg)' : 0)};
+      transform: ${(props) => (props.menuBurguer ? 'rotate(45deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
@@ -45,9 +45,10 @@ const Menu = styled.div`
 export default function BurguerMenu({ menuBurguer, changeMenuBurguer }) {
   return (
     <Menu
+      arial-label="button"
+      role="button"
       menuBurguer={menuBurguer}
       onClick={() => changeMenuBurguer()}
-      role="button"
     >
       <span></span>
     </Menu>

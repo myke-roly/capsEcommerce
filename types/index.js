@@ -10,3 +10,5 @@ export const GET_USER = 'GET_USER';
 export const LOGOUT = 'LOGOUT';
 
 export const SEARCH = 'SEARCH';
+
+export const LIST_PRODUCTS = 'LIST_PRODUCTS'

@@ -1,38 +1,36 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useRef,
-  useLayoutEffect,
-} from 'react';
-import { useRouter } from 'next/router';
-import { FaSearch } from 'react-icons/fa';
-import { Search, ChevronRight } from 'react-feather';
-import { SearchWrapper, ResultSearch, ModalSearch } from './styled';
-import { ContextSearch } from '../../context/SearchContext';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Search, ChevronRight } from 'react-feather';
+import { SearchWrapper, ResultSearch, LabelIcon } from './styled';
+import { ContextSearch } from '../../context/SearchContext';
+import { ContextMobile } from '../../context/MobileContext';
 
 const Buscador = () => {
   const [searchON, setSearchOn] = useState(false);
   const [textSearch, setTextSearch] = useState('');
-  const inputRef = useRef();
 
   const contextSearch = useContext(ContextSearch);
   const { results, getResultsSearch } = contextSearch;
 
+  const contextMobile = useContext(ContextMobile);
+  const { modeMobile } = contextMobile;
+
   const router = useRouter();
 
-  useLayoutEffect(() => {
-    if (textSearch.length < 1) {
-      getResultsSearch(null);
-    } else {
-      getResultsSearch(textSearch);
-    }
+  /** AbortController probando feature */
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    getResultsSearch(textSearch, signal);
+
+    return () => {
+      controller.abort();
+    };
   }, [textSearch]);
 
   const handleChange = (e) => {
-    const text = e.target.value;
-    setTextSearch(text);
+    setTextSearch(e.target.value);
   };
 
   const handleKeyPress = (e) => {
@@ -46,34 +44,37 @@ const Buscador = () => {
     setTextSearch('');
   };
 
+  function showResultSearch() {
+    return results.map((result) => (
+      <Link
+        href={`/producto/[id]`}
+        as={`/producto/${result._id}`}
+        key={result._id}
+      >
+        <a arial-label="title product"><ChevronRight size={15} />{result.title}</a>
+      </Link>
+    ));
+  }
+
   return (
     <>
-      <SearchWrapper>
-        <label htmlFor="search" onClick={() => setSearchOn(!searchON)}>
-          <Search size={18} />
-        </label>
+        <LabelIcon htmlFor="search" onClick={() => setSearchOn(!searchON)}>
+          <Search />
+        </LabelIcon>
         {searchON && (
-          <input
-            ref={inputRef}
-            type="text"
-            id="search"
-            placeholder="Buscar..."
-            value={textSearch}
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            onBlur={handleBlur}
-          />
+          <SearchWrapper modeMobile={modeMobile}>
+            <input
+              type="text"
+              id="search"
+              placeholder="Buscar..."
+              value={textSearch}
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+              onBlur={handleBlur}
+            />
+          </SearchWrapper>
         )}
-      </SearchWrapper>
-      {results && (
-        <ResultSearch>
-          {results && results.map(result => (
-            <Link href={`/producto/[id]/`} as={`/producto/${result._id}`} key={result._id}>
-                <a><ChevronRight size={15} />{result.title}</a>
-              </Link>
-          ))}
-        </ResultSearch>
-      )}
+      {results.length !== 0 && <ResultSearch modeMobile={modeMobile}>{showResultSearch()}</ResultSearch>}
     </>
   );
 };

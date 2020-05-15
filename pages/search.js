@@ -1,7 +1,7 @@
 import Layout from '../containers/layout';
 import Title from '../utils/Title';
 import { Container } from '../styled/';
-import axios from 'axios';
+import { axiosFetch } from '../API/axios';
 import Products from '../components/listProducts';
 
 const Search = ({data}) => {
@@ -18,8 +18,8 @@ const Search = ({data}) => {
 
 export async function getServerSideProps(ctx) {
   const { query } = ctx.query;
-  const response = await axios.get(`/api/search?query=${query}`);
- const data = response.data;
+  const response = await axiosFetch.get(`/api/search?query=${query}`);
+  const data = response.data;
   return { props: {data: data.findProducts}};
 }
 

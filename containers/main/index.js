@@ -1,13 +1,22 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
+import Link from 'next/link';
 import { WrapperMain, WrapperGrid } from './styled';
 import Button from '../../utils/Button';
-import ProductsHome from '../../components/productsHome/';
-import Title from '../../utils/Title';
+import ListProducts from '../../components/listProducts';
+import { ContextProducts } from '../../context/ProductsContext';
 
 const Main = () => {
+
+  const contextProducts = useContext(ContextProducts);
+  const { products, getProducts } = contextProducts;
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+  
   return (
     <WrapperMain>
-      <ProductsHome />
+      <ListProducts productos={products} />
       <WrapperGrid>
         <img src="./cap-man.jpeg" alt="img-girl" />
         <div className="section-content">
@@ -18,7 +27,9 @@ const Main = () => {
             quibusdam tenetur sit corrupti odit dolorem pariatur. Non tempore
             voluptas fugit modi eveniet?
           </p>
-          <Button text="Mas Productos" color="secondary" />
+            <Link href="/productos">
+              <a><Button text="Mas Productos" color="secondary" /></a>
+            </Link>
         </div>
       </WrapperGrid>
     </WrapperMain>

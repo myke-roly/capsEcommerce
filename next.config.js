@@ -5,7 +5,8 @@ dotenv.config({ path: envFile });
 
 module.exports = {
   env: {
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    URL_BASE: process.env.URL_BASE
   },
   compress: true
   /** useFileSystemPublicRoutes: true  /** Nos sirve para desabilitar la carpeta page */

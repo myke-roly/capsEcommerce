@@ -1,13 +1,13 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useLayoutEffect } from 'react';
 
 export const ContextMobile = createContext();
 const MobileContext = props => {
-  const [modeMobile, setModeMobie] = useState(false);
+  const [modeMobile, setModeMobile] = useState(null);
   
-  useEffect(() => {
-    setModeMobie(window.innerWidth < 900 ? true : false);
+  useLayoutEffect(() => {
+    setModeMobile(window.innerWidth < 900 ? true : false);
     function rezise(e) {
-      setModeMobie(e.target.innerWidth < 900 ? true : false);
+      setModeMobile(e.target.innerWidth < 900 ? true : false);
     }
 
     window.addEventListener('resize', rezise);

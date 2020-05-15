@@ -43,9 +43,7 @@ const NavBar = () => {
     <Nav>
       <Container>
         <Title>
-          <Link href="/">
-            <a>Caps <small>..o</small></a>
-          </Link>
+          <Link href="/"><a>Caps <small>.:: o</small></a></Link>
         </Title>
         {!modeMobile && (
           <Links>
@@ -62,7 +60,7 @@ const NavBar = () => {
                 </Link>
               ) : (
                 <div>
-                  <span className="user">{user && user.user.name}</span>
+                  <span className="user" arial-label="User">{user && user.user.name}</span>
                   <span role="button" className="logout" onClick={() => logOut()}> Cerrar Sesion</span>
                 </div>
               )}
@@ -85,7 +83,7 @@ const NavBar = () => {
                 </Link>
               ) : (
                 <div>
-                  <span className="user">{user && user.user.name}</span>
+                  <span className="user" arial-label="User" >{user && user.user.name}</span>
                   <span role="button" className="logout" onClick={() => logOut()}> Cerrar Sesion</span>
                 </div>
               )}

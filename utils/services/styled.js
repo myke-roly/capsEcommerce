@@ -21,8 +21,8 @@ export const ItemsInfo = styled.section`
 
 export const Items = styled.div`
   svg {
-    color: ${props => props.theme.color.primary} !important;
-    border: 1.2px solid ${props => props.theme.color.primary};
+    color: ${props => props.theme.color.gray} !important;
+    border: 2px solid ${props => props.theme.color.default};
     border-radius: 50%;
     padding: 0.7rem;
     font-size: 3em;
@@ -30,17 +30,10 @@ export const Items = styled.div`
 
   span {
     display: block;
-    color: ${props => props.theme.color.tercero};
-    font-size: 0.9em;
-    font-weight: 700;
+    color: ${props => props.theme.color.primary};
+    font-size: 0.8em;
+    font-weight: 400;
     text-transform: uppercase;
     margin: 0.8rem 0;
-  }
-
-  p {
-    font-size: 0.7em;
-    color: ${props => props.theme.color.primary};
-    opacity: 0.7;
-    letter-spacing: 1px;
   }
 `;

@@ -5,6 +5,7 @@ import MobileContext from '../context/MobileContext';
 import AuthContext from '../context/AuthContext';
 import MessageContext from '../context/MessageContext';
 import SearchContext from '../context/SearchContext';
+import ProductsContext from '../context/ProductsContext';
 import { authToken } from '../API/token';
 
 const theme = {
@@ -29,13 +30,15 @@ export default ({ Component, pageProps }) => {
   return (
     <MobileContext>
       <SearchContext>
-        <AuthContext>
-          <MessageContext>
-            <ThemeProvider theme={theme}>
-              <Component {...pageProps} />
-            </ThemeProvider>
-          </MessageContext>
-        </AuthContext>
+        <ProductsContext>
+          <AuthContext>
+            <MessageContext>
+              <ThemeProvider theme={theme}>
+                <Component {...pageProps} />
+              </ThemeProvider>
+            </MessageContext>
+          </AuthContext>
+        </ProductsContext>
       </SearchContext>
     </MobileContext>
   );

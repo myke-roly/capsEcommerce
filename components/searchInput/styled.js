@@ -1,56 +1,60 @@
 import styled, { keyframes } from 'styled-components';
 
 const animateSearch = keyframes`
-  from {width: 0;}
-  to {width: auto;}
+  from {opacity: 0;}
+  to {opacity: 1;}
 `;
-const animateSearchResults = keyframes`
-  from {height: 0;}
-  to {height: auto;}
+
+export const LabelIcon = styled.label`
+  position: relative;
+  top: 0;
 `;
 
 export const SearchWrapper = styled.div`
-  position: relative;
+  height: ${({ modeMobile }) => (modeMobile ? '8vh' : '')};
+  width: ${({ modeMobile }) => (modeMobile ? '100%' : '')};;
+  background: ${({ theme }) => theme.color.primary};
+  position: ${({ modeMobile }) => (modeMobile ? 'fixed' : '')};
+  top: 8vh;
+  left: 0;
 
   input {
-    display: inline-block;
-    width: 250px;
-    padding: 0.2rem 0.5rem;
+    width: ${({ modeMobile }) => (modeMobile ? '90%' : '300px')};
+    margin: auto;
+    padding: 0.4rem 0.5rem;
+    background: ${({ theme }) => theme.color.gray};
+    font-size: 0.9em;
+    /* border: 1px solid ${({ theme }) => theme.color.default}; */
+    animation: ${animateSearch} 0.8s ease-in-out;
+    --moz-animation: ${animateSearch} 0.8s ease-in-out;
+    border-radius: 5px;
     border: none;
-    background: transparent;
-    font-size: 0.7em;
-    border: 2px solid ${({ theme }) => theme.color.default};
-    animation: ${animateSearch} 0.5s ease;
-    border-radius: 50px;
-  }
-
-  label {
-    position: relative;
-    right: 0;
-    top: 0.35rem;
   }
 `;
 
 export const ResultSearch = styled.section`
   position: fixed;
-  top: 3rem;
+  top: ${({ modeMobile }) => (modeMobile ? '16vh' : '8vh')};
   left: 0;
   width: 100%;
   height: auto;
-  background: ${({ theme }) => theme.color.gray};
-  animation: ${animateSearchResults} .5s ease;
+  background: ${({ theme }) => theme.color.primary};
+  animation: ${animateSearch} 0.5s ease;
 
   a {
+    widtH: 90%;
+    margin: auto;
     display: block;
     font-weight: 400;
-    font-size: .8em;
-    text-align: center;
+    font-size: 0.8em;
+    /* text-align: center; */
     text-transform: uppercase;
-    padding: .6rem 0;
+    padding: 0.6rem 0;
     color: ${({ theme }) => theme.color.dark};
+    --moz-animation: ${animateSearch} 0.8s ease-in-out;
 
     &:hover {
-      background: ${({ theme }) => theme.color.primary};
+      background: ${({ theme }) => theme.color.gray};
     }
   }
 `;

@@ -11,16 +11,13 @@ const SearchContext = (props) => {
 
   const [state, dispatch] = useReducer(SearchReducer, initialState);
 
-  const getResultsSearch = async (query) => {
+  const getResultsSearch = async (query, signal) => {
     try {
-      const response = await axiosFetch.get('/api/productos');
-      const data = await response.data;
-      const filter = data.products.filter(product => ( 
-        product.title.indexOf(query) !== -1
-      ));
+      const response = await axiosFetch.get(`/api/search?query=${query}`, {signal: signal});
+      const { findProducts } = response.data;
       dispatch({
         type: SEARCH,
-        payload: filter,
+        payload: findProducts,
       });
     } catch (error) {
       console.log(error);

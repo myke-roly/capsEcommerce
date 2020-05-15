@@ -22,7 +22,7 @@ const Producto = ({ productos }) => {
                 </figure>
                 <ItemInfo modeMobile={modeMobile}>
                   <h3>{product.title}</h3>
-                  <p>$ {product.precio}</p>
+                  <p>$ {product.price}</p>
                   <a>Agregar al carrito <FaShoppingCart /></a>
                 </ItemInfo>
               </ItemProduct>

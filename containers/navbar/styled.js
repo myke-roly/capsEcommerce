@@ -2,15 +2,16 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   position: sticky;
+  height: 8vh;
   top: 0;
   left: 0;
   width: 100%;
-  background: ${props => props.theme.color.primary};
-  color: ${props => props.theme.color.dark};
-  padding: 0.6rem 0;
+  background: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.dark};
   box-shadow: 0px -7px 10px rgba(0, 0, 0, 0.55);
   z-index: 100;
   overflow: hidden;
+  padding: 0.7rem 0;
 
   @media (max-width: 900px) {
     font-size: 14px;
@@ -20,54 +21,44 @@ export const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    svg {
-      color: ${({ theme }) => theme.color.dark};
-      margin: 0 0.7rem;
-      cursor: pointer;
-      font-size: .7em;
-    }
+  }
+  svg {
+    color: ${({ theme }) => theme.color.dark};
+    margin: 0 0.5rem;
+    cursor: pointer;
+    width: 15px;
   }
 
   .user {
-    color: ${props => props.theme.color.default};
+    color: ${(props) => props.theme.color.default};
     text-transform: uppercase;
-    font-size: .7em;
-    font-weight: 700;
-    padding: .2rem .5rem;
+    font-weight: 400;
+    padding: 0 0.5em;
   }
+
   .logout {
-    color: ${props => props.theme.color.default};
-    background: ${props => props.theme.color.default};
-    font-size: .55em;
-    color: ${props => props.theme.color.primary};
-    padding: .5em .8em;
+    color: ${(props) => props.theme.color.default};
+    font-size: 0.55em;
+    border-bottom: 1px solid ${(props) => props.theme.color.default};;
     cursor: pointer;
   }
 `;
 
 export const Links = styled.ul`
   display: flex;
-
-  /* @media (max-width: 900px) {
-    display: none;
-  } */
-
   li {
-    margin-left: .8rem;
+    margin-left: 1rem;
 
     a {
       background: transparent;
       color: #000;
       font-size: 0.7em;
       font-weight: 500;
-      text-transform: uppercase;
-      padding: 0.5rem .7rem;
-      transition: color .3s ease;
+      text-transform: capitalize;
+      transition: color 0.3s ease;
 
       &:hover {
-        color: ${({ theme }) => theme.color.tercero};
-        border-bottom: 1px solid ${({ theme }) => theme.color.tercero};
+        color: ${(props) => props.theme.color.secondary};
       }
 
       &.active {
@@ -81,13 +72,13 @@ export const Links = styled.ul`
 export const Title = styled.h1`
   text-transform: uppercase;
   font-size: 1.2em;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.2rem;
 
   a {
     color: ${({ theme }) => theme.color.dark};
 
     small {
-      font-size: 0.7em;
+      font-size: 0.5em;
     }
   }
 `;

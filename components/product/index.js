@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../utils/Button';
 import { ContextMobile } from '../../context/MobileContext';
-import Title from '../../utils/Title';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
