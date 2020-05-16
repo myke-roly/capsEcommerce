@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../utils/Button';
 import { ContextMobile } from '../../context/MobileContext';
+import Cookie from 'js-cookie';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
+
+  function addItemToCart() {
+    Cookie.set('IDItem', JSON.stringify(idProducts));
+  }
 
   return (
     <WrapperProduct modeMobile={modeMobile}>
@@ -34,7 +39,7 @@ const Product = ({ data }) => {
           <h4>Cantidad:</h4>
           <input type="number" placeholder="1" />
         </Section>
-        <Button text="Agregar al carrito" color="default" />
+        <Button text="Agregar al carrito" color="default" onClick={addItemToCart} />
         <Section>
           <span>
             <h4>Descripcion: </h4>

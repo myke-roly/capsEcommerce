@@ -9,6 +9,8 @@ const Producto = ({ productos }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
+  console.log(process.env.URL_BASE, process.env.PORT);
+
   return (
     <ItemsProducts modeMobile={modeMobile}>
       <Container>

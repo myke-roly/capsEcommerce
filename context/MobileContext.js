@@ -1,10 +1,10 @@
-import React, { createContext, useState, useLayoutEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const ContextMobile = createContext();
 const MobileContext = props => {
   const [modeMobile, setModeMobile] = useState(null);
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     setModeMobile(window.innerWidth < 900 ? true : false);
     function rezise(e) {
       setModeMobile(e.target.innerWidth < 900 ? true : false);

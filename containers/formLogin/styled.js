@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const FormWrapper = styled.main`
   min-height: 90vh;
   padding: 2rem 0;
+  background: ${(props) => props.theme.color.primary};
 
   & > div {
     display: ${(props) => (props.modeMobile ? 'block' : 'flex')};
@@ -12,7 +13,7 @@ export const FormWrapper = styled.main`
 export const Forms = styled.form`
   width: 100%;
   height: 100%;
-  background: ${(props) => props.theme.color.gray};
+  /* background: ${(props) => props.theme.color.gray}; */
   opacity: 0.95;
   padding: 3em;
   /* border-radius:10px; */
