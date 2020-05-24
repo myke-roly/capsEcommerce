@@ -9,7 +9,7 @@ const Product = ({ data }) => {
   const { modeMobile } = contextMobile;
 
   function addItemToCart() {
-    Cookie.set('IDItem', JSON.stringify(idProducts));
+    Cookie.set('IDItem', JSON.stringify(data._id));
   }
 
   return (
@@ -22,12 +22,16 @@ const Product = ({ data }) => {
         <Section>
           <h4 className="price">${data.price}.00</h4>
         </Section>
-        <hr/>
+        <hr />
         <Section>
           <h4>Colores: </h4>
           <p>
             {data.colors.map((color, index) => (
-              <span key={index} className="color" style={{ background: color }}></span>
+              <span
+                key={index}
+                className="color"
+                style={{ background: color }}
+              ></span>
             ))}
           </p>
         </Section>
@@ -37,9 +41,17 @@ const Product = ({ data }) => {
         </Section>
         <Section>
           <h4>Cantidad:</h4>
-          <input type="number" placeholder="1" />
+          <p>
+            <span>-</span>
+            <span className="quantity">1</span>
+            <span>+</span>
+          </p>
         </Section>
-        <Button text="Agregar al carrito" color="default" onClick={addItemToCart} />
+        <Button
+          text="Agregar al carrito"
+          color="tercero"
+          onClick={addItemToCart}
+        />
         <Section>
           <span>
             <h4>Descripcion: </h4>

@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Forms, Inputs } from './styled';
-import { useRouter } from 'next/router';
+import React, { useContext, useState } from 'react';
+import { Form, Inputs } from './styled';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
+import Link from 'next/link';
 
 export default function Login({ logIn, messageAlert}) {
 
@@ -24,7 +24,7 @@ export default function Login({ logIn, messageAlert}) {
   };
 
   return (
-    <Forms onSubmit={hanldleSubmit}>
+    <Form onSubmit={hanldleSubmit}>
       <Title title="Iniciar Sesion" />
       <Inputs>
         <label htmlFor="email-singIn">Email:</label>
@@ -48,11 +48,12 @@ export default function Login({ logIn, messageAlert}) {
           onChange={handleChange}
         />
       </Inputs>
-      <Inputs>
-        <small>Forgot my password</small>
-      </Inputs>
-      <Button text="Iniciar Sesion" color="tercero" type="submit" />
-      {messageAlert && <p>{messageAlert}</p>}
-    </Forms>
+      {messageAlert && <p className="error">{messageAlert}</p>}
+      <Button text="Iniciar Sesion" color="secondary" type="submit" />
+      <p className="reset-pass">Olvide mi Contrasena</p>
+      <Link href="/registrarse" passHref>
+        <a className="register">Crear Cuenta</a>
+      </Link>
+    </Form>
   );
 }

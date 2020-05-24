@@ -18,14 +18,11 @@ const Main = () => {
     <WrapperMain>
       <ListProducts productos={products} />
       <WrapperGrid>
-        <img src="./cap-man.jpeg" alt="img-girl" />
+        <img src="./cap-man.jpeg" alt="img-cap" />
         <div className="section-content">
           <h2>Si quieres estar a la moda estas en el lugar corretco!</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-            magnam maxime assumenda similique saepe illum dignissimos debitis
-            quibusdam tenetur sit corrupti odit dolorem pariatur. Non tempore
-            voluptas fugit modi eveniet?
+            Ultimomos modelos de gorras del mercado, fabricados con el mejor material que se puede encontrar en el mercado. Variedad en colores y talles.
           </p>
             <Link href="/productos">
               <a><Button text="Mas Productos" color="secondary" /></a>

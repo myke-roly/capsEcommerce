@@ -1,24 +1,36 @@
-import React, { useEffect } from 'react';
-import Layout from '../containers/layout';
-import { Container } from '../styled';
+import React from 'react';
+import Head from 'next/head'; 
 import { parseCookies } from '../libs/parseCookies';
+import Layout from '../containers/layout';
+import { Container } from '../utils/Container';
+import Title from '../utils/Title';
+import { axiosFetch } from '../API/axios';
 
-export const Carrito = ({ IDItem }) => {
-  console.log(IDItem);
+export const Carrito = ({ data }) => {
+
   return (
-    <Layout>
-      <Container>
-        <h1>Carrito</h1>
-        <hr />
-      </Container>
-    </Layout>
+    <>
+      <Head><title>Carrito | CAPSARG</title></Head>
+      <Layout>
+        <Container>
+          <Title  title="Carrito" />
+          <div style={{minHeight: '50vh'}}>
+            <img style={{width: '150px'}} src={data.images[0]} alt={data.title}/>
+            <h3>{data.title}</h3>
+            <p>{data.price}</p>
+          </div>
+        </Container>
+      </Layout>
+    </>
   );
 };
 
 Carrito.getInitialProps = async ({req}) => {
-  const cookies = parseCookies(req);
+  const { IDItem } = parseCookies(req);
+  const response = await axiosFetch(`/api/producto/${JSON.parse(IDItem)}`);
+  const data = response.data.product;
 
-  return { IDItem: cookies.IDItem };
+  return { data };
 };
 
 export default Carrito;

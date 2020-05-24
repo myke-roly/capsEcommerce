@@ -7,14 +7,14 @@ import { ContextSearch } from '../../context/SearchContext';
 import { ContextMobile } from '../../context/MobileContext';
 
 const Buscador = () => {
-  const [searchON, setSearchOn] = useState(false);
-  const [textSearch, setTextSearch] = useState('');
-
   const contextSearch = useContext(ContextSearch);
   const { results, getResultsSearch } = contextSearch;
 
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
+
+  const [searchON, setSearchOn] = useState(modeMobile ? false : true);
+  const [textSearch, setTextSearch] = useState('');
 
   const router = useRouter();
 
@@ -39,9 +39,11 @@ const Buscador = () => {
     }
   };
 
-  const handleBlur = () => {
-    setSearchOn(false);
-    setTextSearch('');
+  const handleInput = () => {
+    if(modeMobile) {
+      setSearchOn(!searchON);
+      setTextSearch('');
+    }
   };
 
   function showResultSearch() {
@@ -58,7 +60,7 @@ const Buscador = () => {
 
   return (
     <>
-        <LabelIcon htmlFor="search" onClick={() => setSearchOn(!searchON)}>
+        <LabelIcon htmlFor="search" onClick={handleInput}>
           <Search />
         </LabelIcon>
         {searchON && (
@@ -70,7 +72,7 @@ const Buscador = () => {
               value={textSearch}
               onChange={handleChange}
               onKeyPress={handleKeyPress}
-              onBlur={handleBlur}
+              onBlur={handleInput}
             />
           </SearchWrapper>
         )}

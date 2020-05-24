@@ -14,13 +14,12 @@ export const WrapperProduct = styled.main`
 `;
 
 export const Images = styled.section`
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  margin: auto;
 
   img {
-    border: 1px solid ${({theme}) => theme.color.default};
-    width: 100%;
-    height: 100%;
+    /* border: 1px solid ${({theme}) => theme.color.default}; */
+    width: 90%;
   }
 `;
 
@@ -30,9 +29,11 @@ export const Detail = styled.section`
   padding: 1.5rem;
 
   h2 {
+    color: #444;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 1.5em;
+    letter-spacing: 1.2px;
+    font-size: 1.3em;
+    font-weight: 500;
   }
 
   button {
@@ -48,13 +49,13 @@ export const Section = styled.section`
   justify-content: space-between;
 
   h4 {
-    color: ${({theme}) => theme.color.tercero};
+    color: ${({theme}) => theme.color.default};
     font-weight: 400;
-    font-size: .7em;
+    font-size: .8em;
   }
 
   p {
-    color: ${({theme}) => theme.color.deafult};
+    color: ${({theme}) => theme.color.dark};
     font-size: .8em;
     opacity: .8;
     font-weight: 400;
@@ -62,17 +63,22 @@ export const Section = styled.section`
     line-height: 1.5rem;
   }
 
+  .quantity {
+    padding: .5rem 1rem;
+    border: 2px solid ${({theme}) => theme.color.gray};
+    margin: 0 .2rem;
+  }
+
   .price {
-    font-size: 1.2rem;
-    color: ${({theme}) => theme.color.default};
-    font-weight: 600;
+    font-size: 1.5rem;
+    color: ${({theme}) => theme.color.dark};
+    font-weight: bold;
   }
 
   .color {
     display: inline-block;
-    width: 1.2em;
-    height: 1.2em;
-    background: red;
+    width: 1.5em;
+    height: 1.5em;
     border-radius: 50%;
     margin: 0 .5rem;
   }

@@ -1,18 +1,34 @@
 import Layout from '../containers/layout';
+import Head from 'next/head';
 import Title from '../utils/Title';
-import { Container } from '../styled/';
+import { Container } from '../utils/Container';
 import { axiosFetch } from '../API/axios';
 import Products from '../components/listProducts';
 
 const Search = ({data}) => {
 
   return(
-    <Layout>
-      <Container>
-        <Title title="Buscar Productos...." />
-        <Products productos={data} />
-      </Container>
-    </Layout>
+    <>
+      <Head>
+        <title>Search | CAPSARG</title>
+      </Head>
+      <Layout>
+        <Container>
+          <Title title="Buscar Productos" />
+          {data.length > 0 
+          ? <Products productos={data} /> 
+          : <p>No hay resultdaos de tu busqueda...</p>}
+          <style jsx>{`
+            p {
+              text-align: center;
+              color: #555;
+              padding-top: 50px;
+              min-height: 50vh;
+            }
+          `}</style>
+        </Container>
+      </Layout>
+    </>
   )
 }
 

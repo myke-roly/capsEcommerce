@@ -1,21 +1,16 @@
 import React, { useContext } from 'react';
 import { WrapperContact, Input } from './styled';
-import { Container } from '../../styled';
+import { Container } from '../../utils/Container';
 import Button from '../../utils/Button';
-import { ContextMobile } from '../../context/MobileContext';
+import Form from '../../utils/Form';
 import Title from '../../utils/Title';
 
 const Contact = () => {
-
-  const context = useContext(ContextMobile);
-  const { modeMobile } = context;
-
   return (
-    <WrapperContact modeMobile={modeMobile}>
+    <WrapperContact>
       <Container>
-        <section className="wrapper">
-          <div></div>
-          <form className="form">
+        <Form>
+          <form>
             <Title title="Formulario de Contacto" />
             <Input>
               <label htmlFor="name">Nombre: </label>
@@ -33,9 +28,9 @@ const Contact = () => {
               <label htmlFor="message">Mensaje: </label>
               <textarea placeholder="..." id="message"></textarea>
             </Input>
-            <Button text="enviar formulario" color="primary" type="sutmit" />
+            <Button text="enviar formulario" color="default" type="sutmit" />
           </form>
-        </section>
+        </Form>
       </Container>
     </WrapperContact>
   );

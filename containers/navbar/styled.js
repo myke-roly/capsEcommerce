@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   position: sticky;
-  height: 3rem;
+  height: 3.001rem;
   top: 0;
   left: 0;
   width: 100%;
@@ -47,7 +47,7 @@ export const Nav = styled.nav`
 export const Links = styled.ul`
   display: flex;
   li {
-    margin-left: 1rem;
+    margin: 0 1.2rem;
 
     a {
       background: transparent;

@@ -1,6 +1,7 @@
 import Layout from '../containers/layout';
 import Head from 'next/head';
-import Home from '../containers/home';
+import Hero from '../containers/hero';
+import Main from '../containers/main';
 
 export default () => {
   return (
@@ -10,7 +11,8 @@ export default () => {
         <title>CAPSARG | Home</title>
       </Head>
       <Layout>
-        <Home />
+        <Hero />
+        <Main />
       </Layout>
     </>
   );

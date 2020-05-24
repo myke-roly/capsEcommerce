@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Forms, Inputs, MessageError } from './styled';
+import React, { useState } from 'react';
+import { MessageError, Inputs } from './styled';
 import Button from '../../utils/Button';
 import Title from '../../utils/Title';
 
-const Register = ({ messageAlert, message, newRegister, showMessage}) => {
+const Register = ({ messageAlert, newRegister, showMessage}) => {
   const [data, setData] = useState({
     name: '',
     lastName: '',
@@ -41,7 +40,7 @@ const Register = ({ messageAlert, message, newRegister, showMessage}) => {
   };
 
   return (
-    <Forms errorInput={message} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Title title="Registrarme" />
       <Inputs>
         <label htmlFor="name">Nombre:</label>
@@ -110,7 +109,7 @@ const Register = ({ messageAlert, message, newRegister, showMessage}) => {
       </Inputs>
       <Button text="Registrarme" color="dark" type="submit" />
       {messageAlert && <MessageError>{messageAlert}</MessageError>}
-    </Forms>
+    </form>
   );
 };
 

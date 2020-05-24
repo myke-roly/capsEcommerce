@@ -11,30 +11,29 @@ export const LabelIcon = styled.label`
 `;
 
 export const SearchWrapper = styled.div`
-  height: ${({ modeMobile }) => (modeMobile ? '8vh' : '')};
+  height: ${({ modeMobile }) => (modeMobile ? '3rem' : '')};
   width: ${({ modeMobile }) => (modeMobile ? '100%' : '')};;
   background: ${({ theme }) => theme.color.primary};
   position: ${({ modeMobile }) => (modeMobile ? 'fixed' : '')};
-  top: 8vh;
+  top: 3rem;
   left: 0;
 
   input {
     width: ${({ modeMobile }) => (modeMobile ? '90%' : '300px')};
     margin: auto;
     padding: 0.4rem 0.5rem;
-    background: ${({ theme }) => theme.color.gray};
-    font-size: 0.9em;
-    /* border: 1px solid ${({ theme }) => theme.color.default}; */
+    background: white;
+    font-size: 0.8em;
+    border-radius: 7px;
+    border: 2px solid ${({ theme }) => theme.color.gray};
     animation: ${animateSearch} 0.8s ease-in-out;
     --moz-animation: ${animateSearch} 0.8s ease-in-out;
-    border-radius: 5px;
-    border: none;
   }
 `;
 
 export const ResultSearch = styled.section`
   position: fixed;
-  top: ${({ modeMobile }) => (modeMobile ? '16vh' : '8vh')};
+  top: ${({ modeMobile }) => (modeMobile ? '16vh' : '3rem')};
   left: 0;
   width: 100%;
   height: auto;
@@ -42,7 +41,7 @@ export const ResultSearch = styled.section`
   animation: ${animateSearch} 0.5s ease;
 
   a {
-    widtH: 90%;
+    width: 90%;
     margin: auto;
     display: block;
     font-weight: 400;

@@ -8,7 +8,7 @@ export default () => {
     <>
       <Head>
         <meta name="description" content="This is a page to buy caps online" />
-        <title>CAPSARG | Productos</title>
+        <title>Contacto | CAPSARG</title>
       </Head>
       <Layout>
         <Contact />

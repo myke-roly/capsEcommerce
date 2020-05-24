@@ -4,20 +4,23 @@ export const FooterWrapper = styled.footer`
   background: #000;
   padding: 1.5rem 0;
   color: white;
+  text-align: center;
 
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  p {
+    font-size: .8em;
   }
 `;
 
 export const FooterSocial = styled.address`
+  padding: 1rem 0;
+
   a {
     color: ${props => props.theme.color.primary};
     margin-left: 1rem;
+
     span {
-      font-size: .5em;
+      display: none;
+      /* font-size: .5em; */
     }
 
     svg {
@@ -25,6 +28,7 @@ export const FooterSocial = styled.address`
 
       &:hover {
         transform: scale(1.2);
+        color: tomato;
       }
     }
   }

@@ -12,29 +12,30 @@ const toBottom = keyframes`
 `;
 
 const WrapperMenu = styled.div`
-  background: ${({ theme }) => theme.color.dark};
+  background: white;
   text-align: center;
   width: 80%;
   height: 100vh;
   position: fixed;
-  top: 50px;
+  top: 3rem;
   right: 0;
-  /* padding: 2rem; */
   animation: ${toBottom} 0.5s ease-in;
 
   ul {
     width: 100%;
+    margin-top: 3rem;
+    height: 100%;
+    padding: 3rem;
 
     li {
       margin-bottom: 1.5rem;
       padding: 0.55rem 0;
-      border-bottom: 2px solid gray;
       width: 100%;
 
       a {
-        color: ${({ theme }) => theme.color.primary};
+        color: ${({ theme }) => theme.color.dark};
         text-transform: uppercase;
-        font-size: em;
+        font-size: 1.2em;
         display: inline-block;
         width: inherit;
         animation: ${toBottom} 1s ease;
@@ -42,9 +43,9 @@ const WrapperMenu = styled.div`
     }
 
     svg {
-      color: ${({ theme }) => theme.color.primary};
+      color: ${({ theme }) => theme.color.dark};
       font-size: 1.35rem;
-      margin-top: 1rem;
+      margin-top: 3rem;
       margin-left: 1rem;
     }
   }

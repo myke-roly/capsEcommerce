@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { User, ShoppingCart } from 'react-feather';
 import { Nav, Title, Links, CartItem } from './styled';
-import { Container } from '../../styled/index';
+import { Container } from '../../utils/Container';
 import MenuMobile from '../../utils/MenuMobile';
 import BurguerMenu from '../../utils/BurguerMenu';
 import { ContextAuth } from '../../context/AuthContext';
@@ -50,12 +50,12 @@ const NavBar = () => {
             <Search />
             <Items />
             <div>
-              <CartItem onClick={() => setItem(item + 1)}>
-                <ShoppingCart size={18} />
-                <span>{item}</span>
-              </CartItem>
+              <CartItem>
+                <Link href="/carrito"><ShoppingCart size={18} /></Link>
+                  <span>{item}</span>
+                </CartItem>
               {!auth ? (
-                <Link href="/login" passHref>
+                <Link href="/iniciar-sesion" passHref>
                   <a><User size={18} /></a>
                 </Link>
               ) : (
@@ -73,12 +73,12 @@ const NavBar = () => {
           <div>
             <div>
               <Search />
-              <CartItem onClick={() => setItem(item + 1)}>
-                <ShoppingCart size={18} />
+              <CartItem>
+                <Link href="/carrito"><ShoppingCart size={18} /></Link>
                 <span>{item}</span>
               </CartItem>
               {!auth ? (
-                <Link href="/login" passHref>
+                <Link href="/iniciar-sesion" passHref>
                   <a><User size={18} /></a>
                 </Link>
               ) : (

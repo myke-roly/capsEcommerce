@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ItemsProducts = styled.div`
-  background: ${(props) => props.theme.color.primary};
   padding: 4rem 0;
   overflow: hidden;
 
@@ -17,6 +16,9 @@ export const ItemsProducts = styled.div`
 `;
 
 export const ItemProduct = styled.section`
+  margin: auto;
+  max-width: 200px;
+  
   &:hover {
     img {
       transition: all 0.5s ease;
@@ -29,12 +31,13 @@ export const ItemProduct = styled.section`
   }
 
   img {
-    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
     /* border: 1px solid ${(props) => props.theme.color.dark}; */
+    background: ${(props) => props.theme.color.primary};
     border-radius: 7px;
     width: 100%;
     height: 200px;
     padding: 0.7rem;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
   }
 `;
 
