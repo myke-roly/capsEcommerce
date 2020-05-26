@@ -1,23 +1,27 @@
 import React from 'react';
-import Head from 'next/head'; 
+import Head from 'next/head';
 import { parseCookies } from '../libs/parseCookies';
 import Layout from '../containers/layout';
 import { Container } from '../utils/Container';
 import Title from '../utils/Title';
 import { axiosFetch } from '../API/axios';
+import Products from '../components/listProducts';
+import Button from '../utils/Button';
 
-export const Carrito = ({ data }) => {
+export const Carrito = ({ filterProducts }) => {
 
   return (
     <>
-      <Head><title>Carrito | CAPSARG</title></Head>
+      <Head>
+        <title>Carrito | CAPSARG</title>
+      </Head>
       <Layout>
         <Container>
-          <Title  title="Carrito" />
-          <div style={{minHeight: '50vh'}}>
-            <img style={{width: '150px'}} src={data.images[0]} alt={data.title}/>
-            <h3>{data.title}</h3>
-            <p>{data.price}</p>
+          <Title title="Carrito" />
+          {filterProducts.length === 0 && <p>Aun no agregaste ningun producto</p>}
+          <div style={{ minHeight: '50vh', padding: '2rem' }}>
+            <Products productos={filterProducts}  />
+            <Button color="dark" text="Agregar mas productos" />
           </div>
         </Container>
       </Layout>
@@ -25,12 +29,19 @@ export const Carrito = ({ data }) => {
   );
 };
 
-Carrito.getInitialProps = async ({req}) => {
-  const { IDItem } = parseCookies(req);
-  const response = await axiosFetch(`/api/producto/${JSON.parse(IDItem)}`);
-  const data = response.data.product;
+Carrito.getInitialProps = async ({ req }) => {
+  const ids = parseCookies(req);
+  const response = await axiosFetch(`/api/productos`);
+  const products = response.data.products;
+  let filterProducts = [];
 
-  return { data };
+  if(Object.entries(ids).length !== 0) {
+    JSON.parse(ids.IDItem).map(id => {
+      products.filter(product => id.id === product._id && filterProducts.push(product));
+    });
+  }
+  
+  return { filterProducts };
 };
 
 export default Carrito;

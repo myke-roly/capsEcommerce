@@ -3,13 +3,22 @@ import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../utils/Button';
 import { ContextMobile } from '../../context/MobileContext';
 import Cookie from 'js-cookie';
+import Title from '../../utils/Title';
+import { parseCookies } from '../../libs/parseCookies';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
   function addItemToCart() {
-    Cookie.set('IDItem', JSON.stringify(data._id));
+    let newItems = [];
+    newItems.push({id: data._id});
+    const items = Cookie.getJSON('IDItem')
+    if(items) {
+      items.filter(item => item.id !== data._id ? newItems.push(item) : null);
+      console.log(items);
+    }
+    Cookie.set('IDItem', newItems);
   }
 
   return (
@@ -18,7 +27,7 @@ const Product = ({ data }) => {
         <img src={data.images[0]} alt="img" />
       </Images>
       <Detail>
-        <h2>{data.title}</h2>
+        <Title title={data.title} />
         <Section>
           <h4 className="price">${data.price}.00</h4>
         </Section>

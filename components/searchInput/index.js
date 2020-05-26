@@ -81,4 +81,4 @@ const Buscador = () => {
   );
 };
 
-export default Buscador;
+export default React.memo(Buscador);

@@ -83,16 +83,14 @@ export const Title = styled.h1`
   }
 `;
 
-export const CartItem = styled.span`
+export const CartItem = styled.a`
   position: relative;
 
-  span {
+  .item-cart {
     color: ${({ theme }) => theme.color.secondary};
-    border-radius: 50%;
     text-align: center;
+    padding-left: .5rem;
     font-size: 0.685rem;
-    height: 15px;
-    width: 15px;
     font-weight: bold;
     position: absolute;
     top: -20%;

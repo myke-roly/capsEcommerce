@@ -12,19 +12,17 @@ const toBottom = keyframes`
 `;
 
 const WrapperMenu = styled.div`
-  background: white;
+  background: black;
   text-align: center;
   width: 80%;
   height: 100vh;
   position: fixed;
-  top: 3rem;
   right: 0;
-  animation: ${toBottom} 0.5s ease-in;
+  top: 3rem;
+  animation: ${toBottom} 0.3s ease-in-out;
 
   ul {
     width: 100%;
-    margin-top: 3rem;
-    height: 100%;
     padding: 3rem;
 
     li {
@@ -33,17 +31,17 @@ const WrapperMenu = styled.div`
       width: 100%;
 
       a {
-        color: ${({ theme }) => theme.color.dark};
+        color: ${({ theme }) => theme.color.primary};
         text-transform: uppercase;
         font-size: 1.2em;
         display: inline-block;
         width: inherit;
-        animation: ${toBottom} 1s ease;
+        animation: ${toBottom} .5s ease;
       }
     }
 
     svg {
-      color: ${({ theme }) => theme.color.dark};
+      color: ${({ theme }) => theme.color.primary};
       font-size: 1.35rem;
       margin-top: 3rem;
       margin-left: 1rem;

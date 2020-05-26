@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const ContextMobile = createContext();
-const MobileContext = props => {
-  const [modeMobile, setModeMobile] = useState(null);
-  
+const MobileContext = (props) => {
+  const [modeMobile, setModeMobile] = useState(true);
+
   useEffect(() => {
     setModeMobile(window.innerWidth < 900 ? true : false);
     function rezise(e) {
@@ -15,9 +15,9 @@ const MobileContext = props => {
   }, []);
 
   return (
-    <ContextMobile.Provider value={{ 
-      modeMobile,
-    }}>
+    <ContextMobile.Provider
+      value={{modeMobile}}
+    >
       {props.children}
     </ContextMobile.Provider>
   );

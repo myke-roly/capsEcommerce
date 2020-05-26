@@ -1,10 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-const animateSearch = keyframes`
-  from {opacity: 0;}
-  to {opacity: 1;}
-`;
-
 export const LabelIcon = styled.label`
   position: relative;
   top: 0;
@@ -26,8 +21,6 @@ export const SearchWrapper = styled.div`
     font-size: 0.8em;
     border-radius: 7px;
     border: 2px solid ${({ theme }) => theme.color.gray};
-    animation: ${animateSearch} 0.8s ease-in-out;
-    --moz-animation: ${animateSearch} 0.8s ease-in-out;
   }
 `;
 
@@ -38,7 +31,7 @@ export const ResultSearch = styled.section`
   width: 100%;
   height: auto;
   background: ${({ theme }) => theme.color.primary};
-  animation: ${animateSearch} 0.5s ease;
+  transition: 0.5s ease;
 
   a {
     width: 90%;
@@ -50,7 +43,6 @@ export const ResultSearch = styled.section`
     text-transform: uppercase;
     padding: 0.6rem 0;
     color: ${({ theme }) => theme.color.dark};
-    --moz-animation: ${animateSearch} 0.8s ease-in-out;
 
     &:hover {
       background: ${({ theme }) => theme.color.gray};

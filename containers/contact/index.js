@@ -31,6 +31,7 @@ const Contact = () => {
             <Button text="enviar formulario" color="default" type="sutmit" />
           </form>
         </Form>
+        <div id="map"></div>
       </Container>
     </WrapperContact>
   );

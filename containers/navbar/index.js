@@ -8,6 +8,7 @@ import BurguerMenu from '../../utils/BurguerMenu';
 import { ContextAuth } from '../../context/AuthContext';
 import { ContextMobile } from '../../context/MobileContext';
 import Search from '../../components/searchInput';
+import Cookie from 'js-cookie'
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
@@ -21,6 +22,9 @@ const NavBar = () => {
 
   useEffect(() => {
     getUser();
+    if(Cookie.getJSON('IDItem')) {
+      setItem(Cookie.getJSON('IDItem').length);
+    }
   }, []);
 
   const links = [
@@ -50,10 +54,12 @@ const NavBar = () => {
             <Search />
             <Items />
             <div>
-              <CartItem>
-                <Link href="/carrito"><ShoppingCart size={18} /></Link>
-                  <span>{item}</span>
-                </CartItem>
+                <Link href="/carrito">
+                  <CartItem>
+                    <ShoppingCart size={18} />
+                    <span className="item-cart">{item}</span>
+                  </CartItem>
+                </Link>
               {!auth ? (
                 <Link href="/iniciar-sesion" passHref>
                   <a><User size={18} /></a>
@@ -73,10 +79,12 @@ const NavBar = () => {
           <div>
             <div>
               <Search />
-              <CartItem>
-                <Link href="/carrito"><ShoppingCart size={18} /></Link>
-                <span>{item}</span>
-              </CartItem>
+              <Link href="/carrito">
+                <CartItem>
+                  <ShoppingCart size={18} />
+                  <span className="item-cart">{item}</span>
+                </CartItem>
+              </Link>
               {!auth ? (
                 <Link href="/iniciar-sesion" passHref>
                   <a><User size={18} /></a>

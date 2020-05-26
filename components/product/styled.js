@@ -1,32 +1,32 @@
 import styled from 'styled-components';
 
 export const WrapperProduct = styled.main`
-  display: flex;
-  flex-direction: ${props => props.modeMobile ? 'column' : 'row' };
+  max-width: 960px;
+  margin: 1rem auto;
+  display: ${props => props.modeMobile ? 'block' : 'flex' };;
   justify-content: space-evenly;
   align-items: center;
-  margin: ${props => props.modeMobile ? '2rem 0' : '2rem' };
-  font-size: 18px;
+  padding: ${props => props.modeMobile ? '2rem 0' : '2rem' };
 
-  @media (max-width: 920px) {
+  @media (max-width: 720px) {
     font-size: 16px;
   }
 `;
 
 export const Images = styled.section`
-  width: 90%;
+  width: 100%;
+  max-width: 450px;
   margin: auto;
+  padding: 2rem;
 
   img {
-    /* border: 1px solid ${({theme}) => theme.color.default}; */
-    width: 90%;
+    width: 100%;
   }
 `;
 
 export const Detail = styled.section`
   width: 100%;
-  height: 100%;
-  padding: 1.5rem;
+  padding: 2em;
 
   h2 {
     color: #444;

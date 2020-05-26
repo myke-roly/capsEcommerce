@@ -17,6 +17,7 @@ export const ItemsProducts = styled.div`
 
 export const ItemProduct = styled.section`
   margin: auto;
+  min-width: 160px;
   max-width: 200px;
   
   &:hover {
@@ -28,16 +29,17 @@ export const ItemProduct = styled.section`
 
   figure {
     height: 100%;
+    min-height: 150px;
+    /* background: ${(props) => props.theme.color.primary}; */
+    border: 1px solid ${(props) => props.theme.color.gray};
+    border-radius: 7px;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
   }
 
   img {
-    /* border: 1px solid ${(props) => props.theme.color.dark}; */
-    background: ${(props) => props.theme.color.primary};
-    border-radius: 7px;
     width: 100%;
-    height: 200px;
-    padding: 0.7rem;
-    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+    max-height: 150px;
   }
 `;
 
