@@ -5,8 +5,9 @@ import Layout from '../containers/layout';
 import { Container } from '../utils/Container';
 import Title from '../utils/Title';
 import { axiosFetch } from '../API/axios';
-import Products from '../components/listProducts';
-import Button from '../utils/Button';
+import DetailsCart from '../components/detailsCart';
+import Link from 'next/link';
+import { ArrowLeftCircle } from 'react-feather';
 
 export const Carrito = ({ filterProducts }) => {
 
@@ -17,13 +18,26 @@ export const Carrito = ({ filterProducts }) => {
       </Head>
       <Layout>
         <Container>
-          <Title title="Carrito" />
-          {filterProducts.length === 0 && <p>Aun no agregaste ningun producto</p>}
-          <div style={{ minHeight: '50vh', padding: '2rem' }}>
-            <Products productos={filterProducts}  />
-            <Button color="dark" text="Agregar mas productos" />
-          </div>
+          <Title title="Mi Carrito" />
+          {filterProducts.length === 0 
+          ? <Link href="/productos">
+              <a>
+                <ArrowLeftCircle size={18} /><br />
+                Tu carrito esta vacio! vuelve al listado y llenalo!!
+              </a>
+            </Link>
+          : <DetailsCart data={filterProducts} />}
         </Container>
+        <style jsx>{`
+          a {
+            margin-top: 3rem;
+            display: block;
+            color: black;
+            text-align: center;
+            font-size: .9em;
+          }
+        `}
+        </style>
       </Layout>
     </>
   );
@@ -40,7 +54,6 @@ Carrito.getInitialProps = async ({ req }) => {
       products.filter(product => id.id === product._id && filterProducts.push(product));
     });
   }
-  
   return { filterProducts };
 };
 

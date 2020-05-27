@@ -33,8 +33,14 @@ export const ItemProduct = styled.section`
     /* background: ${(props) => props.theme.color.primary}; */
     border: 1px solid ${(props) => props.theme.color.gray};
     border-radius: 7px;
-    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
     padding: 1rem;
+    box-shadow: 0px 0 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0 4px rgba(0, 0, 0, 0.2);
+
+    :hover {
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: all .5s ease;
+    }
   }
 
   img {

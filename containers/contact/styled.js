@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const WrapperContact = styled.main`
+export const WrapperContact = styled.div`
   width: 100%;
   padding: 2em 0;
   @media (max-width: 900px) {

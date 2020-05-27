@@ -7,7 +7,9 @@ export default (props) => {
   return (
     <>
       <Nav />
-      {props.children}
+      <main style={{minHeight: '70vh'}}>
+        {props.children}
+      </main>
       <Services />
       <Footer />
     </>

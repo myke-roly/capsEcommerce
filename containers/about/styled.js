@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const WrapperAbout = styled.main`
+export const WrapperAbout = styled.div`
   background: ${props => props.theme.color.primary};
   width: 100%;
   padding: 2rem;

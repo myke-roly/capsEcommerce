@@ -13,9 +13,7 @@ export default function Login({ logIn, messageAlert}) {
 
   const hanldleSubmit = (e) => {
     e.preventDefault();
-    if(state.email.trim() === '' || state.password.trim() == '') {
-      return;
-    }
+    if(state.email.trim() === '' || state.password.trim() == '') return;
     logIn(state);
   };
 

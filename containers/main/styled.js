@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const WrapperMain = styled.main`
+export const WrapperMain = styled.div`
   color: ${({ theme }) => theme.color.default};
 `;
 
