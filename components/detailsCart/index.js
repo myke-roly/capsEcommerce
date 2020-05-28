@@ -54,8 +54,8 @@ const DetailsCart = ({ data }) => {
           <p className="subtotal">Subtotal <span>{totalPrice.current}</span></p>
           <p className="total">Total <span>{totalPrice.current}</span></p>
           <hr />
-          <Button color="secondary" text="Finalizar Compra" /><br />
-          <Button color="default" text="Seguir comprando" onClick={() => router.push('/productos')} />
+          <Button color="default" text="Finalizar Compra" /><br />
+          <Button color="dark" text="Seguir comprando" onClick={() => router.push('/productos')} />
         </div>
       </Detail>
     </WrapperDetails>

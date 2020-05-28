@@ -107,7 +107,12 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           checked={data.terms}
         />
       </Inputs>
-      <Button text="Registrarme" color="dark" type="submit" />
+      <Button 
+        text="Registrarme" 
+        color="dark" 
+        type="submit"
+        disabled={Object.values(data).includes(false)}
+      />
       {messageAlert && <MessageError>{messageAlert}</MessageError>}
     </form>
   );

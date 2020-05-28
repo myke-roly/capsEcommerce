@@ -31,27 +31,26 @@ const ButtonWrapper = styled.button`
       border: '2px solid' + props.theme.color.default,
       color: props.theme.color.primary,
     }};
-  border-radius: 50px;
-  padding: 0.5rem 1.5rem;
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
   cursor: pointer;
   font-size: 0.8em;
   transition: all 0.3s ease;
   box-shadow: -5px 0 7px rgba(0, 0, 0, 0.5);
   letter-spacing: 1.5px;
-  opacity: ${(props) => (props.disabled ? '.5' : '1')};
 
-  &:hover {
-    opacity: ${(props) => (props.disabled ? '.5' : '.8')};
+  &:disabled {
+    opacity: .5;
   }
 `;
 
 export default function Button({ color, text, children, type, disabled, onClick }) {
   return (
     <ButtonWrapper
+      disabled={disabled ? true : false}
       color={color}
       type={type}
       role="button"
-      disabled={disabled}
       onClick={onClick}
     >
       {text} {children}

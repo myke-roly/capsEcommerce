@@ -47,7 +47,12 @@ export default function Login({ logIn, messageAlert}) {
         />
       </Inputs>
       {messageAlert && <p className="error">{messageAlert}</p>}
-      <Button text="Iniciar Sesion" color="secondary" type="submit" />
+      <Button 
+        disabled={Object.values(state).includes('')} 
+        text="Iniciar Sesion" 
+        color="secondary" 
+        type="submit" 
+      />
       <p className="reset-pass">Olvide mi Contrasena</p>
       <Link href="/registrarse" passHref>
         <a className="register">Crear Cuenta</a>
