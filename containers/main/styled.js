@@ -10,7 +10,7 @@ export const WrapperGrid = styled.section`
   justify-content: center;
   background: ${({ theme }) => theme.color.gray};
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     font-size: 14px;
     flex-direction: column-reverse;
   }

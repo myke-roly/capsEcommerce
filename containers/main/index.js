@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import { WrapperMain, WrapperGrid } from './styled';
-import Button from '../../utils/Button';
+import Button from '../../common/Button';
 import ListProducts from '../../components/listProducts';
 import { ContextProducts } from '../../context/ProductsContext';
 

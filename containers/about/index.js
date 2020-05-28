@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Container } from '../../utils/Container';
 import { WrapperAbout, FlexDescription } from './styled';
+import { Container } from '../../common/Container';
+import Title from '../../common/Title';
 import { ContextMobile } from '../../context/MobileContext';
-import Title from '../../utils/Title';
 
 const About = () => {
   const contextMobile = useContext(ContextMobile);

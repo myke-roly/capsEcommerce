@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Form, Inputs } from './styled';
-import Button from '../../utils/Button';
-import Title from '../../utils/Title';
 import Link from 'next/link';
+import Button from '../../common/Button';
+import Title from '../../common/Title';
 
 export default function Login({ logIn, messageAlert}) {
 

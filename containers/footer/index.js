@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter } from 'react-icons/io';
-import { Container } from '../../utils/Container';
+import { Container } from '../../common/Container';
 import { FooterWrapper, FooterSocial} from './styled';
 
 const Footer = () => {

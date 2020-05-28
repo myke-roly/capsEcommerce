@@ -8,7 +8,6 @@ export const WrapperAbout = styled.div`
   @media (max-width: 720px) {
     font-size: 14px;
   }
-
 `;
 
 export const FlexDescription = styled.section`

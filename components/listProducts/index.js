@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { FaShoppingCart } from 'react-icons/fa';
 import { ItemsProducts, ItemProduct, ItemInfo } from './styled';
-import { Container } from '../../utils/Container';
+import { Container } from '../../common/Container';
 import { ContextMobile } from '../../context/MobileContext';
 
 const Producto = ({ productos }) => {

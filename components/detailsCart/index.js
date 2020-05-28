@@ -1,11 +1,11 @@
 import React from 'react';
+import { Items, Item, Detail, WrapperDetails } from './styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Items, Item, Detail, WrapperDetails } from './styled';
-import Button from '../../utils/Button';
 import { Trash } from 'react-feather';
 import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
+import Button from '../../common/Button';
 
 const DetailsCart = ({ data }) => {
   const totalPrice = React.useRef(0);

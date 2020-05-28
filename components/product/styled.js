@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const WrapperProduct = styled.main`
+export const WrapperProduct = styled.div`
   max-width: 960px;
   margin: 1rem auto;
   display: ${props => props.modeMobile ? 'block' : 'flex' };;

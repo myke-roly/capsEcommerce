@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Layout from '../containers/layout';
-import Form from '../utils/Form';
+import Form from '../common/Form';
 import SingIn from '../components/signIn';
 import { ContextMessage } from '../context/MessageContext';
 import { ContextAuth } from '../context/AuthContext';

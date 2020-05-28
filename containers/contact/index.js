@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { WrapperContact, Input } from './styled';
-import { Container } from '../../utils/Container';
-import Button from '../../utils/Button';
-import Form from '../../utils/Form';
-import Title from '../../utils/Title';
+import { Container } from '../../common/Container';
+import Button from '../../common/Button';
+import Form from '../../common/Form';
+import Title from '../../common/Title';
 
 const Contact = () => {
   return (

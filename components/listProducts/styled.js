@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const ItemsProducts = styled.div`
   padding: 4rem 0;
   overflow: hidden;
+  /* max-width: 1200px; */
+  margin: auto;
 
   & > div {
     display: grid;

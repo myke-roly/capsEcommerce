@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaArrowRight, FaBluetooth } from 'react-icons/fa';
 import { Content, WrapperHeader } from './styled';
-import Button from '../../utils/Button';
-import { Container } from '../../utils/Container';
+import Button from '../../common/Button';
+import { Container } from '../../common/Container';
 
 export default () => {
   return (

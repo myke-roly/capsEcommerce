@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MessageError, Inputs } from './styled';
-import Button from '../../utils/Button';
-import Title from '../../utils/Title';
+import Button from '../../common/Button';
+import Title from '../../common/Title';
 
 const Register = ({ messageAlert, newRegister, showMessage}) => {
   const [data, setData] = useState({

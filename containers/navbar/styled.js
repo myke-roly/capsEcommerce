@@ -46,24 +46,25 @@ export const Nav = styled.nav`
 
 export const Links = styled.ul`
   display: flex;
+  justify-content: space-around;
+
   li {
-    margin: 0 1.2rem;
+    margin: 0 .2em;
 
     a {
+      padding: .5em 1em;
       background: transparent;
-      color: #000;
+      color: ${(props) => props.theme.color.dark};
       font-size: 0.7em;
-      font-weight: 500;
+      font-weight: 400;
       text-transform: capitalize;
       transition: color 0.3s ease;
-
       &:hover {
-        color: ${(props) => props.theme.color.secondary};
+        text-decoration: line-through;
       }
-
       &.active {
-        background: red;
-        color: white;
+        color: ${(props) => props.theme.color.tercero};
+        font-weight: 600;
       }
     }
   }
