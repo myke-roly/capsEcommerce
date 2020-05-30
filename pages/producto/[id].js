@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../containers/layout';
-import { Container } from '../../utils/Container';
+import { Container } from '../../common/Container';
 import { axiosFetch } from '../../API/axios';
 import Product from '../../components/product';
 import Head from 'next/head';

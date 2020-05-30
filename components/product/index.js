@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
-import Button from '../../utils/Button';
+import Button from '../../common/Button';
 import { ContextMobile } from '../../context/MobileContext';
 import Cookie from 'js-cookie';
-import Title from '../../utils/Title';
-import { parseCookies } from '../../libs/parseCookies';
+import Title from '../../common/Title';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);

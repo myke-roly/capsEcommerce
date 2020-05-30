@@ -1,44 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MessageError, Inputs } from './styled';
 import Button from '../../common/Button';
 import Title from '../../common/Title';
 import InputPassword from '../../common/InputPassword';
+import useValidateInputs from '../../hooks/useValidateInputs';
+import { validateSignUp } from '../../libs/validate';
 
-const Register = ({ messageAlert, newRegister, showMessage}) => {
-  const [data, setData] = useState({
+const Register = ({ messageAlert, newRegister}) => {
+ let initialState = {
     name: '',
     lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
     terms: false,
-  });
-
-  const handleChange = (e) => {
-    const value = e.target.name === 'terms' ? e.target.checked : e.target.value;
-    setData({ ...data, [e.target.name]: value });
   };
-
-  const { name, lastName, email, password, confirmPassword, terms } = data;
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!name || !lastName ||!email ||!password || !confirmPassword || !terms) {
-      showMessage('** Todos los campos son obligaorios', 'text-error');
-      return;
-    }
-
-    if(password.length < 8) {
-      showMessage('* La contrasena debe tener mas de 8 caracteres', 'text-error');
-      return;
-    }
-
-    if(password !== confirmPassword) {
-      showMessage('* Las contrasenas no son iguales', 'text-error');
-      return;
-    }
-
-    newRegister(data);
-  };
+  
+  const { state, errors, handleChange, handleSubmit } = useValidateInputs(initialState, validateSignUp, newRegister);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -50,9 +28,10 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           placeholder="Nombre"
           id="name"
           name="name"
-          value={data.name}
+          value={state.name}
           onChange={handleChange}
         />
+        {errors.name && <MessageError>{errors.name}</MessageError>}
       </Inputs>
       <Inputs>
         <label htmlFor="lastName">Apellido:</label>
@@ -61,9 +40,10 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           placeholder="Apellido"
           id="lastName"
           name="lastName"
-          value={data.lastName}
+          value={state.lastName}
           onChange={handleChange}
         />
+        {errors.lastName && <MessageError>{errors.lastName}</MessageError>}
       </Inputs>
       <Inputs>
         <label htmlFor="email">Email:</label>
@@ -72,18 +52,20 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           placeholder="@"
           id="email"
           name="email"
-          value={data.email}
+          value={state.email}
           onChange={handleChange}
         />
+        {errors.email && <MessageError>{errors.email}</MessageError>}
       </Inputs>
       <Inputs>
         <label htmlFor="password">Contrasena:</label>
         <InputPassword 
-          value={data.password}
-          onChange={handleChange}
           id="password"
           name="password"
+          value={state.password}
+          onChange={handleChange}
         />
+        {errors.password && <MessageError>{errors.password}</MessageError>}
       </Inputs>
       <Inputs>
         <label htmlFor="password-confirm">Confirmar Contrasena:</label>
@@ -92,9 +74,10 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           placeholder="********"
           id="password-confirm"
           name="confirmPassword"
-          value={data.confirmPassword}
+          value={state.confirmPassword}
           onChange={handleChange}
         />
+        {errors.confirmPassword && <MessageError>{errors.confirmPassword}</MessageError>}
       </Inputs>
       <Inputs>
         <label htmlFor="terms">Acepto los terminos y condiciones</label>
@@ -103,15 +86,15 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
           name="terms"
           id="terms"
           onChange={handleChange}
-          checked={data.terms}
+          checked={state.terms}
         />
       </Inputs>
       <Button 
         text="Registrarme" 
         color="dark" 
         type="submit"
-        disabled={Object.values(data).includes(false)}
-      />
+        disabled={Object.values(state).includes('')}
+        />
       {messageAlert && <MessageError>{messageAlert}</MessageError>}
     </form>
   );
