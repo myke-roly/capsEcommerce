@@ -14,7 +14,7 @@ const Forms = styled.div`
 
   label {
     color: ${(props) => props.theme.color.tercero};
-    font-size: .75em;
+    font-size: .8em;
   }
 
   textarea,
@@ -32,8 +32,6 @@ const Forms = styled.div`
 `;
 
 const Form = (props) => {
-  const contextMobile = useContext(ContextMobile);
-  const { modeMobile } = contextMobile;
   return (
     <>
       <Container>

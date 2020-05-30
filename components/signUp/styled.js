@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Inputs = styled.p`
+export const Inputs = styled.div`
   width: 100%;
   font-size: 0.7em;
 
   input {
-    border: 1px solid ${(props) => props.theme.color.tercero};
+    border: 1px solid ${(props) => props.theme.color.default};
     color: ${(props) => props.theme.color.dark};
   }
 `;

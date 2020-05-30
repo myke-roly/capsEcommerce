@@ -20,7 +20,7 @@ export const Form = styled.form`
   }
 `;
 
-export const Inputs = styled.p`
+export const Inputs = styled.div`
   input {
     border: 1px solid ${(props) => props.theme.color.default};
     color: ${(props) => props.theme.color.default};

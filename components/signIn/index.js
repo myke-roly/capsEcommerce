@@ -3,6 +3,7 @@ import { Form, Inputs } from './styled';
 import Link from 'next/link';
 import Button from '../../common/Button';
 import Title from '../../common/Title';
+import InputPassword from '../../common/InputPassword';
 
 export default function Login({ logIn, messageAlert}) {
 
@@ -37,12 +38,10 @@ export default function Login({ logIn, messageAlert}) {
       </Inputs>
       <Inputs>
         <label htmlFor="password-singIn">Contrasena:</label>
-        <input
-          type="password"
-          placeholder="********"
+        <InputPassword 
           id="password-singIn"
           name="password"
-          value={state.password}
+          value={state.value}
           onChange={handleChange}
         />
       </Inputs>

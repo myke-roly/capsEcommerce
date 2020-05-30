@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MessageError, Inputs } from './styled';
 import Button from '../../common/Button';
 import Title from '../../common/Title';
+import InputPassword from '../../common/InputPassword';
 
 const Register = ({ messageAlert, newRegister, showMessage}) => {
   const [data, setData] = useState({
@@ -67,7 +68,7 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
       <Inputs>
         <label htmlFor="email">Email:</label>
         <input
-          type="text"
+          type="email"
           placeholder="@"
           id="email"
           name="email"
@@ -77,13 +78,11 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
       </Inputs>
       <Inputs>
         <label htmlFor="password">Contrasena:</label>
-        <input
-          type="password"
-          placeholder="********"
-          id="password"
-          name="password"
+        <InputPassword 
           value={data.password}
           onChange={handleChange}
+          id="password"
+          name="password"
         />
       </Inputs>
       <Inputs>
@@ -91,7 +90,7 @@ const Register = ({ messageAlert, newRegister, showMessage}) => {
         <input
           type="password"
           placeholder="********"
-          id="confirmPassword"
+          id="password-confirm"
           name="confirmPassword"
           value={data.confirmPassword}
           onChange={handleChange}
