@@ -2,8 +2,11 @@ import React from 'react';
 import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter } from 'react-icons/io';
 import { Container } from '../../common/Container';
 import { FooterWrapper, FooterSocial} from './styled';
+import { ContextMP } from '../../context/MPContext';
 
 const Footer = () => {
+  const contextMP = React.useContext(ContextMP);
+  const { dataMP } = contextMP;
 
   const yeard = new Date().getFullYear();
   return (
@@ -15,6 +18,7 @@ const Footer = () => {
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer noopener" arial-label="link facebook"><IoLogoFacebook /><span>facebook</span></a>
         </FooterSocial>
         <p><small>myke_roly | {yeard} &copy; Derechos reservados</small></p>
+        <button onClick={() => console.log(dataMP)}>get data</button>
       </Container>
     </FooterWrapper>
   );

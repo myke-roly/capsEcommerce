@@ -6,6 +6,7 @@ import AuthContext from '../context/AuthContext';
 import MessageContext from '../context/MessageContext';
 import SearchContext from '../context/SearchContext';
 import ProductsContext from '../context/ProductsContext';
+import MPContext from '../context/MPContext';
 import { authToken } from '../API/token';
 
 const theme = {
@@ -29,17 +30,19 @@ export default ({ Component, pageProps }) => {
 
   return (
     <MobileContext>
-      <SearchContext>
-        <ProductsContext>
-          <AuthContext>
-            <MessageContext>
-              <ThemeProvider theme={theme}>
-                <Component {...pageProps} />
-              </ThemeProvider>
-            </MessageContext>
-          </AuthContext>
-        </ProductsContext>
-      </SearchContext>
+      <MPContext>
+        <SearchContext>
+          <ProductsContext>
+            <AuthContext>
+              <MessageContext>
+                <ThemeProvider theme={theme}>
+                  <Component {...pageProps} />
+                </ThemeProvider>
+              </MessageContext>
+            </AuthContext>
+          </ProductsContext>
+        </SearchContext>
+      </MPContext>
     </MobileContext>
   );
 };
