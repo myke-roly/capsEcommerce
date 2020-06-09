@@ -8,7 +8,7 @@ import { ContextMobile } from '../../context/MobileContext';
 
 const Buscador = () => {
   const contextSearch = useContext(ContextSearch);
-  const { results, getResultsSearch, cleanSearch } = contextSearch;
+  const { results, getResultsSearch } = contextSearch;
 
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
@@ -19,23 +19,25 @@ const Buscador = () => {
   const router = useRouter();
 
   const handleChange = (e) => {
-    setTextSearch(e.target.value);
-    getResultsSearch(e.target.value);
+    const text = e.target.value;
+    setTextSearch(text);
+    if(text) getResultsSearch(text);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && textSearch) {
       router.push(`/search?query=${textSearch}`);
+      setTextSearch('');
     }
   };
 
   const handleInput = () => {
-    if(modeMobile) setSearchOn(!searchON);
     setTextSearch('');
+    if(modeMobile) setSearchOn(!searchON)
   };
 
   function showResultSearch() {
-    if(textSearch === '') cleanSearch();
+    if(textSearch === '') getResultsSearch('');
     return results.map((result) => (
       <Link
         href={`/producto/[id]`}

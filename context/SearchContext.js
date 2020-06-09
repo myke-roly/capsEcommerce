@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import SearchReducer from '../reducers/SearchReducer';
-import { SEARCH, CLEAN_SEARCH } from '../types';
+import { SEARCH } from '../types';
 import { axiosFetch } from '../API/axios';
 
 export const ContextSearch = createContext();
@@ -24,18 +24,11 @@ const SearchContext = (props) => {
     }
   };
 
-  function cleanSearch() {
-    dispatch({
-      type: CLEAN_SEARCH,
-    })
-  }
-
   return (
     <ContextSearch.Provider
       value={{
         results: state.results,
-        getResultsSearch,
-        cleanSearch
+        getResultsSearch
       }}
     >
       {props.children}
