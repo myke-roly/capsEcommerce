@@ -10,5 +10,6 @@ export const GET_USER = 'GET_USER';
 export const LOGOUT = 'LOGOUT';
 
 export const SEARCH = 'SEARCH';
+export const CLEAN_SEARCH = 'CLEAN_STATE';
 
 export const LIST_PRODUCTS = 'LIST_PRODUCTS'

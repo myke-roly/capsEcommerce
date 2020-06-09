@@ -1,7 +1,7 @@
 import Layout from '../containers/layout';
 import Head from 'next/head';
-import Title from '../utils/Title';
-import { Container } from '../utils/Container';
+import Title from '../common/Title';
+import { Container } from '../common/Container';
 import { axiosFetch } from '../API/axios';
 import Products from '../components/listProducts';
 

@@ -8,7 +8,7 @@ import { ContextMobile } from '../../context/MobileContext';
 
 const Buscador = () => {
   const contextSearch = useContext(ContextSearch);
-  const { results, getResultsSearch } = contextSearch;
+  const { results, getResultsSearch, cleanSearch } = contextSearch;
 
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
@@ -18,19 +18,9 @@ const Buscador = () => {
 
   const router = useRouter();
 
-  /** AbortController probando feature */
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    getResultsSearch(textSearch, signal);
-
-    return () => {
-      controller.abort();
-    };
-  }, [textSearch]);
-
   const handleChange = (e) => {
     setTextSearch(e.target.value);
+    getResultsSearch(e.target.value);
   };
 
   const handleKeyPress = (e) => {
@@ -40,13 +30,12 @@ const Buscador = () => {
   };
 
   const handleInput = () => {
-    if(modeMobile) {
-      setSearchOn(!searchON);
-      setTextSearch('');
-    }
+    if(modeMobile) setSearchOn(!searchON);
+    setTextSearch('');
   };
 
   function showResultSearch() {
+    if(textSearch === '') cleanSearch();
     return results.map((result) => (
       <Link
         href={`/producto/[id]`}
@@ -81,4 +70,4 @@ const Buscador = () => {
   );
 };
 
-export default React.memo(Buscador);
+export default Buscador;
