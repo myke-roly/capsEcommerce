@@ -8,6 +8,7 @@ import SearchContext from '../context/SearchContext';
 import ProductsContext from '../context/ProductsContext';
 import MPContext from '../context/MPContext';
 import { authToken } from '../API/token';
+import Cookie from 'js-cookie';
 
 const theme = {
   color: {
@@ -26,6 +27,7 @@ export default ({ Component, pageProps }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) authToken(token);
+    if(!Cookie.get('IDItem')) Cookie.set('IDItem', [])
   }, []);
 
   return (

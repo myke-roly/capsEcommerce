@@ -8,6 +8,7 @@ import { axiosFetch } from '../API/axios';
 import DetailsCart from '../components/detailsCart';
 import Link from 'next/link';
 import { ArrowLeftCircle } from 'react-feather';
+import { useFetchById } from '../hooks/useFetchById';
 
 export const Carrito = ({ filterProducts }) => {
 
@@ -45,15 +46,11 @@ export const Carrito = ({ filterProducts }) => {
 
 Carrito.getInitialProps = async ({ req }) => {
   const ids = parseCookies(req);
+  console.log('items: ',ids);
   const response = await axiosFetch(`/api/productos`);
   const products = response.data.products;
-  let filterProducts = [];
+  const { filterProducts } = useFetchById(products, ids);
 
-  if(Object.entries(ids).length !== 0) {
-    JSON.parse(ids.IDItem).map(id => {
-      products.filter(product => id.id === product._id && filterProducts.push(product));
-    });
-  }
   return { filterProducts };
 };
 

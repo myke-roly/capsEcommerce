@@ -9,7 +9,7 @@ const Producto = ({ data, id }) => {
 
   return (
     <>
-      <Head><title>{data.title} | CAPSARG</title></Head>
+      <Head><title>{data.title.toUpperCase()} | CAPSARG</title></Head>
       <Layout>
         <Container>
           <Product data={data} />

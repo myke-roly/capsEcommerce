@@ -1,73 +1,81 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../common/Button';
 import { ContextMobile } from '../../context/MobileContext';
 import Cookie from 'js-cookie';
 import Title from '../../common/Title';
+import ModalCart from '../../common/ModalCart';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
+  const [newItems, setNewItems] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
   function addItemToCart() {
-    let newItems = [];
-    newItems.push({id: data._id});
-    const items = Cookie.getJSON('IDItem')
-    if(items) {
-      items.filter(item => item.id !== data._id ? newItems.push(item) : null);
-      console.log(items);
-    }
-    Cookie.set('IDItem', newItems);
+    let newItem = [];
+    newItem.push({ id: data._id });
+    const items = Cookie.getJSON('IDItem');
+    // items.filter(item => item.id !== data._id ? newItems.push(item) : null);
+    items.filter(item => item.id !== data._id ? newItem.push(item) : null);
+    const item = items.find(i => i.id === data._id);
+    if(!item) setShowModal(true);
+    Cookie.set('IDItem', newItem);
+    setTimeout(() => setShowModal(false), 5000);
   }
 
   return (
-    <WrapperProduct modeMobile={modeMobile}>
-      <Images>
-        <img src={data.images[0]} alt="img" />
-      </Images>
-      <Detail>
-        <Title title={data.title} />
-        <Section>
-          <h4 className="price">${data.price}.00</h4>
-        </Section>
-        <hr />
-        <Section>
-          <h4>Colores: </h4>
-          <p>
-            {data.colors.map((color, index) => (
-              <span
-                key={index}
-                className="color"
-                style={{ background: color }}
-              ></span>
-            ))}
-          </p>
-        </Section>
-        <Section>
-          <h4>Talle: </h4>
-          <p>{data.talles}</p>
-        </Section>
-        <Section>
-          <h4>Cantidad:</h4>
-          <p>
-            <span>-</span>
-            <span className="quantity">1</span>
-            <span>+</span>
-          </p>
-        </Section>
-        <Button
-          text="Agregar al carrito"
-          color="tercero"
-          onClick={addItemToCart}
-        />
-        <Section>
-          <span>
-            <h4>Descripcion: </h4>
-            <p className="description">{data.description}</p>
-          </span>
-        </Section>
-      </Detail>
-    </WrapperProduct>
+    <>
+      {showModal && <ModalCart />}
+      <WrapperProduct modeMobile={modeMobile}>
+        <Images>
+          <img src={data.images[0]} alt="img" />
+        </Images>
+        <Detail>
+          <Title title={data.title} />
+          <Section>
+            <h4 className="price">${data.price}.00</h4>
+          </Section>
+          <hr />
+          <Section>
+            <h4>Colores: </h4>
+            <p>
+              {data.colors.map((color, index) => (
+                <span
+                  key={index}
+                  className="color"
+                  style={{ background: color }}
+                ></span>
+              ))}
+            </p>
+          </Section>
+          <Section>
+            <h4>Talle: </h4>
+            <p>{data.talles}</p>
+          </Section>
+          <Section>
+            <h4>Cantidad:</h4>
+            <p>
+              <span>-</span>
+              <span className="quantity">1</span>
+              <span>+</span>
+            </p>
+          </Section>
+          <Button
+            text="Agregar al carrito"
+            color="tercero"
+            onClick={addItemToCart}
+          />
+          <Section>
+            <span>
+              <h4>Descripcion: </h4>
+              <p className="description">{data.description}</p>
+            </span>
+          </Section>
+        </Detail>
+      </WrapperProduct>
+    </>
   );
 };
 
