@@ -46,7 +46,6 @@ export const Carrito = ({ filterProducts }) => {
 
 Carrito.getInitialProps = async ({ req }) => {
   const ids = parseCookies(req);
-  console.log('items: ',ids);
   const response = await axiosFetch(`/api/productos`);
   const products = response.data.products;
   const { filterProducts } = useFetchById(products, ids);

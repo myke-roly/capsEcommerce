@@ -6,9 +6,8 @@ import ListProducts from '../../components/listProducts';
 import { ContextProducts } from '../../context/ProductsContext';
 
 const Main = () => {
-
   const contextProducts = useContext(ContextProducts);
-  const { products, getProducts } = contextProducts;
+  const { products, loading, getProducts } = contextProducts;
 
   useEffect(() => {
     getProducts();
@@ -16,7 +15,7 @@ const Main = () => {
   
   return (
     <WrapperMain>
-      <ListProducts productos={products} />
+      <ListProducts productos={products} loading={loading} />
       <WrapperGrid>
         <img src="./cap-man.jpeg" alt="img-cap" />
         <div className="section-content">

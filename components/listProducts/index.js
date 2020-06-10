@@ -4,13 +4,15 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { ItemsProducts, ItemProduct, ItemInfo } from './styled';
 import { Container } from '../../common/Container';
 import { ContextMobile } from '../../context/MobileContext';
+import Loader from '../../common/Loader';
 
-const Producto = ({ productos }) => {
+const Producto = ({ productos, loading }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
   return (
     <>
+      {loading && <Loader />}
       {productos && (
         <ItemsProducts modeMobile={modeMobile}>
           <Container>

@@ -7,6 +7,7 @@ export const ContextProducts = createContext();
 const ProductsContext = ({ children }) => {
   let initialState = {
     products: [],
+    loading: true
   };
 
   const [state, dispatch] = useReducer(ProductsReducer, initialState);
@@ -28,6 +29,7 @@ const ProductsContext = ({ children }) => {
   return (
     <ContextProducts.Provider
       value={{
+        loading: state.loading,
         products: state.products,
         getProducts
       }}

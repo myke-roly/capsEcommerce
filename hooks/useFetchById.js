@@ -1,7 +1,6 @@
 export const useFetchById = (products, ids) => {
   // useFetch()
   let filterProducts = [];
-  console.log(ids);
 
   if (Object.entries(ids).length !== 0) {
     JSON.parse(ids.IDItem).map((id) => {

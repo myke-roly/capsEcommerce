@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Layout from '../containers/layout';
 import ListProducts from '../components/listProducts';
 import { axiosFetch } from '../API/axios';
+import { ContextProducts } from '../context/ProductsContext';
 
 const Productos = () => {
-
-  const [ productos, setProductos ] = useState([]);
+  const contextProducts = useContext(ContextProducts);
+  const { products, loading, getProducts } = contextProducts;
 
   useEffect(() => {
-    const fetchApi = async () => {
-      const response = await axiosFetch.get('/api/productos');
-      const productos = response.data;
-
-      setProductos(productos);
-    }
-
-    fetchApi();
+    getProducts();
   }, []);
 
   return (
@@ -26,13 +20,10 @@ const Productos = () => {
         <title>CAPSARG | Productos</title>
       </Head>
       <Layout>
-        <ListProducts productos={productos.products} />
+        <ListProducts productos={products} loading={loading} />
       </Layout>
     </>
   );
 };
-
-// export async function getServerSideProps() {
-//}
 
 export default Productos;
