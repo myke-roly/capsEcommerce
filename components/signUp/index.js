@@ -5,8 +5,9 @@ import Title from '../../common/Title';
 import InputPassword from '../../common/InputPassword';
 import useValidateInputs from '../../hooks/useValidateInputs';
 import { validateSignUp } from '../../libs/validate';
+import { Loader } from 'react-feather';
 
-const Register = ({ messageAlert, newRegister}) => {
+const Register = ({ messageAlert, newRegister, loading}) => {
  let initialState = {
     name: '',
     lastName: '',
@@ -90,7 +91,7 @@ const Register = ({ messageAlert, newRegister}) => {
         />
       </Inputs>
       <Button 
-        text="Registrarme" 
+        text={loading ? <Loader className="loader" /> : 'Registrarme'} 
         color="dark" 
         type="submit"
         disabled={Object.values(state).includes('')}

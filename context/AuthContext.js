@@ -19,7 +19,7 @@ const AuthContext = (props) => {
     auth: false,
     token: null,
     message: null,
-    loading: true,
+    loading: null,
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initalState);
@@ -59,7 +59,6 @@ const AuthContext = (props) => {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error.response);
       dispatch({
         type: LOGUIN_BAD,
       });

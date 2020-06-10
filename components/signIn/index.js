@@ -6,8 +6,9 @@ import Title from '../../common/Title';
 import InputPassword from '../../common/InputPassword';
 import useValidateInputs from '../../hooks/useValidateInputs';
 import { validateSignIn } from '../../libs/validate';
+import { Loader } from 'react-feather';
 
-export default function Login({ logIn, messageAlert}) {
+export default function Login({ logIn, messageAlert, loading}) {
   let initialState = {
     email: '',
     password: '',
@@ -43,9 +44,9 @@ export default function Login({ logIn, messageAlert}) {
       {messageAlert && <p className="error">{messageAlert}</p>}
       <Button 
         disabled={Object.values(state).includes('')} 
-        text="Iniciar Sesion" 
+        text={loading ? <Loader className="loader" /> : 'Iniciar Sesion'} 
         color="secondary" 
-        type="submit" 
+        type="submit"
       />
       <p className="reset-pass">Olvide mi Contrasena</p>
       <Link href="/registrarse" passHref>

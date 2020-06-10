@@ -17,7 +17,7 @@ const AuthReducer = (state, action) => {
         ...state,
         auth: true,
         message: null,
-        loading: false
+        loading: true
       };
     case GET_USER:
       return {
@@ -35,6 +35,7 @@ const AuthReducer = (state, action) => {
         user: null,
         auth: false,
         token: null,
+        loading: false,
         message: action.payload,
       };
     case HIDDEN_MESSAGE:

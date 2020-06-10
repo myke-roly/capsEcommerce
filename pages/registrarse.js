@@ -12,12 +12,14 @@ export default function Login() {
   const { messageAlert, showMessage } = contextMessage;
 
   const contextAuth = useContext(ContextAuth);
-  const { message, auth, newRegister } = contextAuth;
+  const { message, auth, newRegister, loading } = contextAuth;
 
   const router = useRouter();
 
   useEffect(() => {
-    if (auth) router.push('/productos');
+    if (auth) {
+      setTimeout(() => router.push('/productos'), 1500);
+    }
     if (message) showMessage(message, '');
   }, [auth, message, router]);
 
@@ -32,6 +34,7 @@ export default function Login() {
             showMessage={showMessage}
             messageAlert={messageAlert}
             newRegister={newRegister}
+            loading={loading}
           />
         </Form>
       </Layout>

@@ -1,5 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const ldsRing = keyframes`
+  0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+`;
 
 const WrapperLoader = styled.div`
   display: inline-block;
@@ -19,9 +28,10 @@ const WrapperLoader = styled.div`
     margin: 6px;
     border: 6px solid ${({ theme }) => theme.color.default};
     border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: ${ldsRing} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     background: transparent;
-    border-color: ${({ theme }) => theme.color.default} transparent transparent transparent;
+    border-color: ${({ theme }) => theme.color.default} transparent transparent
+      transparent;
   }
 
   div:nth-child(1) {
@@ -34,15 +44,6 @@ const WrapperLoader = styled.div`
 
   div:nth-child(3) {
     animation-delay: -0.15s;
-  }
-
-  @keyframes lds-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
   }
 `;
 

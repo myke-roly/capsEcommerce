@@ -1,7 +1,15 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Container } from './Container';
-import { ContextMobile } from '../context/MobileContext';
+
+const ldsRing = keyframes`
+  0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+`;
 
 const Forms = styled.div`
   width: 650px;
@@ -29,6 +37,9 @@ const Forms = styled.div`
     margin-block-start: 1rem;
     width: 100%;
   }
+  .loader {
+  animation: ${ldsRing} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
 `;
 
 const Form = (props) => {
