@@ -31,10 +31,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <meta
-            name="description"
-            content="Las mejores Gorras al mejor precio - ENTREGA GRATIS"
-          />
+          <meta name="description" content="Las mejores Gorras al mejor precio - ENTREGA GRATIS" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700&display=swap"/>
         </Head>
         <body>
           <Main />

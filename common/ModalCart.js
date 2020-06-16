@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Trash } from 'react-feather';
 import DetailsCart from '../components/detailsCart';
 import { ContextProducts } from '../context/ProductsContext';
 import { useFetchById } from '../hooks/useFetchById';
 import { parseCookies } from '../libs/parseCookies';
-import Link from 'next/link';
-import { Trash } from 'react-feather';
+import Button from './Button';
+
 
 const WrapperModal = styled.div`
   max-width: 350px;
@@ -89,13 +92,45 @@ export const Item = styled.div`
       transform: scale(1.2);
     }
   }
-`; 
+`;
 
-const ModalCart = () => {
+const ButtonCloseCart = styled.div`
+  width: 20px;
+  height: 20px;
+  margin: .5rem;
+  position: relative;
+  cursor: pointer;
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: black;
+    border-radius: 10px;
+    transform: rotate(45deg);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: black;
+    border-radius: 10px;
+    transform: rotate(-45deg);
+  }
+
+`;
+
+const ModalCart = ({ closeModal }) => {
   const context = useContext(ContextProducts);
   const { products, getProducts } = context;
   const ids = parseCookies();
   const { filterProducts } = useFetchById(products, ids);
+  const route = useRouter();
 
   React.useEffect(() => {
     getProducts()
@@ -103,6 +138,7 @@ const ModalCart = () => {
 
   return (
     <WrapperModal>
+      <ButtonCloseCart onClick={closeModal} title="Cerrar Modal" />
       {filterProducts.length !== 0 && (
           filterProducts.map(item => (
             <Item key={item._id}>
@@ -122,6 +158,12 @@ const ModalCart = () => {
             </Item>
           ))
         )}
+        <Button 
+          size="block" 
+          color="secondary" 
+          text="Ir al Carrito" 
+          onClick={() => route.push('/carrito')} 
+        />
     </WrapperModal>
   )
 }

@@ -10,24 +10,25 @@ const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
-  const [newItems, setNewItems] = useState([]);
-
   const [showModal, setShowModal] = useState(false);
+
   function addItemToCart() {
     let newItem = [];
     newItem.push({ id: data._id });
     const items = Cookie.getJSON('IDItem');
-    // items.filter(item => item.id !== data._id ? newItems.push(item) : null);
     items.filter(item => item.id !== data._id ? newItem.push(item) : null);
     const item = items.find(i => i.id === data._id);
     if(!item) setShowModal(true);
     Cookie.set('IDItem', newItem);
-    setTimeout(() => setShowModal(false), 5000);
+  }
+
+  function closeModal() {
+    setShowModal(false);
   }
 
   return (
     <>
-      {showModal && <ModalCart />}
+      {showModal && <ModalCart closeModal={closeModal} />}
       <WrapperProduct modeMobile={modeMobile}>
         <Images>
           <img src={data.images[0]} alt="img" />

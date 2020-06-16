@@ -25,7 +25,6 @@ const theme = {
 };
 
 const GlobalStyleds = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700&display=swap');
   * {
     margin: 0;
     padding: 0;

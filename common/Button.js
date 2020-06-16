@@ -31,6 +31,7 @@ const ButtonWrapper = styled.button`
       border: '2px solid' + props.theme.color.default,
       color: props.theme.color.primary,
     }};
+  width: ${(props) => props.size === 'block' ? '100%' : 'auto'};
   border-radius: 7px;
   padding: 0.7rem 1.5rem;
   cursor: pointer;
@@ -40,11 +41,19 @@ const ButtonWrapper = styled.button`
   letter-spacing: 1.5px;
 
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
   }
 `;
 
-export default function Button({ color, text, children, type, disabled, onClick }) {
+export default function Button({
+  color,
+  text,
+  children,
+  type,
+  disabled,
+  onClick,
+  size,
+}) {
   return (
     <ButtonWrapper
       disabled={disabled ? true : false}
@@ -52,6 +61,7 @@ export default function Button({ color, text, children, type, disabled, onClick 
       type={type}
       role="button"
       onClick={onClick}
+      size={size}
     >
       {text} {children}
     </ButtonWrapper>
