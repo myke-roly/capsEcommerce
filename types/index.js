@@ -12,3 +12,5 @@ export const LOGOUT = 'LOGOUT';
 export const SEARCH = 'SEARCH';
 
 export const LIST_PRODUCTS = 'LIST_PRODUCTS'
+
+export const NUM_ITEMS_CART = 'NUM_ITEMS_CART';
