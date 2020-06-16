@@ -27,7 +27,6 @@
     "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
     "next": "^9.3.5",
-    "next-crypt": "^1.1.0",
     "next-routes": "^1.4.2",
     "nodemon": "^2.0.2",
     "react": "^16.13.0",
