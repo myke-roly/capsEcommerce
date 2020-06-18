@@ -5,30 +5,29 @@ import { ContextMobile } from '../../context/MobileContext';
 import Cookie from 'js-cookie';
 import Title from '../../common/Title';
 import ModalCart from '../../common/ModalCart';
+import { ContextProducts } from '../../context/';
+import { ToggleLeft } from 'react-feather';
 
 const Product = ({ data }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
-  const [showModal, setShowModal] = useState(false);
+  const contextProducts = useContext(ContextProducts);
+  const {  modal, closeModal, addToCart } = contextProducts;
 
-  function addItemToCart() {
-    let newItem = [];
-    newItem.push({ id: data._id });
-    const items = Cookie.getJSON('IDItem');
-    items.filter(item => item.id !== data._id ? newItem.push(item) : null);
-    const item = items.find(i => i.id === data._id);
-    if(!item) setShowModal(true);
-    Cookie.set('IDItem', newItem);
-  }
-
-  function closeModal() {
-    setShowModal(false);
-  }
+  // function addItemToCart() {
+  //   let newItem = [];
+  //   newItem.push({ id: data._id });
+  //   const items = Cookie.getJSON('IDItem');
+  //   items.filter(item => item.id !== data._id ? newItem.push(item) : null);
+  //   const item = items.find(i => i.id === data._id);
+  //   if(!item) setShowModal(true);
+  //   Cookie.set('IDItem', newItem);
+  // }
 
   return (
     <>
-      {showModal && <ModalCart closeModal={closeModal} />}
+      {modal && <ModalCart closeModal={closeModal} />}
       <WrapperProduct modeMobile={modeMobile}>
         <Images>
           <img src={data.images[0]} alt="img" />
@@ -66,7 +65,7 @@ const Product = ({ data }) => {
           <Button
             text="Agregar al carrito"
             color="tercero"
-            onClick={addItemToCart}
+            onClick={addToCart}
           />
           <Section>
             <span>

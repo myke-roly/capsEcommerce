@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Items, Item, Detail, WrapperDetails } from './styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -6,23 +6,14 @@ import { Trash } from 'react-feather';
 import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
 import Button from '../../common/Button';
+import { ContextProducts } from '../../context/';
 
 const DetailsCart = ({ data }) => {
-  const [totalPrice, setTotalPrice] = React.useState(0);
+
+  const contextProducts = useContext(ContextProducts);
+  const {removeAllCart, removeFromCart, quantityProduct, decrementQuantityProduct, incrementQuantityProduct, aplyDesc, subTotalPrice, totalPrice } = contextProducts;
 
   const router = useRouter();
-
-  useEffect(() => {
-    data.map((item) => {
-      setTotalPrice((total) => total + item.price);
-    });
-  }, []);
-
-  function deleteItemToCookies(id) {
-    const items = Cookie.getJSON('IDItem');
-    const updateItems = items.filter((item) => id !== item.id);
-    Cookie.set('IDItem', updateItems);
-  }
 
   return (
     <WrapperDetails>
@@ -36,25 +27,28 @@ const DetailsCart = ({ data }) => {
                   <a>{item.title}</a>
                 </Link>
                 <p className="count">
-                  <span className="btn">-</span>
-                  <span id="quantity">1</span>
-                  <span className="btn">+</span>
+                  <span className="btn" onClick={decrementQuantityProduct}>-</span>
+                  <span id="quantity">{quantityProduct}</span>
+                  <span className="btn" onClick={incrementQuantityProduct}>+</span>
                 </p>
               </div>
               <p className="price">{item.price}</p>
-              <Trash size={17} onClick={() => deleteItemToCookies(item._id)} />
+              <Trash size={17} onClick={() => removeFromCart(item._id)} />
             </Item>
           ))}
+          <Button text="Limpiar Carrito" color="secondary" size="block" onClick={removeAllCart} />
       </Items>
+
+      {/* Pasar a pagar */}
       <Detail>
         <div className="descuento">
           <p>¿Tenes un código de descuento?</p>
           <input type="text" placeholder="Codigo" />
-          <button>Aplicar</button>
+          <button onClick={aplyDesc}>Aplicar</button>
         </div>
         <div className="summary">
           <p className="subtotal">
-            Subtotal <span>{totalPrice}</span>
+            Subtotal <span>{subTotalPrice}</span>
           </p>
           <p className="total">
             Total <span>{totalPrice}</span>
