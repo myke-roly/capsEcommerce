@@ -1,8 +1,17 @@
 import { createContext, useReducer, useState } from 'react';
 import ProductsReducer from '../reducers/ProductsReducer';
 import { axiosFetch } from '../API/axios';
-import { LIST_PRODUCTS } from '../types'
-import { useFetch } from '../hooks/useFetch';
+import {
+  LIST_PRODUCTS,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REMOVE_ALL_CART,
+  INCREMENT_PRODUCT,
+  DECREMENT_PRODUCT,
+  SHOW_MODAL,
+  HIDDEN_MODAL,
+  GET_TOTAL_PRICE,
+} from '../types';
 
 export const ContextProducts = createContext();
 const ProductsContext = ({ children }) => {
@@ -33,32 +42,37 @@ const ProductsContext = ({ children }) => {
     }
   };
 
-  const addToCart = (id) => {
-    console.log('add to cart')
-
+  const addToCart = async (id) => {
     // si el producto ya existe en el carrito no agregar
-
-    // agregar producto al carrito
+    if(state.cartProducts.length > 0)  {
+      if(id === state.cartProducts[0]._id) return;
+    }
+    console.log('add to cart');
+    const response = await axiosFetch.get('/api/productos');
+    const { products } = response.data;
+    const cartProduct = products.filter(product => product._id === id);
     
-    // mostrar modal
-    showModal();
-  } 
+    // agregar producto al carrito
+    dispatch({
+      type: ADD_TO_CART,
+      payload: cartProduct
+    })
+  }
 
   const removeFromCart = (id) => {
     console.log('remove from cart', id)
+    // const cartProduct = products.filter(product => product._id === id);
   }
 
   const removeAllCart = () => {
     console.log('eliminar todos los elementos del carrito')
   }
 
-  // Mostrar y ocultar modal
-  const showModal = () => {
-    console.log('show Modal')
-  }
-
   const closeModal = () => {
     console.log('ocultar modal')
+    dispatch({
+      type: HIDDEN_MODAL
+    })
   }
 
   // quantityProduct
@@ -85,6 +99,7 @@ const aplyDesc = (code) => {
         loading: state.loading,
         products: state.products,
         cartProducts: state.cartProducts,
+        itemscart: state.itemscart,
         modal: state.modal,
         quantityProduct: state.quantityProduct,
         subTotalPrice: state.subTotalPrice,

@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Trash } from 'react-feather';
 import DetailsCart from '../components/detailsCart';
-import { ContextProducts } from '../context/ProductsContext';
 import { useFetchById } from '../hooks/useFetchById';
 import { parseCookies } from '../libs/parseCookies';
 import Button from './Button';
+import { ContextProducts } from '../context';
 
 
 const WrapperModal = styled.div`
@@ -127,20 +127,23 @@ const ButtonCloseCart = styled.div`
 
 const ModalCart = ({ closeModal }) => {
   const context = useContext(ContextProducts);
-  const { products, getProducts } = context;
-  const ids = parseCookies();
-  const { filterProducts } = useFetchById(products, ids);
-  const route = useRouter();
+  const { cartProducts } = context;
 
-  React.useEffect(() => {
-    getProducts()
-  }, []);
+  // const context = useContext(ContextProducts);
+  // const { products, getProducts } = context;
+  // const ids = parseCookies();
+  // const { filterProducts } = useFetchById(products, ids);
+  // const route = useRouter();
+
+  // React.useEffect(() => {
+  //   getProducts()
+  // }, []);
 
   return (
     <WrapperModal>
       <ButtonCloseCart onClick={closeModal} title="Cerrar Modal" />
-      {filterProducts.length !== 0 && (
-          filterProducts.map(item => (
+      {cartProducts.length !== 0 && (
+          cartProducts.map(item => (
             <Item key={item._id}>
               <img width={{width: '50px'}} src={item.images ? item.images[0] : ''} alt={item.title} />
               <div className="content">
@@ -153,8 +156,7 @@ const ModalCart = ({ closeModal }) => {
                   <span className="btn">+</span>
                 </p>
               </div>
-              {/* <p className="price">{item.price}{getTotalPrice(item.price)}</p> */}
-              <Trash size={17} onClick={() => deleteItemToCookies(item._id)} />
+              <Trash size={17} onClick={() => {}} />
             </Item>
           ))
         )}

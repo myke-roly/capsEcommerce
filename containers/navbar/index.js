@@ -1,34 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
-import { User, ShoppingCart } from 'react-feather';
 import { Nav, Title, Links, CartItem } from './styled';
+import { User, ShoppingCart } from 'react-feather';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Search from '../../components/searchInput';
 import { Container } from '../../common/Container';
 import MenuMobile from '../../common/MenuMobile';
 import BurguerMenu from '../../common/BurguerMenu';
-import { ContextAuth } from '../../context/AuthContext';
-import { ContextMobile } from '../../context/MobileContext';
-import Search from '../../components/searchInput';
-import Cookie from 'js-cookie';
-import { useRouter } from 'next/router';
-import { parseCookies } from '../../libs/parseCookies';
+
+import { ContextAuth } from '../../context';
+import { ContextMobile } from '../../context';
+import { ContextProducts } from '../../context';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
-  const { modeMobile } = contextMobile;
+  const { modeMobile, menuMobile, toggleMenuMobile } = contextMobile;
 
   const contextAuth = useContext(ContextAuth);
   const { getUser, user, auth, logOut } = contextAuth;
-
-  const [menuBurguer, setMenuBurguer] = useState(false);
-  const [item, setItem] = useState(0);
   
+  const contextProducts = useContext(ContextProducts);
+  const { itemscart } = contextProducts;
+
   useEffect(() => {
     getUser();
-    if (Cookie.getJSON('IDItem')) {
-      const itemsCart = parseCookies();
-      setItem(JSON.parse(itemsCart.IDItem).length);
-    }
-  }, [Cookie.getJSON('IDItem')]);
+  }, []);
 
   const router = useRouter();
 
@@ -68,7 +64,7 @@ const NavBar = () => {
               <Link href="/carrito">
                 <CartItem>
                   <ShoppingCart size={18} />
-                  <span className="item-cart">{item}</span>
+                  <span className="item-cart">{itemscart}</span>
                 </CartItem>
               </Link>
               {!auth ? (
@@ -104,7 +100,7 @@ const NavBar = () => {
               <Link href="/carrito">
                 <CartItem>
                   <ShoppingCart size={18} />
-                  <span className="item-cart">{item}</span>
+                  <span className="item-cart">{itemscart}</span>
                 </CartItem>
               </Link>
               {!auth ? (
@@ -130,12 +126,12 @@ const NavBar = () => {
               )}
             </div>
             <BurguerMenu
-              menuBurguer={menuBurguer}
-              changeMenuBurguer={() => setMenuBurguer(!menuBurguer)}
+              menuMobile={menuMobile}
+              toggleMenuMobile={toggleMenuMobile}
             />
           </div>
         )}
-        {menuBurguer && (
+        {menuMobile && (
           <MenuMobile>
             <Items />
           </MenuMobile>

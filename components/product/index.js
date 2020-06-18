@@ -65,7 +65,7 @@ const Product = ({ data }) => {
           <Button
             text="Agregar al carrito"
             color="tercero"
-            onClick={addToCart}
+            onClick={() => addToCart(data._id)}
           />
           <Section>
             <span>

@@ -12,7 +12,7 @@ const Menu = styled.div`
     width: 15px;
     position: absolute;
     top: .35rem;
-    height: ${(props) => (props.menuBurguer ? '0px' : '.135rem')};
+    height: ${(props) => (props.menuMobile ? '0px' : '.135rem')};
     background: ${({ theme }) => theme.color.dark};
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -20,11 +20,11 @@ const Menu = styled.div`
     &::before {
       content: '';
       position: absolute;
-      top: ${(props) => (props.menuBurguer ? 0 : '-.45rem')};
+      top: ${(props) => (props.menuMobile ? 0 : '-.45rem')};
       height: 0.135rem;
       background: inherit;
       width: 20px;
-      transform: ${(props) => (props.menuBurguer ? 'rotate(-225deg)' : 0)};
+      transform: ${(props) => (props.menuMobile ? 'rotate(-225deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
@@ -32,24 +32,24 @@ const Menu = styled.div`
     &::after {
       content: '';
       position: absolute;
-      top: ${(props) => (props.menuBurguer ? 0 : '.45rem')};
-      width: ${(props) => (props.menuBurguer ? '20px' : '10px')};;
+      top: ${(props) => (props.menuMobile ? 0 : '.45rem')};
+      width: ${(props) => (props.menuMobile ? '20px' : '10px')};;
       height: 0.135rem;
       background: inherit;
-      transform: ${(props) => (props.menuBurguer ? 'rotate(45deg)' : 0)};
+      transform: ${(props) => (props.menuMobile ? 'rotate(45deg)' : 0)};
       transition: all 0.3s ease;
       border-radius: 50px;
     }
   }
 `;
 
-export default function BurguerMenu({ menuBurguer, changeMenuBurguer }) {
+export default function BurguerMenu({ menuMobile, toggleMenuMobile }) {
   return (
     <Menu
       arial-label="button"
       role="button"
-      menuBurguer={menuBurguer}
-      onClick={() => changeMenuBurguer()}
+      menuMobile={menuMobile}
+      onClick={toggleMenuMobile}
     >
       <span></span>
     </Menu>

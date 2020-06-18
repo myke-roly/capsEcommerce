@@ -4,6 +4,12 @@ export const ContextMobile = createContext();
 const MobileContext = (props) => {
   const [modeMobile, setModeMobile] = useState(true);
 
+  const [menuMobile, setMenuMobile] = useState(false);
+
+  function toggleMenuMobile() {
+    if (modeMobile) setMenuMobile(!menuMobile);
+  }
+
   useEffect(() => {
     setModeMobile(window.innerWidth < 900 ? true : false);
     function rezise(e) {
@@ -16,7 +22,7 @@ const MobileContext = (props) => {
 
   return (
     <ContextMobile.Provider
-      value={{modeMobile}}
+      value={{ modeMobile, menuMobile, toggleMenuMobile }}
     >
       {props.children}
     </ContextMobile.Provider>
