@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useRef } from 'react';
+import { createContext, useReducer, useState, useRef, useCallback } from 'react';
 import ProductsReducer from '../reducers/ProductsReducer';
 import { axiosFetch } from '../API/axios';
 import { useFetchById } from '../hooks/useFetchById';
@@ -10,11 +10,12 @@ import {
   REMOVE_ALL_CART,
   INCREMENT_PRODUCT,
   DECREMENT_PRODUCT,
-  SHOW_MODAL,
   HIDDEN_MODAL,
+  SUBTOTAL_PRICE,
   GET_TOTAL_PRICE,
   APLY_DESC
 } from '../types';
+import { filter } from 'compression';
 
 export const ContextProducts = createContext();
 const ProductsContext = ({ children }) => {
@@ -54,15 +55,20 @@ const ProductsContext = ({ children }) => {
       const response = await axiosFetch.get('/api/productos');
       const { products } = response.data;
       const { filterProducts } = useFetchById(products, sessionStorage.getItem('cartItems'))
-      
+      let subtotalPrice = 0;
+      if(filterProducts.length !== 0) {
+        filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
+      }
+
       dispatch({ 
         type: LIST_CART_PRODUCTS,
-        payload: filterProducts
+        payload: filterProducts,
+        meta: subtotalPrice
        });
     } catch (error) {
       console.error(error);
     }
-  } 
+  }
 
   const addToCart = async (id) => {    
     let alredyExist = false;
@@ -85,12 +91,21 @@ const ProductsContext = ({ children }) => {
   }
 
   const removeFromCart = (id) => {
-    console.log('remove from cart', id)
+    let updateIds = [];
+    
+    const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
+    updateIds.push(...updateIds, ...itemStorage)
+
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload : id,
+      meta: updateIds
+    })
     
   }
 
   const removeAllCart = () => {
-    console.log('eliminar todos los elementos del carrito')
+    dispatch({type: REMOVE_ALL_CART})
   }
 
   const closeModal = () => {
@@ -112,13 +127,10 @@ const decrementQuantityProduct = () => {
 }
 
 const aplyDesc = (code) => {
-  console.log('aplicar descuento');
   if(code === state.codeDesc) {
-    console.log(`Con este codigo ${code} usted tiene un descuento de 25%`);
     dispatch({ 
       type: APLY_DESC,
-      // meta: ,
-      // payload: ,
+      meta: 0.25, //25%
     })
   }
 }

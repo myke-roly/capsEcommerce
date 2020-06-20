@@ -1,10 +1,9 @@
-import React, { useEffect, useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Items, Item, Detail, WrapperDetails } from './styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Trash } from 'react-feather';
 import { useRouter } from 'next/router';
-import Cookie from 'js-cookie';
 import Button from '../../common/Button';
 import { ContextProducts } from '../../context/';
 
@@ -76,14 +75,18 @@ const DetailsCart = ({ data }) => {
           </p>
           {desc > 0 && (
             <p className="desc">
-              Descuento <span>- $ {desc}</span>
+              Descuento 25% <span>- $ {desc}</span>
             </p>
           )}
           <p className="total">
             Total <span>$ {totalPrice}</span>
           </p>
           <hr />
-          <Button color="secondary" size="block" text="Finalizar Compra" />
+          <Button 
+            color="secondary" 
+            size="block" 
+            text="Finalizar Compra" 
+            onClick={() => router.push('/payment')} />
           <br />
           <Button
             color="tercero"

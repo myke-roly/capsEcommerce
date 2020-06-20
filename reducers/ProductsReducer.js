@@ -7,6 +7,7 @@ import {
   INCREMENT_PRODUCT,
   DECREMENT_PRODUCT,
   HIDDEN_MODAL,
+  SUBTOTAL_PRICE,
   GET_TOTAL_PRICE,
   APLY_DESC,
 } from '../types';
@@ -20,16 +21,31 @@ const ProductsReducer = (state, action) => {
         ...state,
         loading: false,
         cartProducts: action.payload,
-        modal: false
+        modal: false,
+        subTotalPrice: action.meta,
+        totalPrice: action.meta
       };
     case ADD_TO_CART:
       sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
       return {
         ...state,
         modal: true,
-        // ids: action.meta,
         cartProduct: action.payload
       };
+    case REMOVE_FROM_CART:
+    sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
+     return {
+       ...state,
+       cartProducts: state.cartProducts.filter(product => product._id !== action.payload),
+     }
+    case REMOVE_ALL_CART:
+    sessionStorage.setItem('cartItems', JSON.stringify([]));
+    return {
+      ...state,
+      totalPrice: 0,
+      subTotalPrice: 0,
+      desc: 0
+    }
     case HIDDEN_MODAL:
       return {
         ...state,
@@ -44,7 +60,7 @@ const ProductsReducer = (state, action) => {
       return {
         ...state,
         desc: state.subTotalPrice * action.meta,
-        totalPrice: action.payload,
+        totalPrice: state.subTotalPrice - (state.subTotalPrice * action.meta)
       };
     default:
       return state;
