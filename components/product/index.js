@@ -14,17 +14,7 @@ const Product = ({ data }) => {
 
   const contextProducts = useContext(ContextProducts);
   const {  modal, closeModal, addToCart } = contextProducts;
-
-  // function addItemToCart() {
-  //   let newItem = [];
-  //   newItem.push({ id: data._id });
-  //   const items = Cookie.getJSON('IDItem');
-  //   items.filter(item => item.id !== data._id ? newItem.push(item) : null);
-  //   const item = items.find(i => i.id === data._id);
-  //   if(!item) setShowModal(true);
-  //   Cookie.set('IDItem', newItem);
-  // }
-
+  
   return (
     <>
       {modal && <ModalCart closeModal={closeModal} />}
@@ -63,6 +53,7 @@ const Product = ({ data }) => {
             </p>
           </Section>
           <Button
+            size="block"
             text="Agregar al carrito"
             color="tercero"
             onClick={() => addToCart(data._id)}

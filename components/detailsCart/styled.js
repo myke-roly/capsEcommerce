@@ -16,11 +16,16 @@ export const WrapperDetails = styled.div`
 
 export const Items = styled.section`
   width: 100%;
+  
+  button {
+    float: right;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const Item = styled.div`
   border-top: 1px solid #eee;
-  padding-top: .5rem;
+  padding: 1rem;
   margin-bottom: 1.5rem;
   display: flex;
   /* flex: 1 .5 1 1; */
@@ -91,6 +96,7 @@ export const Item = styled.div`
 `; 
 
 export const Detail = styled.section`
+  clear: both;
   p {
     color: ${({ theme }) => theme.color.dark};
     margin: .5rem 0;
@@ -103,6 +109,7 @@ export const Detail = styled.section`
 
     p {
       text-align: center;
+      padding-bottom: .5rem;
     }
     
     input, button {
@@ -129,10 +136,16 @@ export const Detail = styled.section`
   .summary {
     border-radius: 5px;
     background: ${({ theme }) => theme.color.primary};
-    padding: 2rem;
+    padding: 1.5rem;
     margin-top: 1.5rem;
     box-shadow: 0 0 3px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+
+    .desc {
+      font-size: .9em;
+      opacity: .8;
+      color: ${({ theme }) => theme.color.secondary};
+    }
 
     .subtotal {
       font-size: .9em;
@@ -150,9 +163,7 @@ export const Detail = styled.section`
     }
 
     button {
-      width: 100%;
-      margin: .5rem 0;
-      border-radius: 0;
+      margin: .8rem 0;
     }
   }
 `;

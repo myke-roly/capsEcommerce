@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useRef, useState } from 'react';
 import { Items, Item, Detail, WrapperDetails } from './styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -9,9 +9,20 @@ import Button from '../../common/Button';
 import { ContextProducts } from '../../context/';
 
 const DetailsCart = ({ data }) => {
-
   const contextProducts = useContext(ContextProducts);
-  const {removeAllCart, removeFromCart, quantityProduct, decrementQuantityProduct, incrementQuantityProduct, aplyDesc, subTotalPrice, totalPrice } = contextProducts;
+  const {
+    removeAllCart,
+    removeFromCart,
+    quantityProduct,
+    decrementQuantityProduct,
+    incrementQuantityProduct,
+    aplyDesc,
+    subTotalPrice,
+    totalPrice,
+    desc,
+  } = contextProducts;
+
+  const [codeInput, setCodeInput] = useState('');
 
   const router = useRouter();
 
@@ -27,37 +38,56 @@ const DetailsCart = ({ data }) => {
                   <a>{item.title}</a>
                 </Link>
                 <p className="count">
-                  <span className="btn" onClick={decrementQuantityProduct}>-</span>
+                  <span className="btn" onClick={decrementQuantityProduct}>
+                    -
+                  </span>
                   <span id="quantity">{quantityProduct}</span>
-                  <span className="btn" onClick={incrementQuantityProduct}>+</span>
+                  <span className="btn" onClick={incrementQuantityProduct}>
+                    +
+                  </span>
                 </p>
               </div>
               <p className="price">{item.price}</p>
               <Trash size={17} onClick={() => removeFromCart(item._id)} />
             </Item>
           ))}
-          <Button text="Limpiar Carrito" color="secondary" size="block" onClick={removeAllCart} />
+        <Button
+          text="Limpiar Carrito"
+          color="default"
+          onClick={removeAllCart}
+        />
       </Items>
 
       {/* Pasar a pagar */}
       <Detail>
         <div className="descuento">
           <p>¿Tenes un código de descuento?</p>
-          <input type="text" placeholder="Codigo" />
-          <button onClick={aplyDesc}>Aplicar</button>
+          <input
+            type="text"
+            placeholder="Codigo"
+            value={codeInput}
+            onChange={(e) => setCodeInput(e.target.value)}
+          />
+          <button onClick={() => aplyDesc(codeInput)}>Aplicar</button>
         </div>
         <div className="summary">
           <p className="subtotal">
-            Subtotal <span>{subTotalPrice}</span>
+            Subtotal <span>$ {subTotalPrice}</span>
           </p>
+          {desc > 0 && (
+            <p className="desc">
+              Descuento <span>- $ {desc}</span>
+            </p>
+          )}
           <p className="total">
-            Total <span>{totalPrice}</span>
+            Total <span>$ {totalPrice}</span>
           </p>
           <hr />
-          <Button color="default" text="Finalizar Compra" />
+          <Button color="secondary" size="block" text="Finalizar Compra" />
           <br />
           <Button
-            color="dark"
+            color="tercero"
+            size="block"
             text="Seguir comprando"
             onClick={() => router.push('/productos')}
           />

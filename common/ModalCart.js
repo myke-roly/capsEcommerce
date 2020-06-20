@@ -20,6 +20,11 @@ const WrapperModal = styled.div`
   top: 7vh;
   right: 0;
   z-index: 150;
+
+  .alert-succes {
+    text-align: center;
+    color: ${( {theme }) => theme.color.tercero};
+  }
 `;
 
 export const Item = styled.div`
@@ -127,39 +132,22 @@ const ButtonCloseCart = styled.div`
 
 const ModalCart = ({ closeModal }) => {
   const context = useContext(ContextProducts);
-  const { cartProducts } = context;
-
-  // const context = useContext(ContextProducts);
-  // const { products, getProducts } = context;
-  // const ids = parseCookies();
-  // const { filterProducts } = useFetchById(products, ids);
-  // const route = useRouter();
-
-  // React.useEffect(() => {
-  //   getProducts()
-  // }, []);
+  const { cartProduct, removeFromCart } = context;
+  const route = useRouter();
 
   return (
     <WrapperModal>
       <ButtonCloseCart onClick={closeModal} title="Cerrar Modal" />
-      {cartProducts.length !== 0 && (
-          cartProducts.map(item => (
-            <Item key={item._id}>
-              <img width={{width: '50px'}} src={item.images ? item.images[0] : ''} alt={item.title} />
-              <div className="content">
-                <Link href={`/producto/[id]/`} as={`/producto/${item._id}`}>
-                  <a>{item.title}</a>
-                </Link>
-                <p className="count">
-                  <span className="btn">-</span>
-                  <span id="quantity">1</span>
-                  <span className="btn">+</span>
-                </p>
-              </div>
-              <Trash size={17} onClick={() => {}} />
-            </Item>
-          ))
-        )}
+      <p className="alert-succes">Se agrego al carrito!</p>
+        <Item key={cartProduct._id}>
+          <img width={{width: '50px'}} src={cartProduct.images ? cartProduct.images[0] : ''} alt={cartProduct.title} />
+          <div className="content">
+            <Link href={`/producto/[id]/`} as={`/producto/${cartProduct._id}`}>
+              <a>{cartProduct.title}</a>
+            </Link>
+          </div>
+          <Trash size={17} onClick={() => removeFromCart(cartProduct._id)} />
+        </Item>
         <Button 
           size="block" 
           color="secondary" 

@@ -52,8 +52,9 @@ const GlobalStyleds = createGlobalStyle`
 export default ({ Component, pageProps }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const cartItems = sessionStorage.getItem('cartItems');
     if (token) authToken(token);
-    if (!Cookie.get('IDItem')) Cookie.set('IDItem', []);
+    if (!cartItems) sessionStorage.setItem('cartItems', JSON.stringify([]));
   }, []);
 
   return (

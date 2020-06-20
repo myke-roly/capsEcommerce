@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
-import { parseCookies } from '../libs/parseCookies';
 import Layout from '../containers/layout';
 import { Container } from '../common/Container';
 import Title from '../common/Title';
@@ -10,7 +9,16 @@ import Link from 'next/link';
 import { ArrowLeftCircle } from 'react-feather';
 import { useFetchById } from '../hooks/useFetchById';
 
-export const Carrito = ({ filterProducts }) => {
+import { ContextProducts } from '../context/ProductsContext';
+
+export const Carrito = ({ cookie }) => {
+  
+  const contextProducts = useContext(ContextProducts);
+  const { cartProducts, getCartProducts } = contextProducts;
+  
+  useEffect(() => {
+    getCartProducts()
+  }, []);
 
   return (
     <>
@@ -20,14 +28,15 @@ export const Carrito = ({ filterProducts }) => {
       <Layout>
         <Container>
           <Title title="Mi Carrito" />
-          {filterProducts.length === 0 
+          <pre>{cookie}</pre>
+          {cartProducts.length === 0 
           ? <Link href="/productos">
               <a>
                 <ArrowLeftCircle size={18} /><br />
                 Tu carrito esta vacio! vuelve al listado y llenalo!!
               </a>
             </Link>
-          : <DetailsCart data={filterProducts} />}
+          : <DetailsCart data={cartProducts} />}
         </Container>
         <style jsx>{`
           a {
@@ -42,15 +51,6 @@ export const Carrito = ({ filterProducts }) => {
       </Layout>
     </>
   );
-};
-
-Carrito.getInitialProps = async ({ req }) => {
-  const ids = parseCookies(req);
-  const response = await axiosFetch(`/api/productos`);
-  const products = response.data.products;
-  const { filterProducts } = useFetchById(products, ids);
-
-  return { filterProducts };
 };
 
 export default Carrito;

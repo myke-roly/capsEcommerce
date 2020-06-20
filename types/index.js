@@ -17,6 +17,7 @@ export const SEARCH = 'SEARCH';
 export const LIST_PRODUCTS = 'LIST_PRODUCTS';
 
 // CART
+export const LIST_CART_PRODUCTS = 'LIST_CART_PRODUCTS';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const REMOVE_ALL_CART = 'REMOVE_ALL_CART';
@@ -25,3 +26,4 @@ export const DECREMENT_PRODUCT = 'DECREMENT_PRODUCT';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDDEN_MODAL = 'HIDDEN_MODAL';
 export const GET_TOTAL_PRICE = 'GET_TOTAL_PRICE';
+export const APLY_DESC = 'APLY_DESC';

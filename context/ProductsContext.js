@@ -1,8 +1,10 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer, useState, useRef } from 'react';
 import ProductsReducer from '../reducers/ProductsReducer';
 import { axiosFetch } from '../API/axios';
+import { useFetchById } from '../hooks/useFetchById';
 import {
   LIST_PRODUCTS,
+  LIST_CART_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   REMOVE_ALL_CART,
@@ -11,6 +13,7 @@ import {
   SHOW_MODAL,
   HIDDEN_MODAL,
   GET_TOTAL_PRICE,
+  APLY_DESC
 } from '../types';
 
 export const ContextProducts = createContext();
@@ -20,10 +23,14 @@ const ProductsContext = ({ children }) => {
     loading: true,
     itemscart: 0,
     cartProducts: [],
+    cartProduct: {},
+    ids: [],
     quantityProduct: 1,
+    modal: false,
+    codeDesc: 'THEEND2020', //25% DESC
     subTotalPrice: 0,
+    desc: 0,
     totalPrice: 0,
-    modal: false
   };
 
   const [state, dispatch] = useReducer(ProductsReducer, initialState);
@@ -42,26 +49,44 @@ const ProductsContext = ({ children }) => {
     }
   };
 
-  const addToCart = async (id) => {
-    // si el producto ya existe en el carrito no agregar
-    if(state.cartProducts.length > 0)  {
-      if(id === state.cartProducts[0]._id) return;
+  const getCartProducts = async () => {
+    try {
+      const response = await axiosFetch.get('/api/productos');
+      const { products } = response.data;
+      const { filterProducts } = useFetchById(products, sessionStorage.getItem('cartItems'))
+      
+      dispatch({ 
+        type: LIST_CART_PRODUCTS,
+        payload: filterProducts
+       });
+    } catch (error) {
+      console.error(error);
     }
-    console.log('add to cart');
-    const response = await axiosFetch.get('/api/productos');
-    const { products } = response.data;
-    const cartProduct = products.filter(product => product._id === id);
+  } 
+
+  const addToCart = async (id) => {    
+    let alredyExist = false;
+    JSON.parse(sessionStorage.getItem('cartItems')).map(i => i.id === id ? alredyExist = true : false );
+    // si el producto ya existe en el carrito no agregar
+    if(alredyExist) return;
     
+    let updateIds = []; 
+    const response = await axiosFetch.get('/api/producto/'+id);
+    const { product } = response.data;
+    
+    const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
+    updateIds.push(...updateIds, ...itemStorage,  {id})
     // agregar producto al carrito
     dispatch({
       type: ADD_TO_CART,
-      payload: cartProduct
+      payload: product,
+      meta: updateIds
     })
   }
 
   const removeFromCart = (id) => {
     console.log('remove from cart', id)
-    // const cartProduct = products.filter(product => product._id === id);
+    
   }
 
   const removeAllCart = () => {
@@ -78,6 +103,7 @@ const ProductsContext = ({ children }) => {
   // quantityProduct
 const incrementQuantityProduct = () => {
   console.log('agragar uno');
+  dispatch({type: INCREMENT_PRODUCT });
 }
 
 const decrementQuantityProduct = () => {
@@ -87,10 +113,14 @@ const decrementQuantityProduct = () => {
 
 const aplyDesc = (code) => {
   console.log('aplicar descuento');
-
-  //verificar si el codigo es valido
-
-  // sumar al total de pago
+  if(code === state.codeDesc) {
+    console.log(`Con este codigo ${code} usted tiene un descuento de 25%`);
+    dispatch({ 
+      type: APLY_DESC,
+      // meta: ,
+      // payload: ,
+    })
+  }
 }
 
   return (
@@ -99,12 +129,16 @@ const aplyDesc = (code) => {
         loading: state.loading,
         products: state.products,
         cartProducts: state.cartProducts,
+        cartProduct: state.cartProduct,
         itemscart: state.itemscart,
         modal: state.modal,
         quantityProduct: state.quantityProduct,
         subTotalPrice: state.subTotalPrice,
         totalPrice: state.totalPrice,
+        codeDesc: state.codeDesc,
+        desc: state.desc,
         getProducts,
+        getCartProducts,
         closeModal,
         addToCart,
         removeFromCart,

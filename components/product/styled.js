@@ -27,19 +27,15 @@ export const Images = styled.section`
 export const Detail = styled.section`
   width: 100%;
   padding: 2em;
+  background: ${({ theme }) => theme.color.primary};
+  border-radius: 7px;
 
   h2 {
-    color: #444;
+    color: ${({ theme }) => theme.color.dark};;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     font-size: 1.3em;
     font-weight: 500;
-  }
-
-  button {
-    display: block;
-    width: 80%;
-    margin: 1.5rem auto;
   }
 `;
 
