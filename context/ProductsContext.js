@@ -6,6 +6,7 @@ import {
   LIST_PRODUCTS,
   LIST_CART_PRODUCTS,
   ADD_TO_CART,
+  GET_ITEMS,
   REMOVE_FROM_CART,
   REMOVE_ALL_CART,
   INCREMENT_PRODUCT,
@@ -22,10 +23,9 @@ const ProductsContext = ({ children }) => {
   let initialState = {
     products: [],
     loading: true,
-    itemscart: 0,
+    itemsCart: 0,
     cartProducts: [],
     cartProduct: {},
-    ids: [],
     quantityProduct: 1,
     modal: false,
     codeDesc: 'THEEND2020', //25% DESC
@@ -63,7 +63,7 @@ const ProductsContext = ({ children }) => {
       dispatch({ 
         type: LIST_CART_PRODUCTS,
         payload: filterProducts,
-        meta: subtotalPrice
+        price: subtotalPrice
        });
     } catch (error) {
       console.error(error);
@@ -82,26 +82,50 @@ const ProductsContext = ({ children }) => {
     
     const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
     updateIds.push(...updateIds, ...itemStorage,  {id})
+
+    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
     // agregar producto al carrito
     dispatch({
       type: ADD_TO_CART,
+      items: items + 1,
       payload: product,
-      meta: updateIds
+      meta: updateIds,
     })
   }
+
+  const getTotalItemsCart = () => {
+    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
+
+    dispatch({
+      type: GET_ITEMS,
+      meta: items
+    })
+  };
 
   const removeFromCart = (id) => {
     let updateIds = [];
     
     const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
-    updateIds.push(...updateIds, ...itemStorage)
+    updateIds.push(...updateIds, ...itemStorage);
+
+    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
+
+    function getPrice(filterProducts) {
+      let subtotalPrice = 0;
+      if(filterProducts.length !== 0) {
+        filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
+      }
+      console.log(subtotalPrice);
+      return subtotalPrice;
+    }
 
     dispatch({
       type: REMOVE_FROM_CART,
+      items: items - 1,
       payload : id,
-      meta: updateIds
+      meta: updateIds,
+      price: getPrice
     })
-    
   }
 
   const removeAllCart = () => {
@@ -142,7 +166,7 @@ const aplyDesc = (code) => {
         products: state.products,
         cartProducts: state.cartProducts,
         cartProduct: state.cartProduct,
-        itemscart: state.itemscart,
+        itemsCart: state.itemsCart,
         modal: state.modal,
         quantityProduct: state.quantityProduct,
         subTotalPrice: state.subTotalPrice,
@@ -153,6 +177,7 @@ const aplyDesc = (code) => {
         getCartProducts,
         closeModal,
         addToCart,
+        getTotalItemsCart,
         removeFromCart,
         removeAllCart,
         incrementQuantityProduct,

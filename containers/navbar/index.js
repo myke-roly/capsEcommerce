@@ -20,10 +20,11 @@ const NavBar = () => {
   const { getUser, user, auth, logOut } = contextAuth;
   
   const contextProducts = useContext(ContextProducts);
-  const { itemscart } = contextProducts;
+  const { itemsCart, getTotalItemsCart } = contextProducts;
 
   useEffect(() => {
     getUser();
+    getTotalItemsCart();
   }, []);
 
   const router = useRouter();
@@ -64,7 +65,7 @@ const NavBar = () => {
               <Link href="/carrito">
                 <CartItem>
                   <ShoppingCart size={18} />
-                  <span className="item-cart">{itemscart}</span>
+                  <span className="item-cart">{itemsCart}</span>
                 </CartItem>
               </Link>
               {!auth ? (
@@ -100,7 +101,7 @@ const NavBar = () => {
               <Link href="/carrito">
                 <CartItem>
                   <ShoppingCart size={18} />
-                  <span className="item-cart">{itemscart}</span>
+                  <span className="item-cart">{itemsCart}</span>
                 </CartItem>
               </Link>
               {!auth ? (

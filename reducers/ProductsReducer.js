@@ -8,7 +8,7 @@ import {
   DECREMENT_PRODUCT,
   HIDDEN_MODAL,
   SUBTOTAL_PRICE,
-  GET_TOTAL_PRICE,
+  GET_ITEMS,
   APLY_DESC,
 } from '../types';
 
@@ -22,21 +22,32 @@ const ProductsReducer = (state, action) => {
         loading: false,
         cartProducts: action.payload,
         modal: false,
-        subTotalPrice: action.meta,
-        totalPrice: action.meta
+        subTotalPrice: action.price,
+        totalPrice: action.price
       };
     case ADD_TO_CART:
       sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
       return {
         ...state,
         modal: true,
-        cartProduct: action.payload
+        cartProduct: action.payload,
+        itemsCart: action.items
       };
+    case GET_ITEMS:
+      return {
+        ...state,
+        itemsCart: action.meta
+      }
     case REMOVE_FROM_CART:
     sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
+    let price = 0;
+    state.cartProducts.map(product => product._id !== action.payload ? price = product.price : null)
      return {
        ...state,
        cartProducts: state.cartProducts.filter(product => product._id !== action.payload),
+       itemsCart: action.items,
+       subTotalPrice: state.subTotalPrice - price,
+       totalPrice: state.totalPrice - price,
      }
     case REMOVE_ALL_CART:
     sessionStorage.setItem('cartItems', JSON.stringify([]));
@@ -44,7 +55,9 @@ const ProductsReducer = (state, action) => {
       ...state,
       totalPrice: 0,
       subTotalPrice: 0,
-      desc: 0
+      desc: 0,
+      itemsCart: 0,
+      cartProducts: []
     }
     case HIDDEN_MODAL:
       return {
