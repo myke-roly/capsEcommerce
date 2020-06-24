@@ -61,9 +61,7 @@ const ProductsContext = ({ children }) => {
       let subtotalPrice = 0;
       if(JSON.parse(dataStorage).length !== 0) {
         JSON.parse(dataStorage).map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct)
-      }
-
-      dispatch({ 
+      }      dispatch({ 
         type: LIST_CART_PRODUCTS,
         payload: filterProducts,
         price: subtotalPrice
@@ -108,27 +106,21 @@ const ProductsContext = ({ children }) => {
 
   const removeFromCart = (id) => {
     let updateIds = [];
+    let subtotalPrice = 0;
     
     const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
     updateIds.push(...updateIds, ...itemStorage);
 
     const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
 
-    const getPrice = (filterProducts) => {
-      let subtotalPrice = 0;
-      if(filterProducts.length !== 0) {
-        filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
-      }
-      console.log(subtotalPrice);
-      return subtotalPrice;
-    }
-
+    updateIds.map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct);
+    
     dispatch({
       type: REMOVE_FROM_CART,
       items: items - 1,
       payload : id,
       meta: updateIds,
-      price: getPrice
+      price: subtotalPrice
     })
   }
 

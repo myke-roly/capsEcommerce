@@ -31,6 +31,12 @@ const ButtonWrapper = styled.button`
       border: '2px solid' + props.theme.color.default,
       color: props.theme.color.primary,
     }};
+      ${(props) =>
+    props.color === 'success' && {
+      background: props.theme.color.success,
+      border: '2px solid' + props.theme.color.success,
+      color: props.theme.color.primary,
+    }};
   width: ${(props) => props.size === 'block' ? '100%' : 'auto'};
   border-radius: 7px;
   padding: 0.7rem 1.5rem;

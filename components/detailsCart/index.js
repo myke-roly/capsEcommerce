@@ -22,6 +22,8 @@ const DetailsCart = ({ data }) => {
     desc,
   } = contextProducts;
 
+  const urlWathsapp = `https://api.whatsapp.com/send?phone=5491121773591&text=${detailCartProducts.map(item => JSON.stringify(item))}&source=&data=bobobo&app_absent=`
+
   const [codeInput, setCodeInput] = useState('');
 
   const router = useRouter();
@@ -84,12 +86,18 @@ const DetailsCart = ({ data }) => {
             Total <span>$ {totalPrice}</span>
           </p>
           <hr />
+          <a href={urlWathsapp} target="_blank" rel="noopener noreferrer">
+            <Button 
+              text="Terminar la compra por Whatsapp" 
+              color="success" 
+              size="block" 
+            />
+          </a>
           <Button 
             color="secondary" 
             size="block" 
-            text="Finalizar Compra" 
+            text="Pagar con Mercado Pago" 
             onClick={() => router.push('/payment')} />
-          <br />
           <Button
             color="tercero"
             size="block"

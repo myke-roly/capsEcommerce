@@ -42,14 +42,13 @@ const ProductsReducer = (state, action) => {
       }
     case REMOVE_FROM_CART:
     sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
-    let price = 0;
-    state.cartProducts.map(product => product._id !== action.payload ? price = product.price : null)
      return {
        ...state,
        cartProducts: state.cartProducts.filter(product => product._id !== action.payload),
        itemsCart: action.items,
-       subTotalPrice: state.subTotalPrice - price,
-       totalPrice: state.totalPrice - price,
+       modal: false,
+       subTotalPrice: action.price,
+       totalPrice: action.price,
      }
     case REMOVE_ALL_CART:
     sessionStorage.setItem('cartItems', JSON.stringify([]));
@@ -59,7 +58,8 @@ const ProductsReducer = (state, action) => {
       subTotalPrice: 0,
       desc: 0,
       itemsCart: 0,
-      cartProducts: []
+      cartProducts: [],
+      modal: false,
     }
     case HIDDEN_MODAL:
       return {

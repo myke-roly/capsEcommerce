@@ -14,7 +14,8 @@ import { ContextProducts } from '../../context';
 
 const NavBar = () => {
   const contextMobile = useContext(ContextMobile);
-  const { modeMobile, menuMobile, toggleMenuMobile } = contextMobile;
+  const { modeMobile } = contextMobile;
+  const [menuMobile, setMenuMobile] = useState(false);
 
   const contextAuth = useContext(ContextAuth);
   const { getUser, user, auth, logOut } = contextAuth;
@@ -29,6 +30,10 @@ const NavBar = () => {
 
   const router = useRouter();
 
+  function toggleMenuMobile() {
+    if (modeMobile) setMenuMobile(!menuMobile);
+  }
+
   const links = [
     { id: 0, title: 'inicio', path: '/' },
     { id: 1, title: 'productos', path: '/productos' },
@@ -40,9 +45,7 @@ const NavBar = () => {
     links.map((link) => (
       <li key={link.id}>
         <Link href={link.path} passHref>
-          <a className={router.pathname === link.path ? 'active' : ''}>
-            {link.title}
-          </a>
+          <a className={router.pathname === link.path ? 'active' : ''}>{link.title}</a>
         </Link>
       </li>
     ));
@@ -52,9 +55,7 @@ const NavBar = () => {
       <Container>
         <Title>
           <Link href="/">
-            <a>
-              Caps <small>.:: o</small>
-            </a>
+            <a>Caps <small>.:: o</small></a>
           </Link>
         </Title>
         {!modeMobile && (

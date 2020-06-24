@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Layout from '../containers/layout';
 import ListProducts from '../components/listProducts';
-import { axiosFetch } from '../API/axios';
 import { ContextProducts } from '../context/ProductsContext';
 
 const Productos = () => {
@@ -16,8 +15,8 @@ const Productos = () => {
   return (
     <>
       <Head>
-        <meta name="description" content="List of products" />
-        <title>CAPSARG | Productos</title>
+        <meta name="description" content="Lista de todos los modelos de Gorras que tenemos en stock" />
+        <title>Productos | CAPSARG</title>
       </Head>
       <Layout>
         <ListProducts productos={products} loading={loading} />
