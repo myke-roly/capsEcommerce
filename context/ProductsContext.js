@@ -14,7 +14,8 @@ import {
   HIDDEN_MODAL,
   SUBTOTAL_PRICE,
   GET_TOTAL_PRICE,
-  APLY_DESC
+  APLY_DESC,
+  QUANTITY_PRODUCT
 } from '../types';
 import { filter } from 'compression';
 
@@ -23,10 +24,10 @@ const ProductsContext = ({ children }) => {
   let initialState = {
     products: [],
     loading: true,
-    itemsCart: 0,
+    itemsCart: [],
     cartProducts: [],
     cartProduct: {},
-    quantityProduct: 1,
+    detailCartProducts: [],
     modal: false,
     codeDesc: 'THEEND2020', //25% DESC
     subTotalPrice: 0,
@@ -46,7 +47,7 @@ const ProductsContext = ({ children }) => {
         payload: products
        });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -54,7 +55,8 @@ const ProductsContext = ({ children }) => {
     try {
       const response = await axiosFetch.get('/api/productos');
       const { products } = response.data;
-      const { filterProducts } = useFetchById(products, sessionStorage.getItem('cartItems'))
+      const { filterProducts } = useFetchById(products, sessionStorage.getItem('cartItems'));
+
       let subtotalPrice = 0;
       if(filterProducts.length !== 0) {
         filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
@@ -70,19 +72,20 @@ const ProductsContext = ({ children }) => {
     }
   }
 
-  const addToCart = async (id) => {    
+  const addToCart = async (id, quantity, color) => {
+    if(!sessionStorage.getItem('cartItems')) sessionStorage.setItem('cartItems', JSON.stringify([]));
     let alredyExist = false;
-    JSON.parse(sessionStorage.getItem('cartItems')).map(i => i.id === id ? alredyExist = true : false );
     // si el producto ya existe en el carrito no agregar
+    JSON.parse(sessionStorage.getItem('cartItems')).map(i => i.id === id ? alredyExist = true : false );
     if(alredyExist) return;
     
-    let updateIds = []; 
+    let updateIds = [];
     const response = await axiosFetch.get('/api/producto/'+id);
     const { product } = response.data;
     
     const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
-    updateIds.push(...updateIds, ...itemStorage,  {id})
-
+    updateIds.push(...updateIds, ...itemStorage,  {id, quantity, color})
+    
     const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
     // agregar producto al carrito
     dispatch({
@@ -94,7 +97,7 @@ const ProductsContext = ({ children }) => {
   }
 
   const getTotalItemsCart = () => {
-    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
+    const items = sessionStorage.getItem('cartItems') ? JSON.parse(sessionStorage.getItem('cartItems')).length : 0;
 
     dispatch({
       type: GET_ITEMS,
@@ -110,7 +113,7 @@ const ProductsContext = ({ children }) => {
 
     const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
 
-    function getPrice(filterProducts) {
+    const getPrice = (filterProducts) => {
       let subtotalPrice = 0;
       if(filterProducts.length !== 0) {
         filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
@@ -133,21 +136,32 @@ const ProductsContext = ({ children }) => {
   }
 
   const closeModal = () => {
-    console.log('ocultar modal')
-    dispatch({
-      type: HIDDEN_MODAL
-    })
+    dispatch({type: HIDDEN_MODAL});
   }
 
   // quantityProduct
-const incrementQuantityProduct = () => {
-  console.log('agragar uno');
-  dispatch({type: INCREMENT_PRODUCT });
+const incrementQuantityProduct = (id) => {
+  let updateQuantity = [];
+  
+  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => item.id === id ? item.quantity += 1 : item);
+  updateQuantity.push(...updateQuantity, ...itemStorage);
+
+  dispatch({
+    type: INCREMENT_PRODUCT, 
+    payload: updateQuantity
+  });
 }
 
-const decrementQuantityProduct = () => {
-  console.log('quitar uno');
-  // no se puede tene menos de 1
+const decrementQuantityProduct = (id) => {
+  let updateQuantity = [];
+  
+  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => item.id === id && item.quantity > 1 ? item.quantity -= 1 : item);
+  updateQuantity.push(...updateQuantity, ...itemStorage);
+
+  dispatch({
+    type: DECREMENT_PRODUCT, 
+    payload: updateQuantity
+  });
 }
 
 const aplyDesc = (code) => {
@@ -159,6 +173,18 @@ const aplyDesc = (code) => {
   }
 }
 
+function showQuantity(id) {
+  let quantity;
+
+  const detailCartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
+
+  detailCartProducts.map(item => {
+    if(item.id === id) quantity = item.quantity;
+  })
+
+  return quantity;
+}
+
   return (
     <ContextProducts.Provider
       value={{
@@ -168,7 +194,7 @@ const aplyDesc = (code) => {
         cartProduct: state.cartProduct,
         itemsCart: state.itemsCart,
         modal: state.modal,
-        quantityProduct: state.quantityProduct,
+        detailCartProducts: state.detailCartProducts,
         subTotalPrice: state.subTotalPrice,
         totalPrice: state.totalPrice,
         codeDesc: state.codeDesc,
@@ -183,6 +209,7 @@ const aplyDesc = (code) => {
         incrementQuantityProduct,
         decrementQuantityProduct,
         aplyDesc,
+        showQuantity
       }}
     >
       {children}

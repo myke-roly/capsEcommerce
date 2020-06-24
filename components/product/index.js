@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useRef, useCallback } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../common/Button';
 import { ContextMobile } from '../../context/MobileContext';
-import Cookie from 'js-cookie';
 import Title from '../../common/Title';
 import ModalCart from '../../common/ModalCart';
 import { ContextProducts } from '../../context/';
@@ -14,7 +13,23 @@ const Product = ({ data }) => {
 
   const contextProducts = useContext(ContextProducts);
   const {  modal, closeModal, addToCart } = contextProducts;
+  const [quantity, setQuantity] = useState(1);
+  const refColor = useRef(null);
+
+  const incrementQuantity = useCallback(() => {
+    setQuantity(quantity + 1);
+  }, [quantity]);
+
+  const decrementQuantity = useCallback(() => {
+    if(quantity === 1) return;
+    setQuantity(quantity - 1);
+  }, [quantity]);
+
   
+  const selectColor = color => {
+    refColor.current = color;
+  }
+
   return (
     <>
       {modal && <ModalCart closeModal={closeModal} />}
@@ -35,7 +50,9 @@ const Product = ({ data }) => {
                 <span
                   key={index}
                   className="color"
+                  id={color}
                   style={{ background: color }}
+                  onClick={(e) => selectColor(e.target.id)}
                 ></span>
               ))}
             </p>
@@ -47,16 +64,16 @@ const Product = ({ data }) => {
           <Section>
             <h4>Cantidad:</h4>
             <p>
-              <span>-</span>
-              <span className="quantity">1</span>
-              <span>+</span>
+              <span onClick={decrementQuantity}>-</span>
+              <span className="quantity">{quantity}</span>
+              <span onClick={incrementQuantity}>+</span>
             </p>
           </Section>
           <Button
             size="block"
             text="Agregar al carrito"
             color="tercero"
-            onClick={() => addToCart(data._id)}
+            onClick={() => addToCart(data._id, quantity, refColor.current)}
           />
           <Section>
             <span>
@@ -70,4 +87,4 @@ const Product = ({ data }) => {
   );
 };
 
-export default Product;
+export default React.memo(Product);

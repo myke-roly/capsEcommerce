@@ -12,7 +12,8 @@ const DetailsCart = ({ data }) => {
   const {
     removeAllCart,
     removeFromCart,
-    quantityProduct,
+    detailCartProducts,
+    showQuantity,
     decrementQuantityProduct,
     incrementQuantityProduct,
     aplyDesc,
@@ -37,11 +38,11 @@ const DetailsCart = ({ data }) => {
                   <a>{item.title}</a>
                 </Link>
                 <p className="count">
-                  <span className="btn" onClick={decrementQuantityProduct}>
+                  <span className="btn" onClick={() => decrementQuantityProduct(item._id)}>
                     -
                   </span>
-                  <span id="quantity">{quantityProduct}</span>
-                  <span className="btn" onClick={incrementQuantityProduct}>
+                  <span>{showQuantity(item._id)}</span>
+                  <span className="btn" onClick={() => incrementQuantityProduct(item._id)}>
                     +
                   </span>
                 </p>

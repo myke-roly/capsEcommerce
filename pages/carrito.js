@@ -3,11 +3,9 @@ import Head from 'next/head';
 import Layout from '../containers/layout';
 import { Container } from '../common/Container';
 import Title from '../common/Title';
-import { axiosFetch } from '../API/axios';
 import DetailsCart from '../components/detailsCart';
 import Link from 'next/link';
 import { ArrowLeftCircle } from 'react-feather';
-import { useFetchById } from '../hooks/useFetchById';
 
 import { ContextProducts } from '../context/ProductsContext';
 

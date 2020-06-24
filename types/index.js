@@ -28,3 +28,4 @@ export const SUBTOTAL_PRICE = 'SUBTOTAL_PRICE';
 export const GET_TOTAL_PRICE = 'GET_TOTAL_PRICE';
 export const APLY_DESC = 'APLY_DESC';
 export const GET_ITEMS = 'GET_ITEMS';
+export const QUANTITY_PRODUCT = 'QUANTITY_PRODUCT';
