@@ -48,6 +48,7 @@ const DetailsCart = ({ data }) => {
                 </p>
               </div>
               <p className="price">{item.price}</p>
+              <p className="price">{item.price * showQuantity(item._id)}</p>
               <Trash size={17} onClick={() => removeFromCart(item._id)} />
             </Item>
           ))}

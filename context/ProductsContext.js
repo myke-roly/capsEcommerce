@@ -55,11 +55,12 @@ const ProductsContext = ({ children }) => {
     try {
       const response = await axiosFetch.get('/api/productos');
       const { products } = response.data;
-      const { filterProducts } = useFetchById(products, sessionStorage.getItem('cartItems'));
+      const dataStorage = sessionStorage.getItem('cartItems');
+      const { filterProducts } = useFetchById(products, dataStorage);
 
       let subtotalPrice = 0;
-      if(filterProducts.length !== 0) {
-        filterProducts.map(product => subtotalPrice = subtotalPrice + product.price)
+      if(JSON.parse(dataStorage).length !== 0) {
+        JSON.parse(dataStorage).map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct)
       }
 
       dispatch({ 
@@ -72,7 +73,7 @@ const ProductsContext = ({ children }) => {
     }
   }
 
-  const addToCart = async (id, quantity, color) => {
+  const addToCart = async (id, quantity, color, price, totalPriceProduct) => {
     if(!sessionStorage.getItem('cartItems')) sessionStorage.setItem('cartItems', JSON.stringify([]));
     let alredyExist = false;
     // si el producto ya existe en el carrito no agregar
@@ -84,7 +85,7 @@ const ProductsContext = ({ children }) => {
     const { product } = response.data;
     
     const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
-    updateIds.push(...updateIds, ...itemStorage,  {id, quantity, color})
+    updateIds.push(...updateIds, ...itemStorage,  {id, quantity, color, price, totalPriceProduct})
     
     const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
     // agregar producto al carrito
@@ -142,25 +143,47 @@ const ProductsContext = ({ children }) => {
   // quantityProduct
 const incrementQuantityProduct = (id) => {
   let updateQuantity = [];
-  
-  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => item.id === id ? item.quantity += 1 : item);
+  let subtotalPrice = 0;
+
+  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => {
+    if(item.id === id) {
+       item.quantity += 1;
+       item.totalPriceProduct = item.price * item.quantity;
+    }
+    
+    return item;
+  });
   updateQuantity.push(...updateQuantity, ...itemStorage);
+  // SUMAR EL TOTAL DE LOS PRODUCTOS
+  updateQuantity.map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct);
 
   dispatch({
     type: INCREMENT_PRODUCT, 
-    payload: updateQuantity
+    payload: updateQuantity,
+    price: subtotalPrice
   });
 }
 
 const decrementQuantityProduct = (id) => {
   let updateQuantity = [];
-  
-  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => item.id === id && item.quantity > 1 ? item.quantity -= 1 : item);
+  let subtotalPrice = 0;
+
+  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => {
+    if(item.id === id && item.quantity >1) {
+       item.quantity -= 1;
+       item.totalPriceProduct = item.price * item.quantity;
+    }
+    
+    return item;
+  });
   updateQuantity.push(...updateQuantity, ...itemStorage);
+  // SUMAR EL TOTAL DE LOS PRODUCTOS
+  updateQuantity.map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct);
 
   dispatch({
     type: DECREMENT_PRODUCT, 
-    payload: updateQuantity
+    payload: updateQuantity,
+    price: subtotalPrice
   });
 }
 
@@ -178,9 +201,7 @@ function showQuantity(id) {
 
   const detailCartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
 
-  detailCartProducts.map(item => {
-    if(item.id === id) quantity = item.quantity;
-  })
+  detailCartProducts.map(item => item.id === id ? quantity = item.quantity : 1);
 
   return quantity;
 }
@@ -209,7 +230,7 @@ function showQuantity(id) {
         incrementQuantityProduct,
         decrementQuantityProduct,
         aplyDesc,
-        showQuantity
+        showQuantity,
       }}
     >
       {children}

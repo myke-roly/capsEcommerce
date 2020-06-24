@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useState, useContext, useRef, useCallback, useEffect } from 'react';
 import { WrapperProduct, Images, Detail, Section } from './styled';
 import Button from '../../common/Button';
 import { ContextMobile } from '../../context/MobileContext';
@@ -15,6 +15,11 @@ const Product = ({ data }) => {
   const {  modal, closeModal, addToCart } = contextProducts;
   const [quantity, setQuantity] = useState(1);
   const refColor = useRef(null);
+  const [totalPriceProduct, setTotalPriceProduct] = useState(data.price);
+  
+  useEffect(() => {
+    setTotalPriceProduct(data.price * quantity);
+  }, [quantity])
 
   const incrementQuantity = useCallback(() => {
     setQuantity(quantity + 1);
@@ -23,8 +28,7 @@ const Product = ({ data }) => {
   const decrementQuantity = useCallback(() => {
     if(quantity === 1) return;
     setQuantity(quantity - 1);
-  }, [quantity]);
-
+  }, [quantity]);  
   
   const selectColor = color => {
     refColor.current = color;
@@ -73,7 +77,7 @@ const Product = ({ data }) => {
             size="block"
             text="Agregar al carrito"
             color="tercero"
-            onClick={() => addToCart(data._id, quantity, refColor.current)}
+            onClick={() => addToCart(data._id, quantity, refColor.current, data.price, totalPriceProduct)}
           />
           <Section>
             <span>

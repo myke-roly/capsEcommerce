@@ -26,7 +26,6 @@ const ProductsReducer = (state, action) => {
         modal: false,
         subTotalPrice: action.price,
         totalPrice: action.price
-
       };
     case ADD_TO_CART:
       sessionStorage.setItem('cartItems', JSON.stringify(action.meta));
@@ -71,13 +70,17 @@ const ProductsReducer = (state, action) => {
       sessionStorage.setItem('cartItems', JSON.stringify(action.payload));
       return {
         ...state,
-        detailCartProducts: action.payload
+        detailCartProducts: action.payload,
+        subTotalPrice: action.price,
+        totalPrice: action.price
       };
       case DECREMENT_PRODUCT:
       sessionStorage.setItem('cartItems', JSON.stringify(action.payload));
       return {
         ...state,
-        detailCartProducts: action.payload
+        detailCartProducts: action.payload,
+        subTotalPrice: action.price,
+        totalPrice: action.price
       };
     case APLY_DESC:
       return {
