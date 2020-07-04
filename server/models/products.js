@@ -21,6 +21,9 @@ const ProductScheme = new Schema({
   talles: {
     type: String,
   },
+  stock: {
+    type: String
+  },
   images: [
     { 
       type: String
