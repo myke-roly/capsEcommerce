@@ -3,7 +3,8 @@ const Products = require('../models/products');
 exports.addProduct = async (req, res) => {
   try {
     let product = new Products(req.body);
-    res.status(200).json({ name: product.title });
+    
+    res.status(200).json({ message: 'Producto agragado!' });
     await product.save();
   } catch (error) {
     console.log(error);
