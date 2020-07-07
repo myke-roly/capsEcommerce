@@ -6,7 +6,7 @@ import { ContextMP } from '../../context/MPContext';
 
 const Footer = () => {
   const contextMP = React.useContext(ContextMP);
-  const { dataMP } = contextMP;
+  const { getMethodsPayment } = contextMP;
 
   const yeard = new Date().getFullYear();
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
           <a href="https://www.facebook.com/" target="_blank" rel="noreferrer noopener" arial-label="link facebook"><IoLogoFacebook /><span>facebook</span></a>
         </FooterSocial>
         <p><small>myke_roly | {yeard} &copy; Derechos reservados</small></p>
-        <button onClick={() => console.log(dataMP)}>get data</button>
+        <button onClick={getMethodsPayment}>get data</button>
       </Container>
     </FooterWrapper>
   );

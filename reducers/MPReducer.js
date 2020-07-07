@@ -1,9 +1,11 @@
+import * as actions from '../types';
+
 const MPReducer = (state, action) => {
   switch (action.type) {
-    case 'SHOW_DATA_MP':
+    case actions.GET_METHODS_PAYMENT:
       return {
         ...state,
-        data: action.payload
+        methodsPayment: action.payload
       }
     default:
       return {...state};
