@@ -10,8 +10,7 @@ const MPContext = ({ children }) => {
     // const url = 'https://api.mercadopago.com/v1/payment_methods/?access_token=APP_USR-5829357135251490-052000-2484795b9b0db9256a78b7096bc9f5ba-570859984'
     const url = `${process.env.BASE_URL_MP}payment_methods/?access_token=${process.env.ACCESS_TOKEN}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => console.log(data))
+    .then(response => console.log(response))
     .catch(err => console.log(err));
   };
 
