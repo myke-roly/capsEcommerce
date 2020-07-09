@@ -29,3 +29,6 @@ export const GET_TOTAL_PRICE = 'GET_TOTAL_PRICE';
 export const APLY_DESC = 'APLY_DESC';
 export const GET_ITEMS = 'GET_ITEMS';
 export const QUANTITY_PRODUCT = 'QUANTITY_PRODUCT';
+
+// MERCADO PAGO
+export const GET_METHODS_PAYMENT = 'GET_METHODS_PAYMENT'; 
