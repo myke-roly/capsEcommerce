@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Items, Item, Detail, WrapperDetails } from './styled';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Trash } from 'react-feather';
+import { Trash, ArrowLeft } from 'react-feather';
 import { useRouter } from 'next/router';
 import Button from '../../common/Button';
 import { ContextProducts } from '../../context/';
@@ -86,24 +86,16 @@ const DetailsCart = ({ data }) => {
             Total <span>$ {totalPrice}</span>
           </p>
           <hr />
-          <a href={urlWathsapp} target="_blank" rel="noopener noreferrer">
-            <Button 
-              text="Terminar la compra por Whatsapp" 
-              color="success" 
-              size="block" 
-            />
-          </a>
           <Button 
             color="secondary" 
             size="block" 
-            text="Pagar con Mercado Pago" 
+            text="Finalizar compra" 
             onClick={() => router.push('/payment')} />
-          <Button
-            color="tercero"
-            size="block"
-            text="Seguir comprando"
-            onClick={() => router.push('/productos')}
-          />
+          <Link href="/productos">
+            <a className="back-to-products">
+              <ArrowLeft size="12" /> Seguir comprando
+            </a>
+          </Link>
         </div>
       </Detail>
     </WrapperDetails>

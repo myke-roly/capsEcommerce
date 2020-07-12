@@ -165,5 +165,10 @@ export const Detail = styled.section`
     button {
       margin: .8rem 0;
     }
+    .back-to-products {
+      text-align: center;
+      color: ${({ theme }) => theme.color.default};
+      border-bottom: 1px solid;
+    }
   }
 `;
