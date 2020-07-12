@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Nav, Title, Links, CartItem } from './styled';
+import { Nav, Links, CartItem } from './styled';
 import { User, ShoppingCart } from 'react-feather';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,6 +7,7 @@ import Search from '../../components/searchInput';
 import { Container } from '../../common/Container';
 import MenuMobile from '../../common/MenuMobile';
 import BurguerMenu from '../../common/BurguerMenu';
+import { Logo } from '../../common/Logo';
 
 import { ContextAuth } from '../../context';
 import { ContextMobile } from '../../context';
@@ -53,11 +54,7 @@ const NavBar = () => {
   return (
     <Nav>
       <Container>
-        <Title>
-          <Link href="/">
-            <a>Caps <small>.:: o</small></a>
-          </Link>
-        </Title>
+        <Logo />
         {!modeMobile && (
           <Links>
             <Search />

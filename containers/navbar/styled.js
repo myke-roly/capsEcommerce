@@ -70,20 +70,6 @@ export const Links = styled.ul`
   }
 `;
 
-export const Title = styled.h1`
-  text-transform: uppercase;
-  font-size: 1.2em;
-  letter-spacing: 0.2rem;
-
-  a {
-    color: ${({ theme }) => theme.color.dark};
-
-    small {
-      font-size: 0.5em;
-    }
-  }
-`;
-
 export const CartItem = styled.a`
   position: relative;
 
