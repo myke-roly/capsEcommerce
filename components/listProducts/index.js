@@ -40,5 +40,4 @@ const Producto = ({ productos, loading }) => {
     </>
   );
 };
-
 export default Producto;

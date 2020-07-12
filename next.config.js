@@ -9,7 +9,7 @@ module.exports = {
   env: {
     PORT: process.env.PORT,
     URL_BASE: url_base,
-    BASE_URL_MP: process.env.BASE_URL_MP,
+    URL_BASE_MP: process.env.URL_BASE_MP,
     ACCESS_TOKEN: process.env.ACCESS_TOKEN
   },
   compress: true

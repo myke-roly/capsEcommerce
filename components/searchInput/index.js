@@ -21,7 +21,7 @@ const Buscador = () => {
   const handleChange = (e) => {
     const text = e.target.value;
     setTextSearch(text);
-    if(text) getResultsSearch(text);
+    if(text) getResultsSearch(text.toUpperCase());
   };
 
   const handleKeyPress = (e) => {
