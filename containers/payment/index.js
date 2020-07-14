@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Logo } from '../../common/Logo';
 import { Header } from './styled';
 import Subtitle from './components/Subtitle';
@@ -10,14 +10,18 @@ import MethodsPayment from './components/MethodsPayment';
 import Button from '../../common/Button';
 
 const PaymentWrapper = () => {
+  const [step, setStep] = useState(1);
+  function nextStep() {
+    setStep(step => step + 1);
+  }
   return (
     <>
       <Header><Logo /></Header>
       <Container>
         <Title title="Finalizar compra" />
-        <PersonalData />
-        <DatosEnvio />
-        <MethodsPayment />
+        <PersonalData step={step} nextStep={nextStep} />
+        {/* <DatosEnvio />
+        <MethodsPayment /> */}
         
         {/* Mostrar el boton si todos los datos son correctos */}
         {false && <Button text="Finalizar Compra" size="block" color="dark" />}

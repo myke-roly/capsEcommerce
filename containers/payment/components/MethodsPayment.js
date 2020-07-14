@@ -9,7 +9,7 @@ const MethodsPayment = () => {
       <Subtitle option="3" subtitle="Medios de pago" />
       <InfoWrapper>
         <p>Methodos de pago</p>
-        <Button size="block" text="Pagar" color="default" />
+        <Button size="block" text="Pagar" color="secondary" />
       </InfoWrapper>
     </div>
   );

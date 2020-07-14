@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Error = styled.small`
+  color: red;
+  font-size: .8em;
+`;
+
 export const Header = styled.header`
   width: 100%;
   text-align: center;
