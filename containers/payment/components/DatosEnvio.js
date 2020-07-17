@@ -23,7 +23,6 @@ const DatosEnvio = ({ step, nextStep }) => {
     handleChange,
     handleBlur,
   } = useValidateInputs(initialState, validateDatosEnvio, next);
-  console.log(errors);
 
   const [showModificar, setShowModificar] = useState(false);
 
@@ -40,7 +39,7 @@ const DatosEnvio = ({ step, nextStep }) => {
         nextStep={nextStep}
         setShowModificar={setShowModificar}
       />
-      {showModificar && (
+      {showModificar && step !== 2 && (
         <div>
           <p>{state.CP}</p>
           <p>{state.address}</p>

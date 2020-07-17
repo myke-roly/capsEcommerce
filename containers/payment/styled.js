@@ -98,3 +98,17 @@ export const Flex = styled.div`
     width: 49%;
   }
 `;
+
+//
+// ─── METHOD PAYMENT ─────────────────────────────────────────────────────────────
+//
+
+export const MethodsPaymentStyle = styled.div`
+  text-align: center;
+  border: 2px solid ${({ theme }) => theme.color.default};
+  padding: 1rem;
+  margin: .5rem 0;
+  label {
+    margin-left: .5rem 
+  }
+`;
