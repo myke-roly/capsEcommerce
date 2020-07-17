@@ -11,20 +11,22 @@ import Button from '../../common/Button';
 
 const PaymentWrapper = () => {
   const [step, setStep] = useState(1);
-  function nextStep() {
-    setStep(step => step + 1);
+  function nextStep(step) {
+    setStep(step);
   }
+
+  console.log(step);
   return (
     <>
       <Header><Logo /></Header>
       <Container>
         <Title title="Finalizar compra" />
         <PersonalData step={step} nextStep={nextStep} />
-        {/* <DatosEnvio />
-        <MethodsPayment /> */}
+        <DatosEnvio step={step} nextStep={nextStep} />
+        <MethodsPayment step={step} nextStep={nextStep} />
         
         {/* Mostrar el boton si todos los datos son correctos */}
-        {false && <Button text="Finalizar Compra" size="block" color="dark" />}
+        {step === 4 && <Button text="Finalizar Compra" size="block" color="dark" />}
       </Container>
     </>
   )

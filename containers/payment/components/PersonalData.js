@@ -22,25 +22,20 @@ const PersonalData = ({ step, nextStep }) => {
     handleBlur,
   } = useValidateInputs(initialvalues, validatePersonalData, next);
 
-  const [showFrom, setShowForm] = useState(true);
   const [showModificar, setShowModificar] = useState(false);
 
   function next() {
-    console.log(state);
-    //ocultar formulario
-    //mostrar texto "modificar"
-    nextStep();
+    nextStep(2);
     setShowModificar(true);
-    setShowForm(false);
   }
 
   return (
     <div>
       <Subtitle
-        option="1"
+        step="1"
         subtitle="Datos Personales"
         showModificar={showModificar}
-        setShowForm={setShowForm}
+        nextStep={nextStep}
         setShowModificar={setShowModificar}
       />
       {showModificar && (
@@ -52,7 +47,7 @@ const PersonalData = ({ step, nextStep }) => {
           <p>{state.numberPhone}</p>
         </div>
       )}
-      {showFrom && (
+      {step === 1 && (
         <InfoWrapper>
           <p>
             Solicitamos solo la información necesaria para poder realizar la

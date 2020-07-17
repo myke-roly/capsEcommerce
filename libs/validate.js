@@ -60,3 +60,26 @@ export function validatePersonalData(values) {
   }
   return { errors };
 }
+
+//
+// ─── VALIDATE DATOSENVIO ────────────────────────────────────────────────────────
+//
+export function validateDatosEnvio(values) {
+  let errors = {};
+  if(values.CP === '') {
+    errors.CP = 'Ingrese su codigo postal';
+  }
+  if(values.address === '') {
+    errors.address = 'Ingrese una direccion de envio';
+  }
+  if(values.number === '') {
+    errors.number = 'Este campo no puede estar vacío';
+  }
+  if(values.city === '') {
+    errors.city = 'Este campo no puede estar vacío';
+  }
+  if(values.provincia === '') {
+    errors.provincia = 'Este campo no puede estar vacío';
+  }
+  return { errors };
+}

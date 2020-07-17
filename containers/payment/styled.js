@@ -89,10 +89,12 @@ export const Input = styled.div`
 //
 
   
-export const DetailAddress = styled.div`
+export const Flex = styled.div`
   display: flex;
-  div {
-    width: 98%;
-    margin-right: 2%;
+  justify-content: space-between;
+
+  div, select {
+    display: block;
+    width: 49%;
   }
 `;
