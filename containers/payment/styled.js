@@ -27,11 +27,11 @@ export const SubtitleStyle = styled.div`
     font-size: 1em;
 
     span {
-    /* background: ${({ theme }) => theme.color.tercero}; */
+    background: ${({ showModificar, theme }) => showModificar ? theme.color.secondary : ''};
+    color: ${({ showModificar, theme }) => showModificar ? theme.color.primary : theme.color.tercero };
     display: inline-block;
     border-radius: 50%;
     border: 1px solid ${({ theme }) => theme.color.tercero};
-    color: ${({ theme }) => theme.color.tercero};
     font-size: 1.2em;
     font-weight: bold;
     height: 30px;

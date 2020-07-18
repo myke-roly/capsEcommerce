@@ -33,3 +33,18 @@ export const FooterSocial = styled.address`
     }
   }
 `;
+
+export const Flags = styled.div`
+  width: 75%;
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+
+  img {
+    width: 25px;
+    margin: .2rem;
+  }
+`;
