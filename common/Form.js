@@ -12,10 +12,10 @@ const ldsRing = keyframes`
 `;
 
 const Forms = styled.div`
-  width: 650px;
+  max-width: 500px;
   margin: auto;
   height: 100%;
-  padding: 3em;
+  padding: .5rem;
   @media (max-width: 720px) {
     width: 100%;
   }

@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
-export const WrapperContact = styled.div`
+export const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  padding: 2em 0;
-  @media (max-width: 900px) {
-    font-size: 14px;
-  }
-
-  button {
-    border-radius: 0;
-    margin-top: 1rem;
+  > p {
+    width: 48%;
   }
 `;
 
@@ -21,6 +17,6 @@ export const Input = styled.p`
   input,
   textarea {
     color: ${(props) => props.theme.color.default};
-    border: 2px solid ${(props) => props.theme.color.default};
+    border: 1px solid ${(props) => props.theme.color.default};
   }
 `;

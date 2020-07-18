@@ -4,7 +4,7 @@ export const FooterWrapper = styled.footer`
   background: #000;
   padding: 1.5rem 0;
   color: white;
-  text-align: center;
+  /* text-align: center; */
 
   p {
     font-size: .8em;
@@ -34,12 +34,31 @@ export const FooterSocial = styled.address`
   }
 `;
 
+export const Copy = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+
+  .others {
+    padding: 1rem;
+    text-align: center;
+  }
+`;
+
 export const Flags = styled.div`
-  width: 75%;
+  width: 90%;
   margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 
 

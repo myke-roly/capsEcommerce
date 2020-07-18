@@ -39,7 +39,6 @@ const NavBar = () => {
     { id: 0, title: 'inicio', path: '/' },
     { id: 1, title: 'productos', path: '/productos' },
     { id: 2, title: 'sobre nosotros', path: '/sobre-nosotros' },
-    { id: 3, title: 'contacto', path: '/contacto' },
   ];
 
   const Items = () =>

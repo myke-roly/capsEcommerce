@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Flags } from './styled';
 import { useFetch } from '../../hooks/useFetch';
 
