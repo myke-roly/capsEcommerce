@@ -21,7 +21,7 @@ export const SearchWrapper = styled.div`
     font-size: 0.8em;
     border-radius: 7px;
     border: 2px solid ${({ theme }) => theme.color.gray};
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
 `;
 

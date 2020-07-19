@@ -56,7 +56,7 @@ const Buscador = () => {
         </LabelIcon>
         {searchON && (
           <SearchWrapper modeMobile={modeMobile}>
-            <ArrowLeft />
+            {modeMobile && <ArrowLeft />}
             <input
               type="text"
               id="search"

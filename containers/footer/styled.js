@@ -41,6 +41,7 @@ export const Copy = styled.p`
 
 export const Flex = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   @media (max-width: 900px) {
@@ -48,6 +49,7 @@ export const Flex = styled.div`
   }
 
   .others {
+    width: 100%;
     padding: 1rem;
     text-align: center;
   }
