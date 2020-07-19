@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Search, ChevronRight } from 'react-feather';
+import { Search, ChevronRight, ArrowLeft } from 'react-feather';
 import { SearchWrapper, ResultSearch, LabelIcon } from './styled';
 import { ContextSearch } from '../../context/SearchContext';
 import { ContextMobile } from '../../context/MobileContext';
@@ -56,6 +56,7 @@ const Buscador = () => {
         </LabelIcon>
         {searchON && (
           <SearchWrapper modeMobile={modeMobile}>
+            <ArrowLeft />
             <input
               type="text"
               id="search"
