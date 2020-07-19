@@ -5,7 +5,7 @@ import { axiosFetch } from '../../API/axios';
 import Product from '../../components/product';
 import Head from 'next/head';
  
-const Producto = ({ data, id }) => {
+const Producto = ({ data }) => {
 
   return (
     <>
@@ -23,7 +23,7 @@ export async function getServerSideProps({ query }) {
   const { id } = query;
   const response = await axiosFetch.get(`/api/producto/${id}`);
   const data = response.data.product;
-  return { props: { data, id } };
+  return { props: { data } };
 }
 
 export default Producto;

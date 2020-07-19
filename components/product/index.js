@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useCallback, useEffect } from 'react';
-import { WrapperProduct, Images, Detail, Section } from './styled';
+import { WrapperProduct, Images, MainImage, Carrousel, Detail, Section } from './styled';
 import Button from '../../common/Button';
 import { ContextMobile } from '../../context/MobileContext';
 import Title from '../../common/Title';
@@ -13,8 +13,10 @@ const Product = ({ data }) => {
 
   const contextProducts = useContext(ContextProducts);
   const {  modal, closeModal, addToCart } = contextProducts;
+
   const [quantity, setQuantity] = useState(1);
-  const refColor = useRef(null);
+  const [selectedColor, setSelectColor] = useState(null);
+  const [mainImage, setMainImage] = useState(0);
   const [totalPriceProduct, setTotalPriceProduct] = useState(data.price);
   
   useEffect(() => {
@@ -28,10 +30,26 @@ const Product = ({ data }) => {
   const decrementQuantity = useCallback(() => {
     if(quantity === 1) return;
     setQuantity(quantity - 1);
-  }, [quantity]);  
-  
-  const selectColor = color => {
-    refColor.current = color;
+  }, [quantity]);
+
+  function showColors() {
+    return data.colors.map((color, index) => (
+      <span
+        key={index}
+        className={`color ${color === selectedColor && 'color-selected'}`}
+        id={color}
+        style={{ background: color }}
+        onClick={(e) => setSelectColor(e.target.id)}
+      ></span>
+    ))
+  }
+
+  function showImages() {
+    return data.images.map((image, index) => (
+      <figure key={index} onClick={() => setMainImage(index)}>
+        <img src={image} alt="gorra" />
+      </figure>
+    ))
   }
 
   return (
@@ -39,27 +57,15 @@ const Product = ({ data }) => {
       {modal && <ModalCart closeModal={closeModal} />}
       <WrapperProduct modeMobile={modeMobile}>
         <Images>
-          <img src={data.images[0]} alt="img" />
+          <MainImage><img onClick={(e) => e.target.classList.toggle('scale') } src={data.images[mainImage]} alt="Gorra" /></MainImage>
+          <Carrousel>{showImages()}</Carrousel>
         </Images>
         <Detail>
           <Title title={data.title} />
-          <Section>
-            <h4 className="price">${data.price}.00</h4>
-          </Section>
-          <hr />
+          <h4 className="price">$ {data.price}.00</h4>
           <Section>
             <h4>Colores: </h4>
-            <p>
-              {data.colors.map((color, index) => (
-                <span
-                  key={index}
-                  className="color"
-                  id={color}
-                  style={{ background: color }}
-                  onClick={(e) => selectColor(e.target.id)}
-                ></span>
-              ))}
-            </p>
+            <p>{showColors()}</p>
           </Section>
           <Section>
             <h4>Talle: </h4>
@@ -73,18 +79,18 @@ const Product = ({ data }) => {
               <span onClick={incrementQuantity}>+</span>
             </p>
           </Section>
-          <Button
-            size="block"
-            text="Agregar al carrito"
-            color="tercero"
-            onClick={() => addToCart(data._id, quantity, refColor.current, data.price, totalPriceProduct)}
-          />
           <Section>
             <span>
               <h4>Descripcion: </h4>
               <p className="description">{data.description}</p>
             </span>
           </Section>
+          <Button
+            size="block"
+            text="Agregar al carrito"
+            color="secondary"
+            onClick={() => addToCart(data._id, quantity, selectedColor, data.price, totalPriceProduct)}
+          />
         </Detail>
       </WrapperProduct>
     </>
