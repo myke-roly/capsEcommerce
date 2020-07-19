@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const WrapperMain = styled.div`
   color: ${({ theme }) => theme.color.default};
+  & > div {
+    padding: 3rem 0;
+  }
 `;
 
 export const WrapperGrid = styled.section`

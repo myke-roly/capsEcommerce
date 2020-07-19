@@ -4,6 +4,7 @@ import { WrapperMain, WrapperGrid } from './styled';
 import Button from '../../common/Button';
 import ListProducts from '../../components/listProducts';
 import { ContextProducts } from '../../context/ProductsContext';
+import { Container } from '../../common/Container';
 
 const Main = () => {
   const contextProducts = useContext(ContextProducts);
@@ -15,7 +16,9 @@ const Main = () => {
   
   return (
     <WrapperMain>
-      <ListProducts productos={products} loading={loading} />
+      <Container>
+        <ListProducts productos={products} loading={loading} />
+      </Container>
       <WrapperGrid>
         <img src="./cap-man.jpeg" alt="img-cap" />
         <div className="section-content">

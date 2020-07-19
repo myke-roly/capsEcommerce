@@ -1,17 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Layout from '../containers/layout';
-import ListProducts from '../components/listProducts';
-import { ContextProducts } from '../context/ProductsContext';
+import { axiosFetch } from '../API/axios';
+import Products from '../containers/products';
 
-const Productos = () => {
-  const contextProducts = useContext(ContextProducts);
-  const { products, loading, getProducts } = contextProducts;
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+const Productos = ({ products }) => {
   return (
     <>
       <Head>
@@ -19,10 +12,17 @@ const Productos = () => {
         <title>Productos | CAPSARG</title>
       </Head>
       <Layout>
-        <ListProducts productos={products} loading={loading} />
+        <Products products={products} />
       </Layout>
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const response = await axiosFetch.get('/api/productos');
+  const { products } = response.data;
+
+  return { props: { products }}
+}
 
 export default Productos;

@@ -10,31 +10,28 @@ const Producto = ({ productos, loading }) => {
   const contextMobile = useContext(ContextMobile);
   const { modeMobile } = contextMobile;
 
+  function printProduct() {
+    return productos.map((product) => (
+      <Link key={product._id} href={`/producto/[id]/`} as={`/producto/${product._id}`}>
+        <ItemProduct modeMobile={modeMobile}>
+          <figure>
+            <img src={product.images[0]} alt="img" />
+          </figure>
+          <ItemInfo modeMobile={modeMobile}>
+            <p>$ {product.price} <FaShoppingCart size="12" color="#555" /></p>
+            <h3>{product.title}</h3>
+          </ItemInfo>
+        </ItemProduct>
+      </Link>
+    ))
+  }
+
   return (
     <>
       {loading && <Loader />}
       {productos && (
         <ItemsProducts modeMobile={modeMobile}>
-          <Container>
-            {productos.map((product) => (
-              <div key={product._id}>
-                <Link href={`/producto/[id]/`} as={`/producto/${product._id}`}>
-                  <ItemProduct>
-                    <figure>
-                      <img src={product.images[0]} alt="img" />
-                    </figure>
-                    <ItemInfo modeMobile={modeMobile}>
-                      <h3>{product.title}</h3>
-                      <p>$ {product.price}</p>
-                      <a>
-                        Agregar al carrito <FaShoppingCart />
-                      </a>
-                    </ItemInfo>
-                  </ItemProduct>
-                </Link>
-              </div>
-            ))}
-          </Container>
+            {printProduct()}
         </ItemsProducts>
       )}
     </>

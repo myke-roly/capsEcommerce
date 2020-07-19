@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useRef, useCallback } from 'react';
+import { createContext, useReducer } from 'react';
 import ProductsReducer from '../reducers/ProductsReducer';
 import { axiosFetch } from '../API/axios';
 import { useFetchById } from '../hooks/useFetchById';
@@ -12,12 +12,8 @@ import {
   INCREMENT_PRODUCT,
   DECREMENT_PRODUCT,
   HIDDEN_MODAL,
-  SUBTOTAL_PRICE,
-  GET_TOTAL_PRICE,
   APLY_DESC,
-  QUANTITY_PRODUCT
 } from '../types';
-import { filter } from 'compression';
 
 export const ContextProducts = createContext();
 const ProductsContext = ({ children }) => {
