@@ -4,6 +4,7 @@ import { Input, InfoWrapper, Flex, DataStyles, Error } from '../styled';
 import Button from '../../../common/Button';
 import useValidateInputs from '../../../hooks/useValidateInputs';
 import { validateDatosEnvio } from '../../../libs/validate';
+import { Truck } from 'react-feather';
 
 const DatosEnvio = ({ step, nextStep }) => {
   const initialState = {
@@ -38,6 +39,7 @@ const DatosEnvio = ({ step, nextStep }) => {
         showModificar={showModificar}
         nextStep={nextStep}
         setShowModificar={setShowModificar}
+        Icon={Truck}
       />
       {showModificar && step !== 2 && (
         <DataStyles>

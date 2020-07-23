@@ -4,6 +4,7 @@ import { Input, InfoWrapper, Error, DataStyles, Flex } from '../styled';
 import Button from '../../../common/Button';
 import useValidateInputs from '../../../hooks/useValidateInputs';
 import { validatePersonalData } from '../../../libs/validate';
+import { Book } from 'react-feather';
 
 const PersonalData = ({ step, nextStep, modificar, setModificar }) => {
   const initialvalues = {
@@ -40,6 +41,7 @@ const PersonalData = ({ step, nextStep, modificar, setModificar }) => {
         showModificar={showModificar}
         nextStep={nextStep}
         setShowModificar={setShowModificar}
+        Icon={Book}
       />
       {showModificar && (
         <DataStyles>

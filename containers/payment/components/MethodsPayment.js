@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Subtitle from './Subtitle';
-import { InfoWrapper, MethodsPaymentStyle, Error } from '../styled';
+import { InfoWrapper, MethodsPaymentStyle, Error, DataStyles } from '../styled';
 import Button from '../../../common/Button';
+import { CreditCard } from 'react-feather';
 
 const MethodsPayment = ({ step, nextStep, method, setMethod }) => {
   const [showModificar, setShowModificar] = useState(false);
@@ -17,30 +18,35 @@ const MethodsPayment = ({ step, nextStep, method, setMethod }) => {
     setError('');
   }
   return (
-    <div>
+    <MethodsPaymentStyle>
       <Subtitle
         step="3"
         subtitle="Medios de pago"
         showModificar={showModificar}
         nextStep={nextStep}
         setShowModificar={setShowModificar}
+        Icon={CreditCard}
       />
       {showModificar && step !== 3 && (
-        <p style={pStyle}>Pagar a travez de {method}</p>
+        <DataStyles>
+          <p> Metodo de pago elegido: <b>{method.toUpperCase()}</b></p>
+          <img className={method} src={method+'.png'} />
+        </DataStyles>
       )}
       {step === 3 && (
         <InfoWrapper>
-          <MethodsPaymentStyle>
+          <section>
             <input
               type="radio"
               onChange={(e) => setMethod(e.target.value)}
-              value="MP"
-              id="MP"
+              value="mercadoPago"
+              id="mercadoPago"
               name="methodPaymenyt"
             />
-            <label htmlFor="MP">Mercado Pago</label>
-          </MethodsPaymentStyle>
-          <MethodsPaymentStyle>
+            <label htmlFor="mercadoPago">Mercado Pago</label>
+            <img src="./mercadoPago.png" className="mercadoPago" alt="mercado pago logo" />
+          </section>
+          <section>
             <input
               type="radio"
               value="whatsapp"
@@ -48,8 +54,9 @@ const MethodsPayment = ({ step, nextStep, method, setMethod }) => {
               id="whatsapp"
               name="methodPaymenyt"
             />
-            <label htmlFor="other">Whatsapp</label>
-          </MethodsPaymentStyle>
+            <label htmlFor="whatsapp">Whatsapp</label>
+            <img src="./whatsapp.png" className="whatsapp" alt="whatsapp logo" />
+          </section>
           {error && <Error>{error}</Error>}
           <Button
             size="block"
@@ -59,12 +66,8 @@ const MethodsPayment = ({ step, nextStep, method, setMethod }) => {
           />
         </InfoWrapper>
       )}
-    </div>
+    </MethodsPaymentStyle>
   );
 };
-
-const pStyle = {
-  padding: '1rem'
-}
 
 export default MethodsPayment;
