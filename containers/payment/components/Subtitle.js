@@ -1,15 +1,15 @@
 import React from 'react';
-import { SubtitleStyle } from '../styled';
+import { SubtitleStyle, Edit } from '../styled';
 
 const Subtitle = ( { step, subtitle,showModificar, nextStep, setShowModificar }) => {
-  const handleClick = () => {
+  const showTextModificar = () => {
     nextStep(Number(step));
     setShowModificar(false)
   }
   return (
     <SubtitleStyle showModificar={showModificar}>
       <h3><span>{ step }</span> { subtitle }</h3>
-      {showModificar && <p onClick={handleClick}>Modificar</p>}
+      {showModificar && <Edit onClick={showTextModificar}>Modificar</Edit>}
     </SubtitleStyle>
   );
 };

@@ -47,6 +47,10 @@ export const SubtitleStyle = styled.div`
   }
 `;
 
+export const Edit = styled.p`
+  cursor: pointer;
+`;
+
 //
 // ─── PERSONAL DATA ──────────────────────────────────────────────────────────────
 //
@@ -60,6 +64,10 @@ export const InfoWrapper = styled.div`
     font-size: 0.9em;
     margin: 0.5rem 0;
     color: ${({ theme }) => theme.color.default};
+  }
+  .CP {
+    display: block;
+    width: 100px;
   }
 `;
 
@@ -84,6 +92,21 @@ export const Input = styled.div`
   }
 `;
 
+export const DataStyles = styled.div`
+  margin: 1rem auto;
+  /* border-left: 2px solid #ccc; */
+  width: auto;
+  padding: .5rem;
+  padding-left: 1rem;
+  p{
+    font-size: .85em;
+    color: ${({ theme }) => theme.color.default};
+    font-family: Tahoma;
+    letter-spacing: .7px;
+    line-height: 1.7;
+  }
+`;
+
 //
 // ─── DETALLES DE ENVIO ──────────────────────────────────────────────────────────
 //
@@ -93,9 +116,12 @@ export const Flex = styled.div`
   display: flex;
   justify-content: space-between;
 
-  div, select {
+  div {
     display: block;
     width: 49%;
+    select {
+      width: 100%;
+    }
   }
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Subtitle from './Subtitle';
-import { Input, InfoWrapper, Flex } from '../styled';
+import { Input, InfoWrapper, Flex, DataStyles, Error } from '../styled';
 import Button from '../../../common/Button';
 import useValidateInputs from '../../../hooks/useValidateInputs';
 import { validateDatosEnvio } from '../../../libs/validate';
@@ -10,7 +10,7 @@ const DatosEnvio = ({ step, nextStep }) => {
     CP: '',
     address: '',
     detailAddress: '',
-    number: 0,
+    number: null,
     pisoDep: '',
     city: '',
     provincia: '',
@@ -40,21 +40,22 @@ const DatosEnvio = ({ step, nextStep }) => {
         setShowModificar={setShowModificar}
       />
       {showModificar && step !== 2 && (
-        <div>
-          <p>{state.CP}</p>
-          <p>{state.address}</p>
-          <p>{state.number}</p>
-          <p>{state.pisoDep}</p>
-          <p>{state.detailAddress}</p>
-          <p>{state.city}</p>
-          <p>{state.provincia}</p>
-        </div>
+        <DataStyles>
+          <p>Código Postal: <b>{state.CP}</b></p>
+          <p>Dirección de envio: <b>{state.address}</b></p>
+          <p>Número de casa: <b>{state.number}</b></p>
+          <p>Entre calles: <b>{state.detailAddress}</b></p>
+          <p>Piso/Depto: <b>{state.pisoDep}</b></p>
+          <p>Ciudad: <b>{state.city}</b></p>
+          <p>Província: <b>{state.provincia}</b></p>
+        </DataStyles>
       )}
       {step === 2 && (
         <InfoWrapper>
           <Input>
             <label htmlFor="C">Código Postal *:</label>
             <input
+              className="CP"
               value={state.CP}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -62,6 +63,7 @@ const DatosEnvio = ({ step, nextStep }) => {
               name="CP"
               id="CP"
             />
+              {errors.CP && <Error>{errors.CP}</Error>}
           </Input>
           <Input>
             <label htmlFor="address">Dirección de Envio *:</label>
@@ -73,9 +75,10 @@ const DatosEnvio = ({ step, nextStep }) => {
               name="address"
               id="address"
             />
+            {errors.address && <Error>{errors.address}</Error>}
           </Input>
           <Input>
-            <label htmlFor="detail-addrress">Entre calles :</label>
+            <label htmlFor="detail-addrress">Entre calles <i>(Opcional)</i> :</label>
             <input
               value={state.detailAddress}
               onChange={handleChange}
@@ -86,7 +89,7 @@ const DatosEnvio = ({ step, nextStep }) => {
           </Input>
           <Flex>
             <Input>
-              <label htmlFor="num">Número: *</label>
+              <label htmlFor="number">Número: *</label>
               <input
                 value={state.number}
                 onChange={handleChange}
@@ -95,10 +98,12 @@ const DatosEnvio = ({ step, nextStep }) => {
                 placeholder="1234"
                 name="number"
                 className="number"
+                id="number"
               />
+              {errors.number && <Error>{errors.number}</Error>}
             </Input>
             <Input>
-              <label htmlFor="number">Piso/Dep :</label>
+              <label htmlFor="piso-dep">Piso/Dep :</label>
               <input
                 value={state.pisoDep}
                 onChange={handleChange}
@@ -108,20 +113,26 @@ const DatosEnvio = ({ step, nextStep }) => {
                 id="piso-dep"
                 className="piso-dep"
               />
+              {errors.pisoDep && <Error>{errors.pisoDep}</Error>}
             </Input>
           </Flex>
           <Flex>
+           <div>
             <select
-              value={state.city}
-              onChange={handleChange}
-              style={SelectStyle}
-              name="city"
-              id="city"
-            >
-              <option value="BA">Buenos Aires</option>
-              <option value="RO">Rosario</option>
-              <option value="CB">Cordoba</option>
-            </select>
+                value={state.city}
+                onChange={handleChange}
+                style={SelectStyle}
+                name="city"
+                id="city"
+              >
+                <option value="">Ciudad</option>
+                <option value="BA">Buenos Aires</option>
+                <option value="RO">Rosario</option>
+                <option value="CB">Cordoba</option>
+              </select>
+              {errors.city && <Error>{errors.city}</Error>}
+           </div>
+           <div>
             <select
               value={state.provincia}
               onChange={handleChange}
@@ -129,10 +140,13 @@ const DatosEnvio = ({ step, nextStep }) => {
               name="provincia"
               id="provincia"
             >
+              <option value="">Província</option>
               <option value="BA">Buenos Aires</option>
               <option value="CABA">Ciudad autonoma de Buenos aires</option>
               <option value="CB">Cordoba</option>
             </select>
+            {errors.provincia && <Error>{errors.provincia}</Error>}
+           </div>
           </Flex>
 
           {/* elegir forma de envio */}

@@ -11,6 +11,7 @@ import Button from '../../common/Button';
 const PaymentWrapper = () => {
   const [step, setStep] = useState(1);
   const [method, setMethod] = useState(null);
+  const [modificar, setModificar] = useState(false);
   function nextStep(step) {
     setStep(step);
   }
@@ -23,8 +24,7 @@ const PaymentWrapper = () => {
       </Header>
       <Container>
         <Title title="Finalizar compra" />
-        <PersonalData step={step} nextStep={nextStep} />
-        <DatosEnvio step={step} nextStep={nextStep} />
+        <PersonalData step={step} nextStep={nextStep} modificar={modificar} setModificar={setModificar} />        <DatosEnvio step={step} nextStep={nextStep} />
         <MethodsPayment
           step={step}
           nextStep={nextStep}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Subtitle from './Subtitle';
-import { Input, InfoWrapper, Error } from '../styled';
+import { Input, InfoWrapper, Error, DataStyles, Flex } from '../styled';
 import Button from '../../../common/Button';
 import useValidateInputs from '../../../hooks/useValidateInputs';
 import { validatePersonalData } from '../../../libs/validate';
 
-const PersonalData = ({ step, nextStep }) => {
+const PersonalData = ({ step, nextStep, modificar, setModificar }) => {
   const initialvalues = {
     email: '',
     name: '',
@@ -27,6 +27,9 @@ const PersonalData = ({ step, nextStep }) => {
   function next() {
     nextStep(2);
     setShowModificar(true);
+    if(modificar === step) {
+      console.log(step)
+    }
   }
 
   return (
@@ -39,13 +42,13 @@ const PersonalData = ({ step, nextStep }) => {
         setShowModificar={setShowModificar}
       />
       {showModificar && (
-        <div>
-          <p>{state.email}</p>
-          <p>{state.name}</p>
-          <p>{state.lastName}</p>
-          <p>{state.dni}</p>
-          <p>{state.numberPhone}</p>
-        </div>
+        <DataStyles>
+          <p>Email: <b>{state.email}</b></p>
+          <p>Nombre: <b>{state.name}</b></p>
+          <p>Apellido: <b>{state.lastName}</b></p>
+          <p>DNI: <b>{state.dni}</b></p>
+          <p>Teléfono: <b>{state.numberPhone}</b></p>
+        </DataStyles>
       )}
       {step === 1 && (
         <InfoWrapper>
@@ -89,34 +92,34 @@ const PersonalData = ({ step, nextStep }) => {
             />
             {errors.lastName && <Error>{errors.lastName}</Error>}
           </Input>
-          <Input>
-            <label htmlFor="dni">DNI *:</label>
-            <input
-              type="number"
-              name="dni"
-              id="dni"
-              value={state.dni}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.dni && <Error>{errors.dni}</Error>}
-          </Input>
-          <Input>
-            <label htmlFor="number-phone">Teléfono/Móvil *:</label>
-            <div className="phone">
+          <Flex>
+            <Input>
+              <label htmlFor="dni">DNI *:</label>
               <input
                 type="number"
-                name="numberPhone"
-                id="number-phone"
-                className="number"
-                placeholder="11 - 22334455"
-                value={state.numberPhone}
+                name="dni"
+                id="dni"
+                value={state.dni}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </div>
-            {errors.numberPhone && <Error>{errors.numberPhone}</Error>}
-          </Input>
+              {errors.dni && <Error>{errors.dni}</Error>}
+            </Input>
+            <Input>
+              <label htmlFor="number-phone">Teléfono/Móvil *:</label>
+                <input
+                  type="number"
+                  name="numberPhone"
+                  id="number-phone"
+                  className="number"
+                  placeholder="11 - 22334455"
+                  value={state.numberPhone}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              {errors.numberPhone && <Error>{errors.numberPhone}</Error>}
+            </Input>
+          </Flex>
           <Button
             size="block"
             text="Siguiente"
