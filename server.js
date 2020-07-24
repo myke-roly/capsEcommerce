@@ -35,6 +35,8 @@ app.prepare().then(() => {
   server.use('/api/producto', require('./server/routes/products'));
   server.use('/api/search', require('./server/routes/search'));
 
+  server.use('/api/payment', require('./server/routes/payment'));
+
   /** Config Cors */
   server.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
