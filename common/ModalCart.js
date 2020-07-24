@@ -139,14 +139,14 @@ const ModalCart = ({ closeModal }) => {
     <WrapperModal>
       <ButtonCloseCart onClick={closeModal} title="Cerrar Modal" />
       <p className="alert-succes">Se agrego al carrito!</p>
-        <Item key={cartProduct._id}>
-          <img width={{width: '50px'}} src={cartProduct.images ? cartProduct.images[0] : ''} alt={cartProduct.title} />
+        <Item key={cartProduct.id}>
+          <img width={{width: '50px'}} src={cartProduct.image ? cartProduct.image : ''} alt={cartProduct.title} />
           <div className="content">
-            <Link href={`/producto/[id]/`} as={`/producto/${cartProduct._id}`}>
+            <Link href={`/producto/[id]/`} as={`/producto/${cartProduct.id}`}>
               <a>{cartProduct.title}</a>
             </Link>
           </div>
-          <Trash size={17} onClick={() => removeFromCart(cartProduct._id)} />
+          <Trash size={17} onClick={() => removeFromCart(cartProduct.id)} />
         </Item>
         <Button 
           size="block" 

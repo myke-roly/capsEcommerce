@@ -57,7 +57,8 @@ const ProductsContext = ({ children }) => {
       let subtotalPrice = 0;
       if(JSON.parse(dataStorage).length !== 0) {
         JSON.parse(dataStorage).map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct)
-      }      dispatch({ 
+      }
+      dispatch({ 
         type: LIST_CART_PRODUCTS,
         payload: filterProducts,
         price: subtotalPrice
@@ -67,26 +68,25 @@ const ProductsContext = ({ children }) => {
     }
   }
 
-  const addToCart = async (id, quantity, color, price, totalPriceProduct) => {
+  const addToCart = async (id, title, image, quantity, talle, color, price, totalPriceProduct) => {
     if(!sessionStorage.getItem('cartItems')) sessionStorage.setItem('cartItems', JSON.stringify([]));
     let alredyExist = false;
     // si el producto ya existe en el carrito no agregar
-    JSON.parse(sessionStorage.getItem('cartItems')).map(i => i.id === id ? alredyExist = true : false );
+    const productCart = JSON.parse(sessionStorage.getItem('cartItems'))
+    productCart.map(i => i.id === id ? alredyExist = true : false );
     if(alredyExist) return;
     
     let updateIds = [];
-    const response = await axiosFetch.get('/api/producto/'+id);
-    const { product } = response.data;
     
-    const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
-    updateIds.push(...updateIds, ...itemStorage,  {id, quantity, color, price, totalPriceProduct})
+    const itemStorage = productCart.filter(i => i.id !== id);
+    updateIds = [...updateIds, ...itemStorage,  {id, title, image, quantity, talle, color, price, totalPriceProduct}];
     
-    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
+    const items = productCart.length;
     // agregar producto al carrito
     dispatch({
       type: ADD_TO_CART,
       items: items + 1,
-      payload: product,
+      payload: {id, title, image},
       meta: updateIds,
     })
   }

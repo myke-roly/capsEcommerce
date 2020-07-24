@@ -93,16 +93,20 @@ export const Section = styled.section`
     font-weight: 400;
     text-transform: uppercase;
     line-height: 1.5rem;
-    span {
-      cursor: pointer;
-    }
   }
 
   .quantity {
-    padding: .5rem 1rem;
-    border: 2px solid ${({theme}) => theme.color.gray};
-    margin: 0 .2rem;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    span {
+      text-align: center;
+      width: 35px;
+      padding: .35rem;
+      font-size: .8em;
+    }
+    span:nth-child(2) {
+      border: 2px solid ${({theme}) => theme.color.gray};
+    }
   }
 
   .color {

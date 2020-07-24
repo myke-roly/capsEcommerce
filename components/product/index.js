@@ -18,6 +18,7 @@ const Product = ({ data }) => {
   const [selectedColor, setSelectColor] = useState(null);
   const [mainImage, setMainImage] = useState(0);
   const [totalPriceProduct, setTotalPriceProduct] = useState(data.price);
+  const [error, setError] = useState('');
   
   useEffect(() => {
     setTotalPriceProduct(data.price * quantity);
@@ -39,7 +40,10 @@ const Product = ({ data }) => {
         className={`color ${color === selectedColor && 'color-selected'}`}
         id={color}
         style={{ background: color }}
-        onClick={(e) => setSelectColor(e.target.id)}
+        onClick={(e) => {
+          setSelectColor(e.target.id)
+          setError('')
+        }}
       ></span>
     ))
   }
@@ -50,6 +54,14 @@ const Product = ({ data }) => {
         <img src={image} alt="gorra" />
       </figure>
     ))
+  }
+
+  function addProduct() {
+    if(!selectedColor) {
+      setError('Tienes que elegir un color');
+      return;
+    }
+    addToCart(data._id, data.title, data.images[0], quantity, data.talle, selectedColor, data.price, totalPriceProduct)
   }
 
   return (
@@ -66,6 +78,7 @@ const Product = ({ data }) => {
           <Section>
             <h4>Colores: </h4>
             <p>{showColors()}</p>
+            <small>{error && error}</small>
           </Section>
           <Section>
             <h4>Talle: </h4>
@@ -73,11 +86,11 @@ const Product = ({ data }) => {
           </Section>
           <Section>
             <h4>Cantidad:</h4>
-            <p>
+            <section className="quantity">
               <span onClick={decrementQuantity}>-</span>
-              <span className="quantity">{quantity}</span>
+              <span>{quantity}</span>
               <span onClick={incrementQuantity}>+</span>
-            </p>
+            </section>
           </Section>
           <Section>
             <span>
@@ -89,7 +102,7 @@ const Product = ({ data }) => {
             size="block"
             text="Agregar al carrito"
             color="secondary"
-            onClick={() => addToCart(data._id, quantity, selectedColor, data.price, totalPriceProduct)}
+            onClick={addProduct}
           />
         </Detail>
       </WrapperProduct>

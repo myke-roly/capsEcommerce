@@ -16,7 +16,7 @@ exports.sendPayment = (req, res) => {
       description: `Color ${item.color.toUpperCase()} - Talle ${item.talle.toUpperCase()}`,
       title: item.title,
       quantity: item.quantity,
-      unit_price: item.unit_price,
+      unit_price: item.price,
       currency_id: 'ARS',
     })
   )
