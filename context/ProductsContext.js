@@ -1,6 +1,7 @@
 import { createContext, useReducer } from 'react';
 import ProductsReducer from '../reducers/ProductsReducer';
 import { axiosFetch } from '../API/axios';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useFetchById } from '../hooks/useFetchById';
 import {
   LIST_PRODUCTS,
@@ -51,12 +52,12 @@ const ProductsContext = ({ children }) => {
     try {
       const response = await axiosFetch.get('/api/productos');
       const { products } = response.data;
-      const dataStorage = sessionStorage.getItem('cartItems');
-      const { filterProducts } = useFetchById(products, dataStorage);
+      const { storage } = useLocalStorage('cartItems');
+      const { filterProducts } = useFetchById(products, JSON.stringify(storage));
 
       let subtotalPrice = 0;
-      if(JSON.parse(dataStorage).length !== 0) {
-        JSON.parse(dataStorage).map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct)
+      if(storage.length !== 0) {
+        storage.map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct)
       }
       dispatch({ 
         type: LIST_CART_PRODUCTS,
@@ -69,19 +70,19 @@ const ProductsContext = ({ children }) => {
   }
 
   const addToCart = async (id, title, image, quantity, talle, color, price, totalPriceProduct) => {
-    if(!sessionStorage.getItem('cartItems')) sessionStorage.setItem('cartItems', JSON.stringify([]));
+    const { storage } = useLocalStorage('cartItems');
+    if(!storage) sessionStorage.setItem('cartItems', JSON.stringify([]));
     let alredyExist = false;
     // si el producto ya existe en el carrito no agregar
-    const productCart = JSON.parse(sessionStorage.getItem('cartItems'))
-    productCart.map(i => i.id === id ? alredyExist = true : false );
+    storage.map(i => i.id === id ? alredyExist = true : false );
     if(alredyExist) return;
     
     let updateIds = [];
-    
-    const itemStorage = productCart.filter(i => i.id !== id);
+
+    const itemStorage = storage.filter(i => i.id !== id);
     updateIds = [...updateIds, ...itemStorage,  {id, title, image, quantity, talle, color, price, totalPriceProduct}];
     
-    const items = productCart.length;
+    const items = storage.length;
     // agregar producto al carrito
     dispatch({
       type: ADD_TO_CART,
@@ -92,7 +93,8 @@ const ProductsContext = ({ children }) => {
   }
 
   const getTotalItemsCart = () => {
-    const items = sessionStorage.getItem('cartItems') ? JSON.parse(sessionStorage.getItem('cartItems')).length : 0;
+    const { storage } = useLocalStorage('cartItems')
+    const items = sessionStorage.getItem('cartItems') ? storage.length : 0;
 
     dispatch({
       type: GET_ITEMS,
@@ -104,11 +106,11 @@ const ProductsContext = ({ children }) => {
     let updateIds = [];
     let subtotalPrice = 0;
     
-    const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(i => i.id !== id);
-    updateIds.push(...updateIds, ...itemStorage);
+    const { storage } = useLocalStorage('cartItems')
+    const itemStorage = storage.filter(i => i.id !== id);
+    updateIds = [...updateIds, ...itemStorage];
 
-    const items = JSON.parse(sessionStorage.getItem('cartItems')).length;
-
+    const items = storage.length;
     updateIds.map(product => subtotalPrice = subtotalPrice + product.totalPriceProduct);
     
     dispatch({
@@ -132,8 +134,9 @@ const ProductsContext = ({ children }) => {
 const incrementQuantityProduct = (id) => {
   let updateQuantity = [];
   let subtotalPrice = 0;
-
-  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => {
+  
+  const { storage } = useLocalStorage('cartItems')
+  const itemStorage = storage.filter(item => {
     if(item.id === id) {
        item.quantity += 1;
        item.totalPriceProduct = item.price * item.quantity;
@@ -156,7 +159,8 @@ const decrementQuantityProduct = (id) => {
   let updateQuantity = [];
   let subtotalPrice = 0;
 
-  const itemStorage = JSON.parse(sessionStorage.getItem('cartItems')).filter(item => {
+  const { storage } = useLocalStorage('cartItems')
+  const itemStorage = storage.filter(item => {
     if(item.id === id && item.quantity >1) {
        item.quantity -= 1;
        item.totalPriceProduct = item.price * item.quantity;
@@ -187,9 +191,8 @@ const aplyDesc = (code) => {
 function showQuantity(id) {
   let quantity;
 
-  const detailCartProducts = JSON.parse(sessionStorage.getItem('cartItems'));
-
-  detailCartProducts.map(item => item.id === id ? quantity = item.quantity : 1);
+  const { storage } = useLocalStorage('cartItems');
+  storage.map(item => item.id === id ? quantity = item.quantity : 1);
 
   return quantity;
 }
